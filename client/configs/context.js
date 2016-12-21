@@ -4,12 +4,12 @@ import {FlowRouter} from 'meteor/kadira:flow-router-ssr';
 import {ReactiveDict} from 'meteor/reactive-dict';
 import {Tracker} from 'meteor/tracker';
 
-export default function() {
-	return {
-		Meteor, 
-		FlowRouter,
-		Collections,
-		LocalState: new ReactiveDict(),
-		Tracker
-	};
+export default function () {
+ return {
+ Meteor,
+ FlowRouter,
+ Collections,
+ LocalState: new ReactiveDict(),
+ Tracker
+ };
 }
