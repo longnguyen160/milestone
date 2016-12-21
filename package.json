@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "domready": "^1.0.8",
+    "jquery": "2.x.x",
     "mantra-core": "1.7.0",
     "react": "15.4.1",
     "react-bootstrap-datetimepicker": "0.0.22",
