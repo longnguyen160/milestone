@@ -4,10 +4,17 @@ export default {
       LocalState.set('SUCCESS', null);
       return LocalState.set('EMAIL_ERROR', 'Email is required!');
     }
-    LocalState.set('EMAIL_ERROR', null);
-    LocalState.set('SUCCESS', "Success");
-    Meteor.call("sendPassword", email);
-    FlowRouter.go('/account/forgot')
+    LocalState.set('EMAIL_ERROR', 'User is not found!');
+    check(email, String);
+    if (Meteor.subscribe("users.email", email)) {
+      var user = Collections.Users.findOne(email);
+      if (user) {
+        LocalState.set('EMAIL_ERROR', null);
+        LocalState.set('SUCCESS', "Success");
+        onData(null, {user});
+      }
+    }
+    FlowRouter.go('/account/forgot');
   },
   login({Meteor,LocalState, FlowRouter}, email, password) {
     if (!email) {
@@ -26,5 +33,7 @@ export default {
   },
   clearErrors({LocalState}) {
     LocalState.set("LOGIN_USER_ERROR", null);
+    LocalState.set("EMAIL_ERROR", null);
+    LocalState.set("SUCCESS", null);
   }
 };

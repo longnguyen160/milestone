@@ -10,7 +10,7 @@ class ForgotPassword extends React.Component {
             {error ?
                 <div className="alert alert-danger alert-dismissable nomargin">
                     <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>{error}</strong> {error}!
+                    <strong>{error}</strong>
                 </div>
             : null}
                 <div className="input-group">
