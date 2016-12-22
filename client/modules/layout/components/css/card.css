@@ -1,16 +1,62 @@
-.card {
-    border: 1px solid black;
-    position: absolute;
-    height: 25em;
-    width: 25em;
-    top: 35%;
-    left: 35%;
+#Card {
+  border-top: 0.5em solid #5CD8E4;
+  padding: 3em;
+  display: flex;
+  width: 40%;
+  margin: 0 auto;
+  background: #F4F7F9;
 }
 
-.vertical-center {
-  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 70vh; /* These two lines are counted as one :-)       */
+form {
+  width: 90%;
+  text-align: center;
+}
 
-  display: flex;
-  align-items: center;
+input[type="text"], input[type="password"]{
+  background-color:#EEEEEE !important;
+  outline: none;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+input:focus {
+  outline: none;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+div.input-group {
+  margin: 5px 0;
+}
+
+span.input-group-addon {
+  border : 0 !important;
+}
+
+button {
+  display: block;
+  text-align: center !important;
+  margin: 5px auto;
+  border: 0 !important;
+  color: white !important;
+  background-color: #5CD8E4 !important;
+}
+
+.centerlize {
+  margin: 1em auto;
+}
+
+a#forgotpw {
+  display: block;
+  margin: 0.5em 0 !important;
+}
+
+.nomargin {
+  margin: 0 !important;
+  background-color: #ED5A5A;
+  color: white;
 }

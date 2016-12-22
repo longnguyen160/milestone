@@ -16,7 +16,7 @@ export default function (injectDeps, {FlowRouter}) {
 		}
 	});
 
-	FlowRouter.route('/card', {
+	FlowRouter.route('/login', {
 		name: 'card.test',
 		action() {
 			mount(MainLayoutCtx, {
