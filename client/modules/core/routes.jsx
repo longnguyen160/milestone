@@ -16,6 +16,7 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
+	
 	FlowRouter.route('/account/forgot', {
 		name: 'users.sendPassword',
 		action() {
@@ -24,6 +25,7 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
+
 	FlowRouter.route('/account/login', {
 		name: 'account.login',
 		action() {
