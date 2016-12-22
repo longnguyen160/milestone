@@ -1,6 +1,6 @@
 import React from 'react';
-require("./style.css");
-require("./home.css");
+require("./css/style.css");
+require("./css/home.css");
 
 const Home = ({context} = () => null) => (
     <div className="container" id="main">
