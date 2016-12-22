@@ -13,7 +13,11 @@ const NavBar = ({context} = () => null) => (
                 <li><a href="#">For subcribers</a></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
+<<<<<<< HEAD
                 <li><a href="/account/forget">Login</a></li>
+=======
+                <li><a href="http://localhost:3000/acount/login">Login</a></li>
+>>>>>>> e81aefe8f0641a38b6c7096a71faa21e4fb22e39
             </ul>
         </div>
     </nav>
