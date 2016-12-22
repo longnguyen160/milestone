@@ -2,7 +2,7 @@ import React from 'react';
 require("./css/login.css");
 
 const Login = ({context} = () => null) => (
-    <div id="mainLogin text-center">
+    <div id="mainLogin" className="text-center">
         <div id="Card">
             <form className="centerlize">
                 <div className="alert alert-danger alert-dismissable nomargin">
