@@ -7,7 +7,7 @@ export const composer = ({context,clearErrors},onData) => {
   return clearErrors;
 };
 export const depsMapper = (context,actions) => ({
-  loginUser: actions.users.login,
+  login: actions.users.login,
   clearErrors: actions.users.clearErrors,
   context: () => context
 });
