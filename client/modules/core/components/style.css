@@ -1,4 +1,17 @@
 #root {
-    background: red;
-    height: 100vh;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    position:  absolute;
+}
+
+#nav {
+    position: relative;
+}
+
+#content {
+    position: relative;
+    height: 90%;
 }
