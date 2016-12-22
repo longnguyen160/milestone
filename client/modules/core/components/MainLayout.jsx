@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 import NavBar from '../../layout/components/NavBar.jsx';
 import Footer from '../../layout/components/Footer.jsx';
 
 const Layout = ({content}) => (
-    
+
 	<div id="mother">
         <header>
             <NavBar />
