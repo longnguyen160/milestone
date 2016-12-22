@@ -8,7 +8,7 @@ import Card from '../layout/components/Card.jsx';
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
 	FlowRouter.route('/', {
-		name: 'home',
+		name: 'home.test',
 		action() {
 			mount(MainLayoutCtx, {
 				content: () => (<Home />)
@@ -16,12 +16,13 @@ export default function (injectDeps, {FlowRouter}) {
 		}
 	});
 
-	FlowRouter.route('/account/login', {
-		name: 'account.login',
+	FlowRouter.route('/login', {
+		name: 'card.test',
 		action() {
 			mount(MainLayoutCtx, {
 				content: () => (<Card />)
 			});
 		}
 	});
+
 }
