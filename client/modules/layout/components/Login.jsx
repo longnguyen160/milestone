@@ -23,6 +23,7 @@ const Login = ({context} = () => null) => (
                 </div>
                 <a href="/account/forgot" id="forgotpw" >I forgot my password</a>
             </form>    
+
         </div>
         <div id="sigup_mess">
             New to SI? Sign up as a <a href="#">Broadcaster</a> or&nbsp;<a href="#">Freelancer </a>
@@ -30,5 +31,4 @@ const Login = ({context} = () => null) => (
     </div>
 );
 
-
-export default Login;   
+export default Login;

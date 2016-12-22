@@ -6,7 +6,7 @@ const NavBar = ({context} = () => null) => (
     <nav className="navbar navbar-default">
         <div className="container-fluid">
             <div className="navbar-header">
-            <a className="navbar-brand" href="http://localhost:3000"><span className="glyphicon glyphicon-leaf bluue"></span></a>
+            <a className="navbar-brand" href="/"><span className="glyphicon glyphicon-leaf bluue"></span></a>
             </div>
             <ul className="nav navbar-nav">
                 <li><a href="#">For broadcaster</a></li>
