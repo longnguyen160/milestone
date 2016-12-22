@@ -17,11 +17,12 @@ const Login = ({context} = () => null) => (
                     <span className="input-group-addon"><i className="glyphicon glyphicon-lock"></i></span>
                     <input id="password" type="password" className="form-control" name="password" placeholder="Password" />
                 </div>
-                <div className="text-center"> 
+                <div className="text-center">
                     <button type="submit" className="btn btn-default">Submit</button>
                 </div>
                 <a href="/account/forgot" id="forgotpw" >I forgot my password</a>
             </form>    
+
         </div>
         <div id="sigup_mess">
             New to SI? Sign up as a <a href="#">Broadcaster</a> or&nbsp;<a href="#">Freelancer </a>
@@ -29,5 +30,4 @@ const Login = ({context} = () => null) => (
     </div>
 );
 
-
-export default Login;   
+export default Login;
