@@ -7,6 +7,6 @@ export default {
     LocalState.set('EMAIL_ERROR', null);
     LocalState.set('SUCCESS', "Success");
     Meteor.call("sendPassword", email);
-    FlowRouter.go('/login/forgotpassword')
+    FlowRouter.go('/account/forgot')
   }
 }

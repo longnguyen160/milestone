@@ -15,7 +15,7 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
-	FlowRouter.route('/login/forgotpassword', {
+	FlowRouter.route('/account/forgot', {
 		name: 'users.sendPassword',
 		action() {
 			mount(MainLayoutCtx, {
