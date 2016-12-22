@@ -1,5 +1,6 @@
 import React from 'react';
-require("./style.css");
+require("./css/style.css");
+require("./css/navbar.css");
 
 const NavBar = ({context} = () => null) => (
     <nav className="navbar navbar-default">
@@ -12,11 +13,10 @@ const NavBar = ({context} = () => null) => (
                 <li><a href="#">For subcribers</a></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
-                <li><a href="/login/forgotpassword">Login</a></li>
+                <li><a href="/account/forget">Login</a></li>
             </ul>
         </div>
     </nav>
-
 );
 
 
