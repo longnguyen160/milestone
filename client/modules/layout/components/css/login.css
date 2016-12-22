@@ -76,3 +76,7 @@ a#forgotpw {
   background-color: #ED5A5A;
   color: white;
 }
+
+.success {
+  background-color: #3AC162;
+}

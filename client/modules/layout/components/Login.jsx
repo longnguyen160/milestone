@@ -21,13 +21,13 @@ const Login = ({context} = () => null) => (
                     <button type="submit" className="btn btn-default">Submit</button>
                 </div>
                 <a href="/account/forgot" id="forgotpw" >I forgot my password</a>
-            </form>
+            </form>    
+
         </div>
         <div id="sigup_mess">
-            New to SI? Sign up as a <a href="#">&nbsp;Broadcaster </a>&nbsp;or&nbsp;<a href="#"> Freelancer </a>
+            New to SI? Sign up as a <a href="#">Broadcaster</a> or&nbsp;<a href="#">Freelancer </a>
         </div>
     </div>
 );
-
 
 export default Login;

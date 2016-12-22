@@ -4,6 +4,7 @@ import Layout from './components/MainLayout.jsx';
 import NavBar from '../layout/components/NavBar.jsx';
 import Home from '../layout/components/Home.jsx';
 import ForgotPassword from '../users/containers/ForgotPassword.js';
+
 import Login from '../layout/components/Login.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
@@ -16,6 +17,7 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
+	
 	FlowRouter.route('/account/forgot', {
 		name: 'users.sendPassword',
 		action() {
@@ -24,6 +26,7 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
+
 	FlowRouter.route('/account/login', {
 		name: 'account.login',
 		action() {
