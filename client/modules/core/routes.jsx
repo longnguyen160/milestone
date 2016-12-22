@@ -14,4 +14,12 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
+	FlowRouter.route('/account-login', {
+		name: 'login',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<Home />)
+			});
+		}
+	});
 }
