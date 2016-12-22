@@ -1,7 +1,7 @@
 import React from 'react';
-require("./css/card.css");
+require("./css/login.css");
 
-const Card = ({context} = () => null) => (
+const Login = ({context} = () => null) => (
     <div id="Card">
         <form className="centerlize">
             <div className="alert alert-danger alert-dismissable nomargin">
@@ -25,4 +25,4 @@ const Card = ({context} = () => null) => (
 );
 
 
-export default Card;
+export default Login;

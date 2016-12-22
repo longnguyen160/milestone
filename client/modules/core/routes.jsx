@@ -3,7 +3,7 @@ import {mount} from 'react-mounter';
 import Layout from './components/MainLayout.jsx';
 import NavBar from '../layout/components/NavBar.jsx';
 import Home from '../layout/components/Home.jsx';
-import Card from '../layout/components/Card.jsx';
+import Card from '../layout/components/Login.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
@@ -20,7 +20,7 @@ export default function (injectDeps, {FlowRouter}) {
 		name: 'account.login',
 		action() {
 			mount(MainLayoutCtx, {
-				content: () => (<Card />)
+				content: () => (<Login />)
 			});
 		}
 	});
