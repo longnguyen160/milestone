@@ -14,7 +14,7 @@ const Login = ({context} = () => null) => (
                     <input id="email" type="text" className="form-control" name="email" placeholder="Email" />
                 </div>
                 <div className="text-center"> 
-                    <button type="submit" className="btn btn-default">Reset Password</button>
+                    <button type="submit" className="btn btn-info">Reset Password</button>
                 </div>
                 <a href="/account/login" id="forgotpw" >Login</a>
             </form>    

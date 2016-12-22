@@ -5,6 +5,8 @@ import NavBar from '../layout/components/NavBar.jsx';
 import Home from '../layout/components/Home.jsx';
 import ForgotPassword from '../layout/components/ForgotPassword.jsx';
 import Login from '../layout/components/Login.jsx';
+import Invite from '../layout/components/Invitation.jsx';
+import TOS from '../layout/components/TOS.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
@@ -17,8 +19,17 @@ export default function (injectDeps, {FlowRouter}) {
 		}
 	});
 	
+	FlowRouter.route('/tos', {
+		name: 'tos',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<TOS />)
+			});
+		}
+	});
+
 	FlowRouter.route('/account/forgot', {
-		name: 'users.sendPassword',
+		name: 'account.sendPassword',
 		action() {
 			mount(MainLayoutCtx, {
 				content: () => (<ForgotPassword />)
@@ -34,4 +45,14 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
+
+	FlowRouter.route('/account/invite', {
+		name: 'account.invite',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<Invite />)
+			});
+		}
+	});
+
 }

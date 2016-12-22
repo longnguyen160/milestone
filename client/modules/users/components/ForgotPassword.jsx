@@ -18,7 +18,7 @@ class ForgotPassword extends React.Component {
                     <input id="email" type="text" className="form-control" name="email" placeholder="Email" />
                 </div>
                 <div className="text-center"> 
-                    <button type="submit" className={success ? "btn btn-success btn-md": "btn btn-default" }>
+                    <button type="submit" className={success ? "btn btn-success btn-md": "btn btn-info" }>
                       {success ? "Please check your email for further instructions" : "Reset Password"}
                     </button>
                 </div>

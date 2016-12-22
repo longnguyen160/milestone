@@ -5,7 +5,7 @@
 
 #Card {
   border-top: 0.5em solid #5CD8E4;
-  padding: 3em;
+  padding: 2em 3em;
   display: flex;
   flex-direction: column;
   width: 40%;
@@ -25,6 +25,7 @@ input[type="text"], input[type="password"]{
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   box-shadow: none !important;
+  width: 100%;
 }
 
 input:focus {
@@ -49,7 +50,7 @@ button {
   margin: 5px auto;
   border: 0 !important;
   color: white !important;
-  background-color: #5CD8E4 !important;
+  
 }
 
 .centerlize {
@@ -79,4 +80,30 @@ a#forgotpw {
 
 .success {
   background-color: #3AC162;
+}
+
+form > h3 {
+  text-align: left;
+}
+
+i.glyphicon-ok-sign {
+  color: limegreen;
+}
+
+i.glyphicon-exclamation-sign {
+  color: crimson;
+}
+
+div.input-group {
+  width: 100%;
+}
+
+p.error-msg {
+  color:crimson;
+  margin: 0;
+  text-align: left;
+}
+
+.centerlize > .checkbox {
+  text-align: left;
 }

@@ -12,13 +12,14 @@ const Login = ({context} = () => null) => (
                 <div className="input-group">
                     <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
                     <input id="email" type="text" className="form-control" name="email" placeholder="Email" />
+                    
                 </div>
                 <div className="input-group">
                     <span className="input-group-addon"><i className="glyphicon glyphicon-lock"></i></span>
                     <input id="password" type="password" className="form-control" name="password" placeholder="Password" />
                 </div>
                 <div className="text-center"> 
-                    <button type="submit" className="btn btn-default">Submit</button>
+                    <button type="submit" className="btn btn-info">Submit</button>
                 </div>
                 <a href="/account/forgot" id="forgotpw" >I forgot my password</a>
             </form>    
