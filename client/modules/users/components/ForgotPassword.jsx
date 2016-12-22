@@ -17,9 +17,11 @@ class ForgotPassword extends React.Component {
                     <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
                     <input id="email" type="text" className="form-control" name="email" placeholder="Email" ref="email"/>
                 </div>
+
                 <div className="text-center">
                     <button type="button" className={success ? "btn btn-success btn-md": "btn btn-info btn-md"}
                       onClick={success ? this.exactEmail.bind(this) : this.sendResetPasswordEmail.bind(this)}>
+
                       {success ? "Please check your email for further instructions" : "Reset Password"}
                     </button>
                 </div>
