@@ -4,7 +4,7 @@ import Layout from './components/MainLayout.jsx';
 import NavBar from '../layout/components/NavBar.jsx';
 import Home from '../layout/components/Home.jsx';
 import ForgotPassword from '../users/containers/ForgotPassword.js';
-import Login from '../users/components/Login.jsx';
+import Login from '../users/containers/Login.js';
 
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
@@ -16,7 +16,7 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
-	
+
 	FlowRouter.route('/account/forgot', {
 		name: 'users.sendPassword',
 		action() {
