@@ -1,8 +1,9 @@
 import React from 'react';
-require("./style.css");
+require("./css/style.css");
+require("./css/navbar.css");
 
 const NavBar = ({context} = () => null) => (
-    <nav className="navbar navbar-default">
+    <nav className="navbar navbar-default nav">
         <div className="container-fluid">
             <div className="navbar-header">
             <a className="navbar-brand" href="http://localhost:3000"><span className="glyphicon glyphicon-leaf bluue"></span></a>

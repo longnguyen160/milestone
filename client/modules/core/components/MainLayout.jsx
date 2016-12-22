@@ -4,21 +4,22 @@ import Footer from '../../layout/components/Footer.jsx';
 
 const Layout = ({content}) => (
 
-	<div id="mother">
-        <header>
-            <NavBar />
-        </header>
-        <div className="container-fluid">
-            <div className="row">
-                <div className="row-md-12">
-                    {content()}
-                </div>
-            </div>
-        </div>
-        <footer>
-            <Footer />
-        </footer>
-	</div>
+	// <div className="row">
+    //     <div className="col-md-12">
+    //         <NavBar />
+    //     </div>
+        
+    //     <div className="row">
+    //         <div className="row-md-12">
+    //             {content()}
+    //         </div>
+    //     </div>
+        
+    //     <div className="col-md-12">
+    //         <Footer />
+    //     </div>
+	// </div>
+    <div id="root">AAA</div>
 );
 
 export default Layout;

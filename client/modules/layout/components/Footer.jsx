@@ -1,8 +1,9 @@
 import React from 'react';
-require("./style.css");
+require("./css/style.css");
+require("./css/footer.css");
 
 const Footer = ({context} = () => null) => (
-    <div className="text-center footer navbar-fixed-bottom">
+    <div className="text-center container-fluid footer">
         <a href="#">Home</a>
         <a href="#">About</a>
         <a href="#">Apply</a>
