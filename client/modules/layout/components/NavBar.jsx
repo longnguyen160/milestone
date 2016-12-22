@@ -12,7 +12,7 @@ const NavBar = ({context} = () => null) => (
                 <li><a href="#">For subcribers</a></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
-                <li><a href="#">Login</a></li>
+                <li><a href="/login/forgotpassword">Login</a></li>
             </ul>
         </div>
     </nav>

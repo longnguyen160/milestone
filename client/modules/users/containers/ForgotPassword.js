@@ -4,7 +4,8 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 export const composer = ({context, clearErrors}, onData) => {
   const {LocalState} = context();
   const error = LocalState.get("EMAIL_ERROR");
-  onData(null, {error});
+  const success = LocalState.get("SUCCESS");
+  onData(null, {error, success});
   return clearErrors;
 };
 

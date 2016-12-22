@@ -2,18 +2,25 @@ import React from 'react';
 
 class ForgotPassword extends React.Component {
   render() {
-    const {error} = this.props;
-    return (        
-        <form>
+    const {error, success} = this.props;
+    return (
+        <form className="form-horizontal">
           {error ? <p style={{color: 'red'}}>{error}</p> : null}
-          <div class="form-group has-feedback has-feedback-left">
-            <input type="email" ref="email" class="form-control" placeholder="Email Address" />
-            <i class="form-control-feedback glyphicon glyphicon-user"></i>
-            <input style={error ? {color: 'green'} : {color: 'blue'}} type="submit" onclick={this.sendResetPasswordEmail.bind(this)}
-              value={error ? "Please check your email for further instructions" : "Reset Password"} />
-          </div>
+          <div className="input-group">
+            <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
+            <input type="email" ref="email" className="form-control" placeholder="Email Address" />
+          </div><br />
+          <button className={success ? "btn btn-success btn-md" : "btn btn-info btn-md"} type="button"
+            onClick={success ? this.exactEmail.bind(this) : this.sendResetPasswordEmail.bind(this)}>
+            {success ? "Please check your email for further instructions" : "Reset Password"}
+          </button><br /><br />
+          <a href="/login">Login</a>
         </form>
     )
+  }
+
+  exactEmail(e) {
+
   }
 
   sendResetPasswordEmail(e) {
