@@ -6,7 +6,7 @@ import Home from '../layout/components/Home.jsx';
 import ForgotPassword from '../users/containers/ForgotPassword.js';
 import Invite from '../layout/components/Invitation.jsx';
 import TOS from '../layout/components/TOS.jsx';
-import Login from '../users/containers/Login.js';
+import Login from '../layout/components/Login.js';
 
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
