@@ -10,20 +10,21 @@ class ForgotPassword extends React.Component {
             {error ?
                 <div className="alert alert-danger alert-dismissable nomargin">
                     <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Danger!</strong> {error}!
+                    <strong>{error}</strong> {error}!
                 </div>
             : null}
                 <div className="input-group">
                     <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
-                    <input id="email" type="text" className="form-control" name="email" placeholder="Email" />
+                    <input id="email" type="text" className="form-control" name="email" placeholder="Email" ref="email"/>
                 </div>
-                <div className="text-center"> 
-                    <button type="submit" className={success ? "btn btn-success btn-md": "btn btn-default" }>
+                <div className="text-center">
+                    <button type="submit" className={success ? "btn btn-success btn-md": "btn btn-info btn-md" }
+                      onClick={success ? this.exactEmail.bind(this) : this.sendResetPasswordEmail.bind(this)}>
                       {success ? "Please check your email for further instructions" : "Reset Password"}
                     </button>
                 </div>
                 <a href="/account/login" id="forgotpw" >Login</a>
-            </form>    
+            </form>
         </div>
     </div>
     )

@@ -7,10 +7,11 @@ class Login extends React.Component {
       <div id="mainLogin text-center">
           <div id="Card">
               <form className="centerlize">
-                  <div className="alert alert-danger alert-dismissable nomargin">
-                      <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
-                      <strong>Danger!</strong> Example danger message!
-                  </div>
+                  {error ?
+                    <div className="alert alert-danger alert-dismissable nomargin">
+                        <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Danger!</strong> Example danger message!
+                    </div> : null}
                   <div className="input-group">
                       <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
                       <input id="email" type="text" className="form-control" name="email" placeholder="Email" ref="email"/>
@@ -20,7 +21,7 @@ class Login extends React.Component {
                       <input id="password" type="password" className="form-control" name="password" placeholder="Password" ref="password" />
                   </div>
                   <div className="text-center">
-                      <button type="submit" className="btn btn-default">Submit</button>
+                      <button type="submit" className="btn btn-info btn-md login">Submit</button>
                   </div>
                   <a href="/account/forgot" id="forgotpw" >I forgot my password</a>
               </form>
