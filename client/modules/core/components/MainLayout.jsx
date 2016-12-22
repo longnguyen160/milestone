@@ -3,22 +3,17 @@ import NavBar from '../../layout/components/NavBar.jsx';
 import Footer from '../../layout/components/Footer.jsx';
 
 const Layout = ({content}) => (
-
-	<div id="mother">
-        <header>
+    <div id="root">
+        <div id="nav">
             <NavBar />
-        </header>
-        <div className="container-fluid">
-            <div className="row">
-                <div className="row-md-12">
-                    {content()}
-                </div>
-            </div>
         </div>
-        <footer>
+        <div id="content">
+        {content()}
+        </div>
+        <div id="footer">
             <Footer />
-        </footer>
-	</div>
+        </div>
+    </div>
 );
 
 export default Layout;

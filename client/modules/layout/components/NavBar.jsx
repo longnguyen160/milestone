@@ -1,5 +1,6 @@
 import React from 'react';
-require("./style.css");
+require("./css/style.css");
+require("./css/navbar.css");
 
 const NavBar = ({context} = () => null) => (
     <nav className="navbar navbar-default">

@@ -4,4 +4,5 @@ a {
 
 .footer {
     padding: 2%;
+    overflow-wrap: break-word;
 }
