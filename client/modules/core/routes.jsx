@@ -4,9 +4,9 @@ import Layout from './components/MainLayout.jsx';
 import NavBar from '../layout/components/NavBar.jsx';
 import Home from '../layout/components/Home.jsx';
 import ForgotPassword from '../users/containers/ForgotPassword.js';
-import Login from '../layout/components/Login.jsx';
 import Invite from '../layout/components/Invitation.jsx';
 import TOS from '../layout/components/TOS.jsx';
+import Login from '../users/containers/Login.js';
 
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
