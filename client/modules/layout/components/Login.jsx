@@ -17,11 +17,11 @@ const Login = ({context} = () => null) => (
                     <span className="input-group-addon"><i className="glyphicon glyphicon-lock"></i></span>
                     <input id="password" type="password" className="form-control" name="password" placeholder="Password" />
                 </div>
-                <div className="text-center"> 
+                <div className="text-center">
                     <button type="submit" className="btn btn-default">Submit</button>
                 </div>
-                <a href="http://localhost:3000/account/forgot" id="forgotpw" >I forgot my password</a>
-            </form>    
+                <a href="/account/forgot" id="forgotpw" >I forgot my password</a>
+            </form>
         </div>
         <div id="sigup_mess">
             New to SI? Sign up as a <a href="#">&nbsp;Broadcaster </a>&nbsp;or&nbsp;<a href="#"> Freelancer </a>
