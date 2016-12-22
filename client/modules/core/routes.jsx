@@ -4,9 +4,9 @@ import Layout from './components/MainLayout.jsx';
 import NavBar from '../layout/components/NavBar.jsx';
 import Home from '../layout/components/Home.jsx';
 import ForgotPassword from '../users/containers/ForgotPassword.js';
-import Invite from '../layout/components/Invitation.jsx';
+import SignUp from '../layout/components/SignUp.jsx';
 import TOS from '../layout/components/TOS.jsx';
-import Login from '../layout/components/Login.js';
+import Login from '../layout/components/Login.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
@@ -46,11 +46,11 @@ export default function (injectDeps, {FlowRouter}) {
 		}
 	});
 
-	FlowRouter.route('/account/invite', {
-		name: 'account.invite',
+	FlowRouter.route('/account/signup', {
+		name: 'account.signup',
 		action() {
 			mount(MainLayoutCtx, {
-				content: () => (<Invite />)
+				content: () => (<SignUp />)
 			});
 		}
 	});

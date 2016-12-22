@@ -1,9 +1,24 @@
 import React from 'react';
 require("./css/login.css");
+require("./css/signup.css");
 
 const Invite = ({context} = () => null) => (
-    <div id="mainLogin text-center">
-        <div id="Card">
+    <div id="mainLogin" className="text-center">
+        <h1>Sample text</h1>
+        <div id="information" className="go-left">
+        asfjhkasf
+        adsf
+        asd
+        fa
+        dsf
+        adsfas
+        dfa
+        sf
+        asdf
+        asdfas
+        f
+        </div>
+        <div id="Card" className="go-left">
             <form className="centerlize">
                 <h3>Your basic information</h3>
                 <div className="input-group">   
