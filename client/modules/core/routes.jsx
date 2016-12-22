@@ -6,7 +6,7 @@ import Home from '../layout/components/Home.jsx';
 import ForgotPassword from '../users/containers/ForgotPassword.js';
 import SignUp from '../layout/components/SignUp.jsx';
 import TOS from '../layout/components/TOS.jsx';
-import Login from '../layout/components/Login.jsx';
+import Login from '../users/containers/Login.js';
 
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
@@ -18,7 +18,7 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
-	
+
 	FlowRouter.route('/tos', {
 		name: 'tos',
 		action() {
