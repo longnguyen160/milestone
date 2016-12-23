@@ -1,10 +1,11 @@
 import React from 'react';
 require("./css/login.css");
 require("./css/signup.css");
+require("./css/apply.css");
 
 const SignUp = ({context} = () => null) => (
     <div id="mainLogin" className="text-center">
-        <h1>Sample text</h1>
+        <h1>No invite code?</h1>
         <div id="information" className="go-left">
         asfjhkasf
         adsf
@@ -34,15 +35,13 @@ const SignUp = ({context} = () => null) => (
                     <input id="company" type="text" className="form-control" name="company" placeholder="Company" />
                     
                 </div>
-                <h3>Your Account Information</h3>
+                <h3>Your yourself</h3>
                 <div className="input-group">   
-                    <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
-                    <input id="email" type="text" className="form-control" name="email" placeholder="Email" />
+                    <input id="link" type="text" className="form-control" name="link" placeholder="Link" />
                     
                 </div>
                 <div className="input-group">   
-                    <span className="input-group-addon"><i className="glyphicon glyphicon-lock"></i></span>
-                    <input id="password" type="text" className="form-control" name="pasword" placeholder="Password" />
+                    <textarea className="form-control" rows="4" id="descript" placeholder="Introduce yourself in 300 characters" maxLength="300"></textarea>
 
                 </div>
 
@@ -50,7 +49,7 @@ const SignUp = ({context} = () => null) => (
                     <label><input type="checkbox" value="" /> I agree to the <a href="/tos">terms of service</a></label>
                 </div>
                 <div className="text-center"> 
-                    <button type="submit" className="btn btn-info">Register</button>
+                    <button type="submit" className="btn btn-info">Apply</button>
                 </div>
             </form>    
         </div>
