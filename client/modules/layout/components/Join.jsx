@@ -4,6 +4,7 @@ require("./css/signup.css");
 
 const Join = ({context} = () => null) => (
     <div id="mainLogin" className="text-center">
+    <div id="container">
         <h1>Joining SI</h1>
         <div id="information" className="go-left">
         asfjhkasf
@@ -31,6 +32,7 @@ const Join = ({context} = () => null) => (
                 <a href="/account/login" id="forgotpw" >Login</a>
             </form>    
         </div>
+    </div>
     </div>
 );
 

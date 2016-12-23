@@ -1,10 +1,13 @@
 import React from 'react';
+require("./css/login.css");
 
 class ForgotPassword extends React.Component {
   render() {
     const {error, success} = this.props;
     return (
-        <div id="mainLogin text-center">
+        <div id="mainLogin" className="text-center">
+        <div>
+        <h1>Password Recover</h1>
         <div id="Card">
             <form className="centerlize">
             {error ?
@@ -27,6 +30,7 @@ class ForgotPassword extends React.Component {
                 </div>
                 <a href="/account/login" id="forgotpw" >Login</a>
             </form>
+        </div>
         </div>
     </div>
     )

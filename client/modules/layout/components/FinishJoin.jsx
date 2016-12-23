@@ -5,7 +5,7 @@ const FinishJoin = ({context} = () => null) => (
     <div id="mainLogin" className="text-center">
         <h1>Joining SI</h1>
         <div id="Card">
-            
+            <div>
             <form className="centerlize">
                 <h3>Your basic information</h3>
                 <div className="input-group">   
@@ -37,7 +37,7 @@ const FinishJoin = ({context} = () => null) => (
                     <button type="submit" className="btn btn-info">Register</button>
                 </div>
             </form>    
-
+            </div>
         </div>
     </div>
 );

@@ -3,6 +3,7 @@ require("./css/login.css");
 
 const Login = ({context} = () => null) => (
     <div id="mainLogin" className="text-center">
+    <div>
         <div id="Card">
             <form className="centerlize">
                 <div className="alert alert-danger alert-dismissable nomargin">
@@ -28,6 +29,7 @@ const Login = ({context} = () => null) => (
         <div id="sigup_mess">
             New to SI? Sign up as a <a href="#">freelancer</a> or&nbsp;<a href="#">company </a>
         </div>
+    </div>
     </div>
 );
 
