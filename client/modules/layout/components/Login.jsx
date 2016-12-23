@@ -26,7 +26,7 @@ const Login = ({context} = () => null) => (
 
         </div>
         <div id="sigup_mess">
-            New to SI? Sign up as a <a href="#">Broadcaster</a> or&nbsp;<a href="#">Freelancer </a>
+            New to SI? Sign up as a <a href="#">freelancer</a> or&nbsp;<a href="#">company </a>
         </div>
     </div>
 );

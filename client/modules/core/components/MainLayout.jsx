@@ -1,6 +1,8 @@
 import React from 'react';
 import NavBar from '../../layout/components/NavBar.jsx';
 import Footer from '../../layout/components/Footer.jsx';
+import UserNavBar from '../../layout/components/UserNavBar.jsx'
+import DatePicker from 'react-datepicker';
 
 const Layout = ({content}) => (
     <div id="root">
@@ -12,6 +14,7 @@ const Layout = ({content}) => (
         </div>
         <div id="footer">
             <Footer />
+            {/* <DatePicker inline selected={this.state.startDate} onChange={this.handleChange} /> */}
         </div>
     </div>
 );
