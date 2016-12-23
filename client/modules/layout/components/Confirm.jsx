@@ -1,0 +1,28 @@
+import React from 'react';
+require("./css/login.css");
+require("./css/confirm.css");
+
+const Login = ({context} = () => null) => (
+    <div id="mainLogin" className="text-center">
+    <div>
+    <div id="confirm">
+            <h1>Welcome on board</h1>
+            <div className="input-group">
+                <span className="input-group-addon greenpls"><i className="glyphicon glyphicon-ok colorpls"></i></span>
+                <input id="greenpls" type="text" className="form-control colorpls" name="email" value="Your emails has been confirmed" readOnly/> 
+                
+            </div>
+            <div className="input-group">
+                <span className="input-group-addon redpls"><i className="glyphicon glyphicon-ok colorpls"></i></span>
+                <input id="redpls" type="text" className="form-control colorpls" name="email" value="Your emails hasn't been confirmed" readOnly/> 
+                
+            </div>
+            <div className="text-center"> 
+                   <button type="submit" className="btn btn-info"><b>Continue</b></button>
+            </div>
+        </div>
+    </div>
+    </div>
+);
+
+export default Login;

@@ -1,0 +1,25 @@
+.colorpls {
+    color: white;
+
+}
+
+.greenpls {
+    background: #3AC162 !important;
+}
+
+#greenpls {
+    background:#3AC162 !important;
+}
+
+.redpls {
+    background: crimson !important;
+}
+
+#redpls {
+    background:crimson !important;
+}
+
+#confirm {
+    width: 35%;
+    margin: 0 auto;
+}

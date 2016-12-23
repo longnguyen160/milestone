@@ -10,7 +10,7 @@ import Login from '../users/containers/Login.js';
 import Join from '../layout/components/Join.jsx';
 import FinishJoin from '../layout/components/FinishJoin.jsx';
 import Apply from '../layout/components/Apply.jsx';
-
+import Confirm from '../layout/components/Confirm.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
@@ -82,6 +82,15 @@ export default function (injectDeps, {FlowRouter}) {
 		action() {
 			mount(MainLayoutCtx, {
 				content: () => (<Apply />)
+			});
+		}
+	});
+
+	FlowRouter.route('/register/confirm', {
+		name: 'account.confirm',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<Confirm />)
 			});
 		}
 	});
