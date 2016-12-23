@@ -10,11 +10,16 @@
 
 #nav {
     position: relative;
+    margin: 0;
+}
+
+.navbar {
+    margin-bottom: 1em !important;
 }
 
 #content {
     position: relative;
-    height: 90%;
+    height: 82.5%;
     align-items: center;
     justify-content: center;
 }

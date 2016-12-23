@@ -7,9 +7,13 @@
   justify-content: center;
 }
 
+h3 {
+  margin: 1em 0 0.25em 0;
+}
+
 #Card {
   border-top: 0.5em solid #5CD8E4;
-  padding: 1.25em 1em;
+  padding: 1em;
   display: flex;
   flex-direction: column;
   width: 40%;

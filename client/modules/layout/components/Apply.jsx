@@ -42,7 +42,7 @@ const SignUp = ({context} = () => null) => (
                         
                     </div>
                     <div className="input-group">   
-                        <textarea className="form-control" rows="4" id="descript" placeholder="Introduce yourself in 300 characters" maxLength="300"></textarea>
+                        <textarea className="form-control" rows="3" id="descript" placeholder="Introduce yourself in 300 characters" maxLength="300"></textarea>
 
                     </div>
 
