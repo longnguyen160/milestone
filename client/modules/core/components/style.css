@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
     position:  absolute;
+    overflow: auto;
 }
 
 #nav {
@@ -18,7 +19,7 @@
     justify-content: center;
 }
 
-@media only screen and (max-width: 780px) and (max-height: 500px) {
+@media screen and (max-width: 720px) {
     #root {
         position: relative;
     }
