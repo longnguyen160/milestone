@@ -11,6 +11,7 @@ import Join from '../layout/components/Join.jsx';
 import FinishJoin from '../layout/components/FinishJoin.jsx';
 import Apply from '../layout/components/Apply.jsx';
 import Confirm from '../layout/components/Confirm.jsx';
+import Update from '../layout/components/Update.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
@@ -91,6 +92,15 @@ export default function (injectDeps, {FlowRouter}) {
 		action() {
 			mount(MainLayoutCtx, {
 				content: () => (<Confirm />)
+			});
+		}
+	});
+
+	FlowRouter.route('/profile/update', {
+		name: 'profile.update',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<Update />)
 			});
 		}
 	});
