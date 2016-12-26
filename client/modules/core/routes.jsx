@@ -14,6 +14,7 @@ import Confirm from '../users/components/Confirm.jsx';
 import Update from '../users/components/Update.jsx';
 import Selfcare from '../users/components/Selfcare.jsx';
 import AdminInvite from '../users/components/AdminInvite.jsx';
+
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
 	FlowRouter.route('/', {
@@ -120,6 +121,15 @@ export default function (injectDeps, {FlowRouter}) {
 		action() {
 			mount(MainLayoutCtx, {
 				content: () => (<AdminInvite />)
+			});
+		}
+	});
+
+	FlowRouter.route('/profile', {
+		name: 'profile',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<Profile />)
 			});
 		}
 	});
