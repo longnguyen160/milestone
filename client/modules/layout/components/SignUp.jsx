@@ -1,6 +1,7 @@
 import React from 'react';
 require("./css/login.css");
 require("./css/signup.css");
+require("./css/confirm.css");
 
 const SignUp = ({context} = () => null) => (
     <div id="mainLogin" className="text-center">
@@ -52,6 +53,10 @@ const SignUp = ({context} = () => null) => (
                 </div>
                 <div className="text-center"> 
                     <button type="submit" className="btn btn-info">Register</button>
+                </div>
+                <div className="input-group">
+                    <span className="input-group-addon greenpls moreheightpls"><i className="glyphicon glyphicon-ok colorpls"></i></span>
+                    <input id="greenpls" type="text" className="form-control colorpls moreheightpls" name="warning" value="Your emails hasn't been confirmed" readOnly/> 
                 </div>
             </form>    
         </div>
