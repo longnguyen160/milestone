@@ -19,7 +19,8 @@ class FreelancerRegister extends React.Component {
             <div className="text-center">
               <button type="button" className="btn btn-info btn-md" onClick={this.sendInviteCode.bind(this)}>Continue</button>
             </div>
-            <p>No invitation?</p> <a href="/register/freelancer/finish">Apply here</a>
+            <br />
+            <p>No invitation? <a href="/register/freelancer/finish">Apply here</a></p> 
           </form>
         </div>
       </div>
