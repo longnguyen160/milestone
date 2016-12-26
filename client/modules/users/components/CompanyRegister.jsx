@@ -1,12 +1,14 @@
 import React from 'react';
 require("./css/login.css");
 require("./css/signup.css");
+
 class CompanyRegister extends React.Component {
   render() {
     const {error} = this.props;
     console.log(error);
     return (
       <div id="mainLogin" className="text-center">
+      <div id="container">
           <h1>Sample text</h1>
           <div id="information" className="go-left">
           asfjhkasf
@@ -63,6 +65,7 @@ class CompanyRegister extends React.Component {
                   </div>
               </form>
           </div>
+      </div>  
       </div>
         )
       };
