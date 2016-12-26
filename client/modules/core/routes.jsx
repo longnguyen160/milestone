@@ -1,17 +1,27 @@
 import React from 'react';
 import {mount} from 'react-mounter';
 import Layout from './components/MainLayout.jsx';
-import NavBar from '../layout/components/NavBar.jsx';
-import Home from '../layout/components/Home.jsx';
+import NavBar from '../users/components/NavBar.jsx';
+import Home from '../users/components/Home.jsx';
 import ForgotPassword from '../users/containers/ForgotPassword.js';
-import SignUp from '../layout/components/SignUp.jsx';
-import TOS from '../layout/components/TOS.jsx';
+import SignUp from '../users/components/SignUp.jsx';
+import TOS from '../users/components/TOS.jsx';
 import Login from '../users/containers/Login.js';
+<<<<<<< HEAD
 import FreelancerRegister from '../users/containers/FreelancerRegister.js';
 import Join from '../layout/components/Join.jsx';
 import Apply from '../layout/components/Apply.jsx';
 import Confirm from '../layout/components/Confirm.jsx';
 import Update from '../layout/components/Update.jsx';
+=======
+import Join from '../users/components/Join.jsx';
+import FinishJoin from '../users/components/FinishJoin.jsx';
+import Apply from '../users/components/Apply.jsx';
+import Confirm from '../users/components/Confirm.jsx';
+import Update from '../users/components/Update.jsx';
+import Selfcare from '../users/components/Selfcare.jsx';
+import AdminInvite from '../users/components/AdminInvite.jsx';
+>>>>>>> 8b811d3e906db02e640d6d1c019059375e82bbc4
 
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
@@ -101,6 +111,24 @@ export default function (injectDeps, {FlowRouter}) {
 		action() {
 			mount(MainLayoutCtx, {
 				content: () => (<Update />)
+			});
+		}
+	});
+
+	FlowRouter.route('/account/selfcare', {
+		name: 'account.selfcare',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<Selfcare />)
+			});
+		}
+	});
+
+	FlowRouter.route('/admin/invites', {
+		name: 'admin.invites',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<AdminInvite />)
 			});
 		}
 	});
