@@ -77,7 +77,7 @@ export default function (injectDeps, {FlowRouter}) {
 		name: 'account.finish',
 		action() {
 			mount(MainLayoutCtx, {
-				content: () => (<FreelancerFinish />)
+				content: () => (<FinishJoin />)
 			});
 		}
 	});
