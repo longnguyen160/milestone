@@ -4,7 +4,7 @@ import Layout from './components/MainLayout.jsx';
 import NavBar from '../users/components/NavBar.jsx';
 import Home from '../users/components/Home.jsx';
 import ForgotPassword from '../users/containers/ForgotPassword.js';
-import SignUp from '../users/components/SignUp.jsx';
+import CompanyRegister from '../users/containers/CompanyRegister.js';
 import TOS from '../users/components/TOS.jsx';
 import Login from '../users/containers/Login.js';
 import Join from '../users/components/Join.jsx';
@@ -14,8 +14,6 @@ import Confirm from '../users/components/Confirm.jsx';
 import Update from '../users/components/Update.jsx';
 import Selfcare from '../users/components/Selfcare.jsx';
 import AdminInvite from '../users/components/AdminInvite.jsx';
->>>>>>> 8b811d3e906db02e640d6d1c019059375e82bbc4
-
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
 	FlowRouter.route('/', {
@@ -58,7 +56,7 @@ export default function (injectDeps, {FlowRouter}) {
 		name: 'account.signup',
 		action() {
 			mount(MainLayoutCtx, {
-				content: () => (<SignUp />)
+				content: () => (<CompanyRegister />)
 			});
 		}
 	});
