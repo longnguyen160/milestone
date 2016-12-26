@@ -7,6 +7,7 @@ import ForgotPassword from '../users/containers/ForgotPassword.js';
 import SignUp from '../layout/components/SignUp.jsx';
 import TOS from '../layout/components/TOS.jsx';
 import Login from '../users/containers/Login.js';
+import FreelancerRegister from '../users/containers/FreelancerRegister.js';
 
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
@@ -51,6 +52,15 @@ export default function (injectDeps, {FlowRouter}) {
 		action() {
 			mount(MainLayoutCtx, {
 				content: () => (<SignUp />)
+			});
+		}
+	});
+
+	FlowRouter.route('/register/freelancer', {
+		name: 'home',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<FreelancerRegister />)
 			});
 		}
 	});

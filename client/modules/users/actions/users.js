@@ -6,7 +6,7 @@ export default {
     }
     LocalState.set('EMAIL_ERROR', 'User is not found!');
     check(email, String);
-    if (Meteor.subscribe("users.email", email)) {
+    if (Meteor.subscribe("users.email", email).ready()) {
       var user = Collections.Users.findOne(email);
       if (user) {
         LocalState.set('EMAIL_ERROR', null);
@@ -16,7 +16,8 @@ export default {
     }
     FlowRouter.go('/account/forgot');
   },
-  login({Meteor,LocalState, FlowRouter}, email, password) {
+
+  login({Meteor, LocalState, FlowRouter}, email, password) {
     if (!email) {
       return LocalState.set('LOGIN_USER_ERROR','Email is required');
     }
@@ -31,6 +32,20 @@ export default {
         FlowRouter.go('/');
     });
   },
+
+  sendCode({Meteor, LocalState, FlowRouter}, inviteCode) {
+    if (!inviteCode)
+      return LocalState.set('INVITECODE_ERROR', 'Invite code is required');
+    check(inviteCode, String);
+    LocalState.set('INVITECODE_ERROR', 'Invilad code!');
+    Meteor.call("invitation.validation", inviteCode, (error) => {
+      if (error) {
+        return LocalState.set('SAVING_ERROR', error.message);
+      }
+    });
+    FlowRouter.go('/register/freelancer/finish');
+  },
+
   clearErrors({LocalState}) {
     LocalState.set("LOGIN_USER_ERROR", null);
     LocalState.set("EMAIL_ERROR", null);

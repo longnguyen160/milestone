@@ -5,7 +5,7 @@ import {check} from 'meteor/check';
 export default function() {
   Meteor.methods({
     'users.sendPassword'(email) {
-      
+      check(email, String);
     }
   })
 }

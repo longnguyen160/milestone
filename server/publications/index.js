@@ -1,4 +1,5 @@
-import items from './users';
+import users from './users';
+
 export default function () {
-  userss();
+  users();
 }

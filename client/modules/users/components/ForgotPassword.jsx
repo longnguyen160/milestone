@@ -5,7 +5,7 @@ class ForgotPassword extends React.Component {
     const {error, success} = this.props;
     return (
         <div id="mainLogin text-center">
-        <div id="Card">
+          <div id="Card">
             <form className="centerlize">
             {error ?
                 <div className="alert alert-danger alert-dismissable nomargin">
@@ -27,8 +27,8 @@ class ForgotPassword extends React.Component {
                 </div>
                 <a href="/account/login" id="forgotpw" >Login</a>
             </form>
+          </div>
         </div>
-    </div>
     )
   }
 
