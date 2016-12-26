@@ -32,6 +32,10 @@ export default {
         FlowRouter.go('/');
     });
   },
+  createUserCompany({Meteor,LocalState,FlowRouter}, firstName,lastName,company,email,password) {
+    Meteor.call('users.createUserCompany',firstName, lastName,company,email,password);
+    return;
+  },
   checkValidation({LocalState},text,type) {
     if (type === 'checkbox') {
       console.log(type);
