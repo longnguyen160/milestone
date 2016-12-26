@@ -1,4 +1,3 @@
-//import {Users} from '/lib/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 import {Random} from 'meteor/random';
@@ -34,6 +33,7 @@ export default function() {
       company: company
     });
     const user = Accounts.findUserByEmail(email);
+    //Accounts.sendVerificationEmail(user._ID);
   }});
   Meteor.methods({'users.checkValidation' (text,type) {
     check(text,String);
@@ -50,3 +50,4 @@ export default function() {
     }
   }});
 }
+

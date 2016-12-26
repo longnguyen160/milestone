@@ -7,7 +7,7 @@ class Login extends React.Component {
     console.log(error);
     return (
       <div id="mainLogin" className="text-center" >
-      <div>
+      <div className="container">
             <h1>Welcome to SI</h1>
           <div id="Card">
               <form className="centerlize">
@@ -31,7 +31,7 @@ class Login extends React.Component {
               </form>
           </div>
           <div id="sigup_mess">
-              New to SI  Sign up as a <a href="#"> Broadcaster </a> or <a href="/register/freelancer"> Freelancer </a>
+              New to SI  Sign up as a <a href="/register/company"> Broadcaster </a> or <a href="/register/freelancer"> Freelancer </a>
           </div>
         </div>
         </div>

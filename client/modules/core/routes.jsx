@@ -4,7 +4,8 @@ import Layout from './components/MainLayout.jsx';
 import NavBar from '../users/components/NavBar.jsx';
 import Home from '../users/components/Home.jsx';
 import ForgotPassword from '../users/containers/ForgotPassword.js';
-import SignUp from '../users/components/SignUp.jsx';
+import CompanyRegister from '../users/containers/CompanyRegister.js';
+import FreelancerRegister from '../users/containers/FreelancerRegister.js';
 import TOS from '../users/components/TOS.jsx';
 import Login from '../users/containers/Login.js';
 import Join from '../users/components/Join.jsx';
@@ -14,6 +15,10 @@ import Confirm from '../users/components/Confirm.jsx';
 import Update from '../users/components/Update.jsx';
 import Selfcare from '../users/components/Selfcare.jsx';
 import AdminInvite from '../users/components/AdminInvite.jsx';
+
+
+
+import Profile from '../users/components/UserProfile.jsx';
 
 
 export default function (injectDeps, {FlowRouter}) {
@@ -58,7 +63,7 @@ export default function (injectDeps, {FlowRouter}) {
 		name: 'account.signup',
 		action() {
 			mount(MainLayoutCtx, {
-				content: () => (<SignUp />)
+				content: () => (<CompanyRegister />)
 			});
 		}
 	});
@@ -76,7 +81,7 @@ export default function (injectDeps, {FlowRouter}) {
 		name: 'account.finish',
 		action() {
 			mount(MainLayoutCtx, {
-				content: () => (<FreelancerFinish />)
+				content: () => (<FinishJoin />)
 			});
 		}
 	});
@@ -97,7 +102,7 @@ export default function (injectDeps, {FlowRouter}) {
 				content: () => (<Confirm />)
 			});
 		}
-	});
+	});>>>>>>> 3ab043fb0c5f83bd55d1504edfd56470d7e19aad
 
 	FlowRouter.route('/profile/update', {
 		name: 'profile.update',
@@ -122,6 +127,15 @@ export default function (injectDeps, {FlowRouter}) {
 		action() {
 			mount(MainLayoutCtx, {
 				content: () => (<AdminInvite />)
+			});
+		}
+	});
+
+	FlowRouter.route('/profile', {
+		name: 'profile',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<Profile />)
 			});
 		}
 	});

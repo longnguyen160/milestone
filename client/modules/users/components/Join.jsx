@@ -12,17 +12,22 @@ const Join = ({context} = () => null) => (
         asd
         </div>
         <div id="Card" className="go-left">
-            <form className="centerlize">
-                <h3>You need an invitation to join SI</h3>
-                <div className="input-group">   
-                    <input id="invite-code" type="text" className="form-control" name="invite-code" placeholder="Invite Code" />
-                    <i className="form-control-feedback glyphicon glyphicon-ok-sign"></i>
-                </div>
-                <div className="text-center"> 
-                    <button type="submit" className="btn btn-info">Continue</button>
-                </div>
-                <a href="/account/login" id="forgotpw" >Login</a>
-            </form>    
+          <form className="centerlize">
+            <p>You need an invitation to join SI</p>
+            {error ?
+                <div className="alert alert-danger alert-dismissable nomargin">
+                    <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>{error}</strong>
+                </div> : null}
+            <div className="input-group">
+              <input type="text" className="form-control" placeholder="Invite Code" ref="inviteCode"/>
+            </div>
+            <div className="text-center">
+              <button type="button" className="btn btn-info btn-md" onClick={this.sendInviteCode.bind(this)}>Continue</button>
+            </div>
+            <br />
+            <p>No invitation? <a href="/register/freelancer/finish">Apply here</a></p> 
+          </form>
         </div>
     </div>
     </div>
