@@ -1,25 +1,11 @@
 import React from 'react';
 require("./css/login.css");
-require("./css/signup.css");
 
-const SignUp = ({context} = () => null) => (
+const FinishJoin = ({context} = () => null) => (
     <div id="mainLogin" className="text-center">
-        <h1>Sample text</h1>
-        <div id="containers">
-        <div id="information" className="go-left">
-        asfjhkasf
-        adsf
-        asd
-        fa
-        dsf
-        adsfas
-        dfa
-        sf
-        asdf
-        asdfas
-        f
-        </div>
-        <div id="Card" className="go-left">
+        <h1>Joining SI</h1>
+        <div id="Card">
+            <div>
             <form className="centerlize">
                 <h3>Your basic information</h3>
                 <div className="input-group">   
@@ -31,10 +17,7 @@ const SignUp = ({context} = () => null) => (
                     <i className="form-control-feedback glyphicon glyphicon-exclamation-sign"></i>
                     <p className="error-msg">Invalid example</p>
                 </div>
-                <div className="input-group">   
-                    <input id="company" type="text" className="form-control" name="company" placeholder="Company" />
-                    
-                </div>
+                
                 <h3>Your Account Information</h3>
                 <div className="input-group">   
                     <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
@@ -54,10 +37,9 @@ const SignUp = ({context} = () => null) => (
                     <button type="submit" className="btn btn-info">Register</button>
                 </div>
             </form>    
-        </div>
+            </div>
         </div>
     </div>
 );
 
-
-export default SignUp;   
+export default FinishJoin;

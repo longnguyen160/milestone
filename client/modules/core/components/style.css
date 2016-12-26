@@ -5,13 +5,27 @@
     display: flex;
     flex-direction: column;
     position:  absolute;
+    overflow: auto;
 }
 
 #nav {
     position: relative;
+    margin: 0;
+}
+
+.navbar {
+    margin-bottom: 1em !important;
 }
 
 #content {
     position: relative;
-    height: 90%;
+    height: 82.5%;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 720px) {
+    #root {
+        position: relative;
+    }
 }
