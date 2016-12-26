@@ -1,12 +1,14 @@
 import React from 'react';
-//require("./css/login.css");
+require("./css/login.css");
 
 class Login extends React.Component {
   render() {
     const {error} = this.props;
     console.log(error);
     return (
-      <div id="mainLogin text-center">
+      <div id="mainLogin" className="text-center" >
+      <div>
+            <h1>Welcome to SI</h1>
           <div id="Card">
               <form className="centerlize">
                 { error ? <div className="alert alert-danger alert-dismissable nomargin">
@@ -29,8 +31,13 @@ class Login extends React.Component {
               </form>
           </div>
           <div id="sigup_mess">
+<<<<<<< HEAD
               New to SI  Sign up as a <a href="#"> Broadcaster </a> or <a href="/register/freelancer"> Freelancer </a>
+=======
+              New to SI  Sign up as a <a href="#"> Company </a> or <a href="#"> Freelancer </a>
+>>>>>>> origin/master
           </div>
+        </div>
         </div>
         )
       };

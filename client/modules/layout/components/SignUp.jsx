@@ -2,9 +2,10 @@ import React from 'react';
 require("./css/login.css");
 require("./css/signup.css");
 
-const Invite = ({context} = () => null) => (
+const SignUp = ({context} = () => null) => (
     <div id="mainLogin" className="text-center">
         <h1>Sample text</h1>
+        <div id="containers">
         <div id="information" className="go-left">
         asfjhkasf
         adsf
@@ -54,8 +55,9 @@ const Invite = ({context} = () => null) => (
                 </div>
             </form>    
         </div>
+        </div>
     </div>
 );
 
 
-export default Invite;   
+export default SignUp;   

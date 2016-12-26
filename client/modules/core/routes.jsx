@@ -8,6 +8,10 @@ import SignUp from '../layout/components/SignUp.jsx';
 import TOS from '../layout/components/TOS.jsx';
 import Login from '../users/containers/Login.js';
 import FreelancerRegister from '../users/containers/FreelancerRegister.js';
+import Join from '../layout/components/Join.jsx';
+import Apply from '../layout/components/Apply.jsx';
+import Confirm from '../layout/components/Confirm.jsx';
+import Update from '../layout/components/Update.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
@@ -47,7 +51,7 @@ export default function (injectDeps, {FlowRouter}) {
 		}
 	});
 
-	FlowRouter.route('/account/signup', {
+	FlowRouter.route('/register/company', {
 		name: 'account.signup',
 		action() {
 			mount(MainLayoutCtx, {
@@ -57,10 +61,46 @@ export default function (injectDeps, {FlowRouter}) {
 	});
 
 	FlowRouter.route('/register/freelancer', {
-		name: 'home',
+        name: 'account.join',
 		action() {
 			mount(MainLayoutCtx, {
-				content: () => (<FreelancerRegister />)
+                content: () => (<FreelancerRegister />)
+            });
+		}
+	});
+
+	FlowRouter.route('/register/freelancer/finish', {
+		name: 'account.finish',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<FreelancerFinish />)
+			});
+		}
+	});
+
+	FlowRouter.route('/register/freelancer/apply', {
+		name: 'account.apply',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<Apply />)
+			});
+		}
+	});
+
+	FlowRouter.route('/register/confirm', {
+		name: 'account.confirm',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<Confirm />)
+			});
+		}
+	});
+
+	FlowRouter.route('/profile/update', {
+		name: 'profile.update',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<Update />)
 			});
 		}
 	});
