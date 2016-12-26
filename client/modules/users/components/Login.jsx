@@ -7,7 +7,7 @@ class Login extends React.Component {
     console.log(error);
     return (
       <div id="mainLogin" className="text-center" >
-      <div>
+      <div className="container">
             <h1>Welcome to SI</h1>
           <div id="Card">
               <form className="centerlize">

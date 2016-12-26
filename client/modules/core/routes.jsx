@@ -126,4 +126,13 @@ export default function (injectDeps, {FlowRouter}) {
 		}
 	});
 
+	FlowRouter.route('/profile', {
+		name: 'profile',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<Profile />)
+			});
+		}
+	});
+
 }
