@@ -1,6 +1,6 @@
 import React from 'react';
-require("./login.css");
-require("./signup.css");
+require("./css/login.css");
+require("./css/signup.css");
 class CompanyRegister extends React.Component {
   render() {
     const {error} = this.props;
