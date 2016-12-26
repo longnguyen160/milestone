@@ -31,11 +31,7 @@ class Login extends React.Component {
               </form>
           </div>
           <div id="sigup_mess">
-<<<<<<< HEAD
               New to SI  Sign up as a <a href="#"> Broadcaster </a> or <a href="/register/freelancer"> Freelancer </a>
-=======
-              New to SI  Sign up as a <a href="#"> Company </a> or <a href="#"> Freelancer </a>
->>>>>>> origin/master
           </div>
         </div>
         </div>
