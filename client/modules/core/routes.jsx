@@ -7,13 +7,6 @@ import ForgotPassword from '../users/containers/ForgotPassword.js';
 import SignUp from '../users/components/SignUp.jsx';
 import TOS from '../users/components/TOS.jsx';
 import Login from '../users/containers/Login.js';
-<<<<<<< HEAD
-import FreelancerRegister from '../users/containers/FreelancerRegister.js';
-import Join from '../layout/components/Join.jsx';
-import Apply from '../layout/components/Apply.jsx';
-import Confirm from '../layout/components/Confirm.jsx';
-import Update from '../layout/components/Update.jsx';
-=======
 import Join from '../users/components/Join.jsx';
 import FinishJoin from '../users/components/FinishJoin.jsx';
 import Apply from '../users/components/Apply.jsx';
