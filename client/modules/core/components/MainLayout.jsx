@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from '../../layout/components/NavBar.jsx';
 import Footer from '../../layout/components/Footer.jsx';
 import UserNavBar from '../../layout/components/UserNavBar.jsx'
+import AdminNavBar from '../../layout/components/AdminNavBar.jsx'
 import DatePicker from 'react-datepicker';
 require("./style.css");
 

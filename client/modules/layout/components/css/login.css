@@ -21,6 +21,15 @@ h3 {
   background: #F4F7F9;
 }
 
+.Card {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  margin: 1em auto;
+  background: #F4F7F9;
+}
+
 form {
   width: 90%;
   text-align: center;

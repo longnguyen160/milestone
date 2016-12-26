@@ -12,6 +12,8 @@ import FinishJoin from '../layout/components/FinishJoin.jsx';
 import Apply from '../layout/components/Apply.jsx';
 import Confirm from '../layout/components/Confirm.jsx';
 import Update from '../layout/components/Update.jsx';
+import Selfcare from '../layout/components/Selfcare.jsx';
+import AdminInvite from '../layout/components/AdminInvite.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
@@ -101,6 +103,24 @@ export default function (injectDeps, {FlowRouter}) {
 		action() {
 			mount(MainLayoutCtx, {
 				content: () => (<Update />)
+			});
+		}
+	});
+
+	FlowRouter.route('/account/selfcare', {
+		name: 'account.selfcare',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<Selfcare />)
+			});
+		}
+	});
+
+	FlowRouter.route('/admin/invites', {
+		name: 'admin.invites',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<AdminInvite />)
 			});
 		}
 	});

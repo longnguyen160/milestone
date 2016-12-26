@@ -10,14 +10,6 @@ const Join = ({context} = () => null) => (
         asfjhkasf
         adsf
         asd
-        fa
-        dsf
-        adsfas
-        dfa
-        sf
-        asdf
-        asdfas
-        f
         </div>
         <div id="Card" className="go-left">
             <form className="centerlize">
