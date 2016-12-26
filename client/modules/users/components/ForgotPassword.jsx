@@ -6,7 +6,7 @@ class ForgotPassword extends React.Component {
     const {error, success} = this.props;
     return (
         <div id="mainLogin" className="text-center">
-            <div id="container">
+            <div id="containers">
                 <h1>Password Recover</h1>
                 <div id="Card">
                 <form className="centerlize">
