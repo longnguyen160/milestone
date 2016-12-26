@@ -3,3 +3,7 @@ textarea {
     background-color:#EEEEEE !important;
  
 }
+
+#container {
+    width: 100%;
+}

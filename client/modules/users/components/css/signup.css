@@ -2,6 +2,15 @@
     float:right;
 }
 
+.go-left-text {
+    text-align: left;
+}
+
+#result {
+    width: 45%;
+    margin: 0 auto;
+}
+
 .go-left {
     float:left;
 }
