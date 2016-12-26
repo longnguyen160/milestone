@@ -28,8 +28,6 @@ export default {
     Meteor.loginWithPassword(email, password, function(error){
       if(error.reason)
         return LocalState.set('LOGIN_USER_ERROR', error.reason);
-      else
-        FlowRouter.go('/');
     });
   },
   checkValidation({LocalState},text,type) {
@@ -90,7 +88,10 @@ export default {
     });
     FlowRouter.go('/register/freelancer/finish');
   },
-
+  createUserCompany({Meteor,LocalState,FlowRouter}, firstName,lastName,company,email,password) {
+    Meteor.call('users.createUserCompany',firstName, lastName,company,email,password);
+    return;
+  },
   clearErrors({LocalState}) {
     LocalState.set("LOGIN_USER_ERROR", null);
     LocalState.set("EMAIL_ERROR", null);
