@@ -1,6 +1,7 @@
 import React from 'react';
 require("./css/login.css");
 require("./css/signup.css");
+require("./css/confirm.css");
 
 class CompanyRegister extends React.Component {
   render() {
@@ -59,8 +60,14 @@ class CompanyRegister extends React.Component {
 
                 </div>
                   <div className="text-center">
-                      {error[6] ? <button onClick={this.createUser.bind(this)} type="submit" className="btn btn-info">Register</button>
-                      : <button disabled type="submit" className="btn btn-info">Register</button>}
+                      
+                      { error[7] ?  <div className="input-group">
+                                      <span className="input-group-addon greenpls"><i className="glyphicon glyphicon-ok colorpls"></i></span>
+                                      <input id="greenpls" type="text" className="form-control colorpls" name="success" value="Please confirm your email" readOnly/>
+                                  </div>
+                                : error[6] ? <button onClick={this.createUser.bind(this)} type="submit" className="btn btn-info">Register</button>
+                                           : <button disabled type="submit" className="btn btn-info">Register</button>
+                      }
                   </div>
               </form>
           </div>

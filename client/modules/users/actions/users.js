@@ -134,10 +134,10 @@ export default {
     },
 
 //Create user company
-    createUserCompany({Meteor}, firstName, lastName, company, email, password) {
+    createUserCompany({Meteor,LocalState}, firstName, lastName, company, email, password) {
 
         Meteor.call('users.createUserCompany', firstName, lastName, company, email, password);
-        FlowRouter.go('/');
+        LocalState.set('SIGNUP_CONFIRM',true);
 
     },//end of create user company
 
@@ -162,6 +162,7 @@ export default {
         LocalState.set("SIGNUP_COMPANY", null);
         LocalState.set("SIGNUP_EMAIL", null);
         LocalState.set("SIGNUP_PASSWORD", null);
+        LocalState.set('SIGNUP_CONFIRM',null);
     }//end of clear errors
 
 };
