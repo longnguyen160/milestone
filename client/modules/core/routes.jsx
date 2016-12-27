@@ -3,17 +3,18 @@ import {mount} from 'react-mounter';
 import Layout from './components/MainLayout.jsx';
 import Home from '../users/components/Home.jsx';
 import ForgotPassword from '../users/containers/ForgotPassword.js';
-import SignUp from '../users/components/SignUp.jsx';
+import CompanyRegister from '../users/containers/CompanyRegister.js';
+import FreelancerRegister from '../users/containers/FreelancerRegister.js';
 import TOS from '../users/components/TOS.jsx';
 import Login from '../users/containers/Login.js';
-import FreelancerRegister from '../users/containers/FreelancerRegister.js';
-import Join from '../users/components/Join.jsx';
 import Apply from '../users/components/Apply.jsx';
 import Confirm from '../users/components/Confirm.jsx';
 import Update from '../users/components/Update.jsx';
 import FinishJoin from '../users/components/FinishJoin.jsx';
 import Selfcare from '../users/components/Selfcare.jsx';
 import AdminInvite from '../users/components/AdminInvite.jsx';
+
+import Profile from '../users/components/UserProfile.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
@@ -57,7 +58,7 @@ export default function (injectDeps, {FlowRouter}) {
 		name: 'account.signup',
 		action() {
 			mount(MainLayoutCtx, {
-				content: () => (<SignUp />)
+				content: () => (<CompanyRegister />)
 			});
 		}
 	});
@@ -130,6 +131,15 @@ export default function (injectDeps, {FlowRouter}) {
 		action() {
 			mount(MainLayoutCtx, {
 				content: () => (<AdminInvite />)
+			});
+		}
+	});
+
+	FlowRouter.route('/profile', {
+		name: 'profile',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<Profile />)
 			});
 		}
 	});
