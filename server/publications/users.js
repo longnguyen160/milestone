@@ -1,12 +1,10 @@
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
-
-export default function() {
-    Meteor.publish('users.single', function(userId){
-        check(userId, String);
-        return Meteor.users.find(userId);
+export default function () {
+    Meteor.publish("users.single", function() {
+        return Meteor.users.find();
     });
-
+}
     // Meteor.publish('userData',function() {
     //     var currentUser;
     //     currentUser = this.user;
@@ -19,4 +17,5 @@ export default function() {
     //         return this.ready();
     //     }
     // });
-}
+
+

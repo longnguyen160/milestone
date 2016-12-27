@@ -4,9 +4,11 @@ import CompanyProfile from '../../profile/component/CompanyProfile';
 
 class ProfileEdit extends React.Component {
     render() {
-        const {user} = {currentUser};
-        return (
-            user.role == 'company' ? <CompanyProfile /> : <FreelancerProfile />        )
+        const {role, error} = this.props;
+        if (role !== null)
+            return (
+                role == 'company' ? <CompanyProfile /> : <FreelancerProfile />
+            )
     }
 }
 
