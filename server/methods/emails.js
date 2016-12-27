@@ -1,4 +1,5 @@
 import {Email} from 'meteor/email';
+import {Accounts} from 'meteor/accounts-base';
 
 export default function() {
     Meteor.methods({

@@ -1,5 +1,6 @@
 import ForgotPassword from '../components/ForgotPassword.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
+import {Accounts} from 'meteor/accounts-base';
 
 export const composer = ({context, clearErrors}, onData) => {
   const {LocalState} = context();

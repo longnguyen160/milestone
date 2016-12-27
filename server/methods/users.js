@@ -3,11 +3,6 @@ import {check} from 'meteor/check';
 import {Random} from 'meteor/random';
 
 export default function() {
-  Meteor.methods({
-    'users.sendPassword'(email) {
-
-    }
-  });
   Accounts.onCreateUser(function(option,user){
      user.firstName = option.firstName;
      user.lastName = option.lastName;

@@ -1,23 +1,34 @@
 import React from 'react';
 import {mount} from 'react-mounter';
+/*
+	Layout - Mainlayout	
+	Home - Main context - URL: /
+	ForgotPassword - URL: /account/forgot
+	CompanyRegister - URL: register/company
+	FreelancerRegister - URL: register/freelancer or /i/{token}
+	TOS - Term of Service - URL: /tos 
+	Login - URL: account/login
+	FinishJoin - URL: register/freelancer/finish
+	Apply - URL: register/freelancer/apply
+	Confirm - URL: register/confirm/{token}
+	Update - URL: /profile/update/{token}
+	Selfcare - URL: profile/selfcare
+	AdminInvite - URL: admin/invites
+	Profile - URL: profile/{username}
+*/
 import Layout from './components/MainLayout.jsx';
-import NavBar from '../users/components/NavBar.jsx';
 import Home from '../users/components/Home.jsx';
 import ForgotPassword from '../users/containers/ForgotPassword.js';
 import CompanyRegister from '../users/containers/CompanyRegister.js';
 import FreelancerRegister from '../users/containers/FreelancerRegister.js';
 import TOS from '../users/components/TOS.jsx';
 import Login from '../users/containers/Login.js';
-import Join from '../users/components/Join.jsx';
 import FinishJoin from '../users/components/FinishJoin.jsx';
 import Apply from '../users/components/Apply.jsx';
 import Confirm from '../users/components/Confirm.jsx';
 import Update from '../users/components/Update.jsx';
 import Selfcare from '../users/components/Selfcare.jsx';
 import AdminInvite from '../users/components/AdminInvite.jsx';
-
-
-
 import Profile from '../users/components/UserProfile.jsx';
 
 
@@ -102,7 +113,7 @@ export default function (injectDeps, {FlowRouter}) {
 				content: () => (<Confirm />)
 			});
 		}
-	});>>>>>>> 3ab043fb0c5f83bd55d1504edfd56470d7e19aad
+	});
 
 	FlowRouter.route('/profile/update', {
 		name: 'profile.update',

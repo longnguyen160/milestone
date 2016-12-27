@@ -1,9 +1,29 @@
 export default {
+
+  checkEmail({Meteor, LocalState, FlowRouter}, email) {
+    let re = /^[a-zA-Z0-9\-.]{3,25}@[a-zA-Z0-9]{1,3}(\.[a-zA-Z0-9]{1,3}){0,2}$/;
+    return re.test(email);
+  },
+
+  sendEmail({Meteor, LocalState, FlowRouter}, from, to, subject, text) {
+    if(!from || !to) {
+      LocalState.set('SUCCESS', null);
+      return LocalState.set('EMAIL_ERROR', 'Email is required');
+    }
+
+    LocalState.set('EMAIL_ERROR', null);
+    //check all arguments at one function
+    check([from, to, subject, text], [String]);
+    Meteor.call('sendEmail', to, from, subject, text);
+
+  },
+
   sendPassword({Meteor, LocalState, FlowRouter}, email) {
     if (!email) {
       LocalState.set('SUCCESS', null);
       return LocalState.set('EMAIL_ERROR', 'Email is required!');
     }
+
     LocalState.set('EMAIL_ERROR', 'User is not found!');
     check(email, String);
     if (Meteor.subscribe("users.email", email).ready()) {
@@ -30,6 +50,7 @@ export default {
         return LocalState.set('LOGIN_USER_ERROR', error.reason);
     });
   },
+
   checkValidation({LocalState},text,type) {
     if (type === 'checkbox') {
       console.log(type);
@@ -75,7 +96,8 @@ export default {
       if (type === 'password') {
         return LocalState.set('SIGNUP_COMPANY_PASSWORD',true);
       }
-},
+  },
+
   sendCode({Meteor, LocalState, FlowRouter}, inviteCode) {
     if (!inviteCode)
       return LocalState.set('INVITECODE_ERROR', 'Invite code is required');
@@ -88,13 +110,16 @@ export default {
     });
     FlowRouter.go('/register/freelancer/finish');
   },
+
   createUserCompany({Meteor,LocalState,FlowRouter}, firstName,lastName,company,email,password) {
     Meteor.call('users.createUserCompany',firstName, lastName,company,email,password);
     return;
   },
+
   clearErrors({LocalState}) {
     LocalState.set("LOGIN_USER_ERROR", null);
     LocalState.set("EMAIL_ERROR", null);
     LocalState.set("SUCCESS", null);
   }
+
 };

@@ -37,7 +37,7 @@ class ForgotPassword extends React.Component {
   }
 
   exactEmail(e) {
-
+      /*do nothing*/
   }
 
   sendResetPasswordEmail(e) {
