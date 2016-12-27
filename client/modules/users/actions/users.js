@@ -59,8 +59,8 @@ export default {
         FlowRouter.go('/register/freelancer/finish');
     },
 
-    editCompanyProfile({Meteor, LocalState, FlowRouter}, userId, fname, lname, company, companyURL) {
-        Meteor.call('users.editCompanyProfile', userId, fname, lname, company, companyURL, (err) => {
+    editCompanyProfile({Meteor, LocalState, FlowRouter}, userId, fname, lname, company, companyURL, imgURL) {
+        Meteor.call('users.editCompanyProfile', userId, fname, lname, company, companyURL, imgURL, (err) => {
             if (err)
                 return LocalState.set("SAVING_ERROR");
         });
