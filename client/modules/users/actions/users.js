@@ -39,8 +39,10 @@ export default {
 //if have error
       if(error)
         return LocalState.set('LOGIN_USER_ERROR', error.reason);
-      else
+      else {
+//don't have error
         FlowRouter.go('/');
+      }
     });
     console.log("userId:");
     console.log(Meteor.userId());
