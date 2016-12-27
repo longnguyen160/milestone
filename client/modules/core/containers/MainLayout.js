@@ -15,7 +15,8 @@ export const composer = ({context, clearErrors}, onData) => {
     } else {
         console.log("Something went wrong!");
     }
-    role = u == "company";
+    if(u != null)
+        role = u != "admin";
     onData(null, {role});
     return clearErrors;
 };
