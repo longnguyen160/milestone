@@ -17,7 +17,6 @@ import InvittationCode from '../users/containers/InvitationCode.js';
 import FreelancerRegisterWithInvitationCode from '../users/containers/FreelancerRegisterWithInvitationCode.js';
 
 import TOS from '../users/components/TOS.jsx';
-import Apply from '../users/components/Apply.jsx';
 import Confirm from '../users/components/Confirm.jsx';
 import Update from '../users/components/Update.jsx';
 
@@ -92,7 +91,7 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
-
+//go to page register of freelancer with no invitation code
 	FlowRouter.route('/register/freelancer/apply', {
 		name: 'account.apply',
 		action() {

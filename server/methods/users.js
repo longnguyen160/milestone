@@ -5,7 +5,7 @@ import {Random} from 'meteor/random';
 function verifyEmail(email) {
     let id = Accounts.findUserByEmail(email);
     Accounts.sendVerificationEmail(id, email);
-    
+
 };
 
 export default function() {
@@ -67,26 +67,22 @@ export default function() {
   }});
 //Check validation
   Meteor.methods({'users.checkValidation' (text,type) {
-
     check(text,String);
     check(type,String);
-//if empty content
-    if (!text) {
-
-      throw new Meteor.Error(1,'is required.');
-
+    //if empty content
+    console.log(text);
+    let errorString = '';
+    if(!text){
+      errorString = ' is required';
     }
-//if email has been used already
-    if (type === 'email') {
-
+    if (text && type === 'email') {
       const user = Accounts.findUserByEmail(text);
-      console.log(user);
-
       if (user) {
-
-        throw new Meteor.Error(2,'Email has been used.')
-
+        errorString = ' has been used';
       }
+    }
+    if (errorString.length !== 0) {
+      throw new Meteor.Error('Error',errorString);
     }
   }});
     Meteor.methods({
