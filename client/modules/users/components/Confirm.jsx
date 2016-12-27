@@ -4,7 +4,7 @@ require("./css/confirm.css");
 
 const Confirm = ({context} = () => null) => (
     <div id="mainLogin" className="text-center">
-    <div>
+    <div id="container">
     <div id="confirm">
             <h1>Welcome on board</h1>
             {/* reaplce value with your message */}

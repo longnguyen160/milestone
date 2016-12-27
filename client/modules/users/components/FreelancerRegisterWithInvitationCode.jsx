@@ -10,7 +10,7 @@ class FreelancerRegisterWithInvitationCode extends React.Component {
       <div id="mainLogin" className="text-center">
           <h1>Joining SI</h1>
           <div id="Card">
-              <div id="containers">
+              <div id="container">
               <form className="centerlize">
                   <h3>Your basic information</h3>
                   <div className="input-group">
