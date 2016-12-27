@@ -71,10 +71,8 @@ class CompanyRegister extends React.Component {
       checkFirstName(e) {
         e.preventDefault();
         const{firstName} = this.refs;
-        console.log("firstName:");
-        console.log(firstName.value);
         const{checkValidation} = this.props;
-        checkValidation(firstName.value,'firstName');
+        checkValidation(firstName.value.trim(),'firstName');
     };
       checkLastName(e) {
         e.preventDefault();
@@ -82,7 +80,7 @@ class CompanyRegister extends React.Component {
         console.log("lastName:");
         console.log(lastName.value);
         const{checkValidation} = this.props;
-        checkValidation(lastName.value,'lastName');
+        checkValidation(lastName.value.trim(),'lastName');
       };
       checkCompany(e){
         e.preventDefault();
@@ -90,7 +88,7 @@ class CompanyRegister extends React.Component {
         console.log("company:");
         console.log(company.value);
         const{checkValidation} = this.props;
-        checkValidation(company.value,'company');
+        checkValidation(company.value.trim(),'company');
       };
       checkEmail(e){
         e.preventDefault();
@@ -98,7 +96,7 @@ class CompanyRegister extends React.Component {
         console.log("email:");
         console.log(email.value);
         const{checkValidation} = this.props;
-        checkValidation(email.value,'email');
+        checkValidation(email.value.trim(),'email');
       };
       checkPassword(e){
         e.preventDefault();
@@ -115,6 +113,7 @@ class CompanyRegister extends React.Component {
         console.log(this.refs);
         create(firstName.value,lastName.value,company.value,email.value,password.value);
         login(email.value, password.value);
+
     };
       checkCheckedBox(e) {
         e.preventDefault();

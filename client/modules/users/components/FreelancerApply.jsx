@@ -96,26 +96,25 @@ class FreelancerApply extends React.Component {
         e.preventDefault();
         const{firstName} = this.refs;
         const{checkValidation} = this.props;
-        checkValidation(firstName.value,'firstName');
+        checkValidation(firstName.value.trim(),'firstName');
     };
       checkLastName(e) {
         e.preventDefault();
         const{lastName} = this.refs;
         const{checkValidation} = this.props;
-        checkValidation(lastName.value,'lastName');
+        checkValidation(lastName.value.trim(),'lastName');
       };
       checkEmail(e){
         e.preventDefault();
         const{email} = this.refs;
         const{checkValidation} = this.props;
-        checkValidation(email.value,'email');
+        checkValidation(email.value.trim(),'email');
       };
       createApplication(e) {
         e.preventDefault();
         const {create} = this.props;
         const {firstName, lastName, email, link, des} = this.refs;
-        console.log(this.refs);
-        create(firstName.value, lastName.value, email.value, link.value, des.value);
+        create(firstName.value.trim(), lastName.value.trim(), email.value.trim(), link.value.trim(), des.value.trim());
     };
       checkCheckedBox(e) {
         e.preventDefault();
