@@ -1,21 +1,15 @@
-import FreelancerProfile from '../components/FreelancerProfile.jsx';
+import FreelancerProfile from '../profile/component/FreelancerProfile.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
-export const composer = ({context, userId, clearErrors}, onData) => {
+export const composer = ({context, clearErrors}, onData) => {
     const {LocalState} = context();
     const error = LocalState.get('SAVING_ERROR');
-    if (userId !== undefined) {
-        const user = users.findOne(userId);
-        if (user)
-            onData(null, {user});
-        else onData();
-    }
-    else onData(null, {error});
+    onData(null, {error});
     return clearErrors;
 };
 
 export const depsMapper = (context, actions) => ({
-    editUser: actions.users.editUser,
+    editFreelancerProfile: actions.users.editUser,
     clearErrors: actions.users.clearErrors,
     context: () => context
 });
