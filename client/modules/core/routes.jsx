@@ -23,7 +23,7 @@ import Join from '../users/components/Join.jsx';
 import Apply from '../users/components/Apply.jsx';
 import Confirm from '../users/components/Confirm.jsx';
 import Update from '../users/components/Update.jsx';
-import FinishJoin from '../users/components/FinishJoin.jsx';
+
 import Selfcare from '../users/components/Selfcare.jsx';
 import AdminInvite from '../users/components/AdminInvite.jsx';
 
