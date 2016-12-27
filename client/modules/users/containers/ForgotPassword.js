@@ -6,7 +6,21 @@ export const composer = ({context, clearErrors}, onData) => {
   const {LocalState} = context();
   const error = LocalState.get("EMAIL_ERROR");
   const success = LocalState.get("SUCCESS");
-  onData(null, {error, success});
+
+  let role = null;
+  let emails = null;
+  let u = null;
+  
+  if(Meteor.subscribe('user.single', Meteor.userId()).ready()){
+      u = Meteor.user().roles;
+      emails = Meteor.user().emails[0].address;
+  } else {
+      console.log("Something went wrong!");
+  }
+  if(u != null)
+      role = u != "admin";
+
+  onData(null, {error, success, role, emails});
   return clearErrors;
 };
 

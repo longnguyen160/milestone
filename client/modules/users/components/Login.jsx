@@ -35,7 +35,7 @@ class Login extends React.Component {
                         </form>
                     </div>
                     <div id="sigup_mess">
-                        New to SI Sign up as a <a href="/register/company"> Broadcaster </a> or <a
+                        New to SI Sign up as a <a href="/register/company"> Company </a> or <a
                         href="/register/freelancer"> Freelancer </a>
                     </div>
                 </div>

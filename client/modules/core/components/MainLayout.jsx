@@ -22,11 +22,10 @@ class Layout  extends React.Component {
             <div id="content">
             {content()}
             </div>
-            { role === null ? 
-                <div id="footer">
-                    <Footer /> 
-                </div>
-            : "" }
+            {console.log(this.props)}
+            <div id="footer">
+                <Footer /> 
+            </div>
         </div>
         );
 

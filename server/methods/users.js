@@ -46,7 +46,7 @@ export default function() {
             company:company,
             roles:'company'
         });
-        verifyEmail(email);
+        verifyEmail(email, password);
     }});
     //Create user freelancer
     Meteor.methods({'users.createUserFreelancer' (firstName,lastName,email,password) {
@@ -65,7 +65,7 @@ export default function() {
             lastName:lastName,
             roles:'freelancer',
         });
-        verifyEmail(email);
+        verifyEmail(email, password);
     }});
     //Check validation
     //Check validation

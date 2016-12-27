@@ -2,7 +2,12 @@ import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 export default function () {
     Meteor.publish("user.single", function(userId) {
-        check(userId, String)
+        try {
+            check(userId, String)
+        } catch(err) {
+            console.log("Publications/Users - Invalid userID!");
+            return;    
+        }
         return Meteor.users.find(userId);
     });
 
