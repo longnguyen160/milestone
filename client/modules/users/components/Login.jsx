@@ -40,7 +40,7 @@ class Login extends React.Component {
       loginUser(e) {
         e.preventDefault();
         const {login} = this.props;
-        const {email,password} = this.refs;
+        const {email, password} = this.refs;
         login(email.value, password.value);
     };
 };
