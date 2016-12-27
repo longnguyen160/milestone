@@ -1,6 +1,6 @@
 import React from 'react';
-import FreelancerProfile from '../../profile/component/FreelancerProfile';
-import CompanyProfile from '../../profile/component/CompanyProfile';
+import FreelancerProfile from '../../users/containers/FreelancerProfile.js';
+import CompanyProfile from '../../users/containers/CompanyProfile.js';
 
 class ProfileEdit extends React.Component {
     render() {
