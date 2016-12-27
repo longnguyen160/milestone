@@ -175,4 +175,5 @@ export default {
     LocalState.set("SIGNUP_COMPANY_EMAIL",null);
     LocalState.set("SIGNUP_COMPANY_PASSWORD",null);
   }//end of clear errors
+
 };
