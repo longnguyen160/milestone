@@ -1,4 +1,5 @@
 import {Random} from 'meteor/random';
+import {Image} from '/lib/collections';
 
 function verifyEmail(email) {
 
@@ -107,12 +108,13 @@ export default function() {
     });
 
     Meteor.methods({
-        'users.editCompanyProfile'(userId, fname, lname, company, companyURL) {
+        'users.editCompanyProfile'(userId, fname, lname, company, companyURL, imgURL) {
             check(userId, String);
             check(fname, String);
             check(lname, String);
             check(company, String);
             check(companyURL, String);
+            check(imgURL, String);
             Meteor.users.update(userId, {
                 $set: {firstName: fname,
                     lastName: lname,
@@ -120,6 +122,8 @@ export default function() {
                     companyURL: companyURL
                     }
             });
+            const image = {userId, imgURL};
+            Image.insert(image);
         }
     });
 

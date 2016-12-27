@@ -18,7 +18,7 @@ class FreelancerProfile extends React.Component {
 
                     <div className="Card">
                         <h4>Profile image</h4>
-                        <img src="css/img/default-avatar.jpg" alt="avatar"/>
+                        <img src={this.state.thumnail} alt="avatar"/>
                         <form>
                             <div className="form-group">
                                 <input type="file" id="exampleInputFile"/>
@@ -137,12 +137,29 @@ class FreelancerProfile extends React.Component {
         )
     }
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            thumnail: ''
+        };
+        this.onChangeFile = this.onChangeFile.bind(this);
+    }
+
+    onChangeFile(e){
+        const FR= new FileReader();
+        const instance = this;
+        FR.onload = function(e) {
+            instance.setState({thumnail: e.target.result});
+        };
+        FR.readAsDataURL( e.target.files[0] );
+    }
+
     save(e) {
         e.preventDefault();
         const {editFreelancerProfile} = this.props;
         const {fname, lname, position, location, experience, rate, link, travel, headline, introduce, skill, sector, img, bgimg} = this.refs;
         const userId = this.props.userId;
-        editFreelancerProfile(userId, fname, lname, position.value, location.value, experience.value, rate.value, link, travel.value, headline.value, introduce.value, skill.value, sector.value, img, bgimg);
+        editFreelancerProfile(userId, fname.value, lname.value, position.value, location.value, experience.value, rate.value, link, travel.value, headline.value, introduce.value, skill.value, sector.value, img, bgimg);
         this.refs.fname.value = '';
         this.refs.lname.value = '';
         this.refs.headline.value = '';
