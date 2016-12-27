@@ -5,7 +5,6 @@ require("./css/signup.css");
 class CompanyRegister extends React.Component {
   render() {
     const {error} = this.props;
-    console.log(error);
     return (
       <div id="mainLogin" className="text-center">
       <div id="container">
@@ -65,7 +64,7 @@ class CompanyRegister extends React.Component {
                   </div>
               </form>
           </div>
-      </div>  
+      </div>
       </div>
         )
       };

@@ -1,38 +1,36 @@
 import React from 'react';
 import {mount} from 'react-mounter';
-/*
-	Layout - Mainlayout	
-	Home - Main context - URL: /
-	ForgotPassword - URL: /account/forgot
-	CompanyRegister - URL: register/company
-	FreelancerRegister - URL: register/freelancer or /i/{token}
-	TOS - Term of Service - URL: /tos 
-	Login - URL: account/login
-	FinishJoin - URL: register/freelancer/finish
-	Apply - URL: register/freelancer/apply
-	Confirm - URL: register/confirm/{token}
-	Update - URL: /profile/update/{token}
-	Selfcare - URL: profile/selfcare
-	AdminInvite - URL: admin/invites
-	Profile - URL: profile/{username}
-*/
-import Layout from './components/MainLayout.jsx';
+//Homepage
 import Home from '../users/components/Home.jsx';
-import ForgotPassword from '../users/containers/ForgotPassword.js';
-import CompanyRegister from '../users/containers/CompanyRegister.js';
-import FreelancerRegister from '../users/containers/FreelancerRegister.js';
-import TOS from '../users/components/TOS.jsx';
+//Mainlayout
+import Layout from './components/MainLayout.jsx';
+//Login page
 import Login from '../users/containers/Login.js';
-import FinishJoin from '../users/components/FinishJoin.jsx';
+//Forgot password page
+import ForgotPassword from '../users/containers/ForgotPassword.js';
+//Copany register Page
+import CompanyRegister from '../users/containers/CompanyRegister.js';
+//Freelaner Register Page with invitation code
+//Invitation code page
+import InvittationCode from '../users/containers/InvitationCode.js';
+//Freelancer register form
+import FreelancerRegisterWithInvitationCode from '../users/containers/FreelancerRegisterWithInvitationCode.js';
+
+
+import NavBar from '../users/components/NavBar.jsx';
+import TOS from '../users/components/TOS.jsx';
+import Join from '../users/components/Join.jsx';
 import Apply from '../users/components/Apply.jsx';
 import Confirm from '../users/components/Confirm.jsx';
 import Update from '../users/components/Update.jsx';
+import FinishJoin from '../users/components/FinishJoin.jsx';
 import Selfcare from '../users/components/Selfcare.jsx';
 import AdminInvite from '../users/components/AdminInvite.jsx';
+
 import Profile from '../users/components/UserProfile.jsx';
 
-
 export default function (injectDeps, {FlowRouter}) {
+	//Home pgae
 	const MainLayoutCtx = injectDeps(Layout);
 	FlowRouter.route('/', {
 		name: 'home',
@@ -51,7 +49,7 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
-
+//Forgot password page
 	FlowRouter.route('/account/forgot', {
 		name: 'account.sendPassword',
 		action() {
@@ -60,7 +58,7 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
-
+//Login page
 	FlowRouter.route('/account/login', {
 		name: 'account.login',
 		action() {
@@ -69,7 +67,7 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
-
+//Register for company
 	FlowRouter.route('/register/company', {
 		name: 'account.signup',
 		action() {
@@ -78,21 +76,21 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
-
+//Register freelancer with invitation code
 	FlowRouter.route('/register/freelancer', {
         name: 'account.join',
 		action() {
 			mount(MainLayoutCtx, {
-                content: () => (<FreelancerRegister />)
+                content: () => (<InvittationCode />)
             });
 		}
 	});
-
+//Register freelance with
 	FlowRouter.route('/register/freelancer/finish', {
 		name: 'account.finish',
 		action() {
 			mount(MainLayoutCtx, {
-				content: () => (<FinishJoin />)
+				content: () => (<FreelancerRegisterWithInvitationCode />)
 			});
 		}
 	});
@@ -123,6 +121,15 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
+
+    FlowRouter.route('/profile/edit', {
+        name: 'profile.update',
+        action() {
+            mount(MainLayoutCtx, {
+                content: () => (<EditProfile />)
+            });
+        }
+    });
 
 	FlowRouter.route('/account/selfcare', {
 		name: 'account.selfcare',

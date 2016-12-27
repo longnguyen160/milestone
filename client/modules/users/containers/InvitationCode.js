@@ -1,15 +1,15 @@
-import FreelancerRegister from '../components/FreelancerRegister.jsx';
+import InvitationCode from '../components/InvitationCode.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, clearErrors}, onData) => {
   const {LocalState} = context();
-  const error = LocalState.get("INVITECODE_ERROR");
+  const error = LocalState.get("INVITATIONCODE_ERROR");
   onData(null, {error});
   return clearErrors;
 };
 
 export const depsMapper = (context, actions) => ({
-  sendCode : actions.users.sendCode,
+  checkInvitationCode : actions.users.checkInvitationCode,
   clearErrors : actions.users.clearErrors,
   context: () => context
 });
@@ -17,4 +17,4 @@ export const depsMapper = (context, actions) => ({
 export default composeAll(
   composeWithTracker(composer),
   useDeps(depsMapper)
-)(FreelancerRegister)
+)(InvitationCode)
