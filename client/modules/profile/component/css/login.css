@@ -1,0 +1,158 @@
+#mainLogin {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h3 {
+  margin: 1em 0 0.25em 0;
+}
+
+#Card {
+  border-top: 0.5em solid #5CD8E4;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: 1em auto;
+  background: #F4F7F9;
+}
+
+.Card {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  margin: 1em auto;
+  background: #F4F7F9;
+}
+
+form {
+  width: 90%;
+  text-align: center;
+}
+
+input[type="text"], input[type="password"]{
+  background-color:#EEEEEE !important;
+  outline: none;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+  width: 100%;
+}
+
+input:focus {
+  outline: none;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+div.input-group {
+  margin: 5px 0;
+}
+
+span.input-group-addon {
+  border : 0 !important;
+}
+
+button {
+  display: block;
+  text-align: center !important;
+  margin: 5px auto;
+  border: 0 !important;
+  color: white !important;
+}
+
+.centerlize {
+  margin: 1rem auto;
+}
+
+a#forgotpw {
+  display: block;
+  margin: 0.5em 0 !important;
+}
+
+.sigup_mess > a {
+  margin: 0 !important;
+}
+
+#sigup_mess {
+  display: block;
+  margin: 0.5em auto;
+  width: 40%;
+}
+
+.nomargin {
+  margin: 0 !important;
+  background-color: #ED5A5A;
+  color: white;
+}
+
+.success {
+  background-color: #3AC162;
+}
+
+form > h3 {
+  text-align: left;
+}
+
+i.glyphicon-ok-sign {
+  color: limegreen;
+}
+
+i.glyphicon-exclamation-sign {
+  color: crimson;
+}
+
+div.input-group {
+  width: 100%;
+}
+
+p.error-msg {
+  color:crimson;
+  margin: 0;
+  text-align: left;
+}
+
+.centerlize > .checkbox {
+  text-align: left;
+}
+
+
+@media screen and (max-width: 720px) {
+  #information {
+    display: none !important;
+  }
+
+  #Card {
+    width: 90% !important;
+    margin: auto 5% !important;  
+    padding: 0 !important;
+  }
+  h3 {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  #information {
+    display: none !important;
+  }
+
+  h3 {
+    margin: 0.75em 0 0.25em 0;
+  }
+
+  #Card {
+    width: 90% !important;
+    margin: auto 5% !important;  
+    padding: 0.5em;
+  }
+}
