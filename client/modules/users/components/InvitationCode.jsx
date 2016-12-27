@@ -37,7 +37,7 @@ class InvitationCode extends React.Component {
   checkInvitationCode(e) {
     e.preventDefault();
     const {inviteCode} = this.refs;
-    console.log(inviteCode.value);
+    //console.log(inviteCode.value);
     //checkInvitationCode(inviteCode.value);
   }
 }

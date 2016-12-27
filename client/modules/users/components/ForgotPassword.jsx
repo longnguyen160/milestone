@@ -44,7 +44,7 @@ class ForgotPassword extends React.Component {
     e.preventDefault();
     const {sendPassword} = this.props;
     const {email} = this.refs;
-    sendPassword(email.value);
+    sendPassword(email.value.trim());
     this.refs.email.value = '';
   }
 }

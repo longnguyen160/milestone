@@ -88,32 +88,24 @@ class FreelancerRegisterWithInvitationCode extends React.Component {
     checkFirstName(e) {
       e.preventDefault();
       const{firstName} = this.refs;
-      console.log("firstName:");
-      console.log(firstName.value);
       const{checkValidation} = this.props;
-      checkValidation(firstName.value,'text');
+      checkValidation(firstName.value.trim(),'text');
   };
     checkLastName(e) {
       e.preventDefault();
       const{lastName} = this.refs;
-      console.log("lastName:");
-      console.log(lastName.value);
       const{checkValidation} = this.props;
-      checkValidation(lastName.value,'text');
+      checkValidation(lastName.value.trim(),'text');
     };
     checkEmail(e){
       e.preventDefault();
       const{email} = this.refs;
-      console.log("email:");
-      console.log(email.value);
       const{checkValidation} = this.props;
-      checkValidation(email.value,'email');
+      checkValidation(email.value.trim(),'email');
     };
     checkPassword(e){
       e.preventDefault();
       const{password} = this.refs;
-      console.log("password:");
-      console.log(password.value);
       const{checkValidation} = this.props;
       checkValidation(password.value,'password');
     };
@@ -122,7 +114,7 @@ class FreelancerRegisterWithInvitationCode extends React.Component {
       const {create} = this.props;
       const {firstName,lastName,email,password} = this.refs;
       console.log(this.refs);
-      create(firstName.value,lastName.value,email.value,password.value);
+      create(firstName.value.trim(),lastName.value.trim(),email.value.trim(),password.value);
   };
     checkCheckedBox(e) {
       e.preventDefault();
