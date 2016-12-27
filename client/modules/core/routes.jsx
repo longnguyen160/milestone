@@ -23,8 +23,10 @@ import Join from '../users/components/Join.jsx';
 import Apply from '../users/components/Apply.jsx';
 import Confirm from '../users/components/Confirm.jsx';
 import Update from '../users/components/Update.jsx';
+import FinishJoin from '../users/components/FinishJoin.jsx';
 import Selfcare from '../users/components/Selfcare.jsx';
 import AdminInvite from '../users/components/AdminInvite.jsx';
+
 import Profile from '../users/components/UserProfile.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
@@ -119,6 +121,15 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
+
+    FlowRouter.route('/profile/edit', {
+        name: 'profile.update',
+        action() {
+            mount(MainLayoutCtx, {
+                content: () => (<EditProfile />)
+            });
+        }
+    });
 
 	FlowRouter.route('/account/selfcare', {
 		name: 'account.selfcare',
