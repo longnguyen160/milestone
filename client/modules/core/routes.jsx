@@ -15,7 +15,11 @@ import Confirm from '../users/components/Confirm.jsx';
 import Update from '../users/components/Update.jsx';
 import Selfcare from '../users/components/Selfcare.jsx';
 import AdminInvite from '../users/components/AdminInvite.jsx';
+
+
+
 import Profile from '../users/components/UserProfile.jsx';
+
 
 export default function (injectDeps, {FlowRouter}) {
 	const MainLayoutCtx = injectDeps(Layout);
@@ -98,7 +102,7 @@ export default function (injectDeps, {FlowRouter}) {
 				content: () => (<Confirm />)
 			});
 		}
-	});
+	});>>>>>>> 3ab043fb0c5f83bd55d1504edfd56470d7e19aad
 
 	FlowRouter.route('/profile/update', {
 		name: 'profile.update',
