@@ -17,7 +17,7 @@ const UserNavBar = ({context} = () => null) => (
                 <li><a href="#">Rates</a></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
-                <li><a href="#">Logout</a></li>
+                <li><a href="/logout">Logout</a></li>
             </ul>
         </div>
     </nav>

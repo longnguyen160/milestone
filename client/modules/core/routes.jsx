@@ -155,4 +155,12 @@ export default function (injectDeps, {FlowRouter}) {
 		}
 	});
 
+	FlowRouter.route('/logout', {
+		name: 'accounts.logout',
+		action() {
+			Meteor.logout();
+			FlowRouter.go("/");
+		}
+	});
+
 }
