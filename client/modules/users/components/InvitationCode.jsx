@@ -27,7 +27,7 @@ class InvitationCode extends React.Component {
                 <button type="button" className="btn btn-info btn-md" onClick={this.checkInvitationCode.bind(this)}>Continue</button>
               </div>
               <br />
-              <p>No invitation? <a href="/register/freelancer/finish">Apply here</a></p>
+              <p>No invitation? <a href="/register/freelancer/apply">Apply here</a></p>
             </form>
           </div>
       </div>
