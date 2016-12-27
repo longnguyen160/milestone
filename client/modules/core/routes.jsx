@@ -16,10 +16,7 @@ import InvittationCode from '../users/containers/InvitationCode.js';
 //Freelancer register form
 import FreelancerRegisterWithInvitationCode from '../users/containers/FreelancerRegisterWithInvitationCode.js';
 
-
-import NavBar from '../users/components/NavBar.jsx';
 import TOS from '../users/components/TOS.jsx';
-import Join from '../users/components/Join.jsx';
 import Apply from '../users/components/Apply.jsx';
 import Confirm from '../users/components/Confirm.jsx';
 import Update from '../users/components/Update.jsx';
@@ -27,6 +24,7 @@ import Update from '../users/components/Update.jsx';
 import Selfcare from '../users/components/Selfcare.jsx';
 import AdminInvite from '../users/components/AdminInvite.jsx';
 
+import ProfileEdit from '../users/containers/ProfileEdit.js';
 import Profile from '../users/components/UserProfile.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
@@ -126,7 +124,7 @@ export default function (injectDeps, {FlowRouter}) {
         name: 'profile.update',
         action() {
             mount(MainLayoutCtx, {
-                content: () => (<EditProfile />)
+                content: () => (<ProfileEdit />)
             });
         }
     });

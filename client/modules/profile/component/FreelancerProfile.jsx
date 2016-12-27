@@ -4,7 +4,9 @@ require("./css/style.css");
 
 class FreelancerProfile extends React.Component {
     render() {
-        const {user} = {currentUser};
+        const {user} = {currentUser: function() {
+            return Meteor.user();
+        }};
         return (
             <div className="row">
                 <div className="col-sm-4">
@@ -46,20 +48,20 @@ class FreelancerProfile extends React.Component {
                                 <form>
                                     <h2>Your basic information</h2>
                                     <div className="form-group">
-                                        <input type="text" class="form-control" placeholder="First name" ref="fname"/>
+                                        <input type="text" className="form-control" placeholder="First name" ref="fname"/>
                                     </div>
                                     <div className="form-group">
-                                        <input type="text" class="form-control" placeholder="Last name" ref="lname"/>
+                                        <input type="text" className="form-control" placeholder="Last name" ref="lname"/>
                                     </div>
                                     <div className="form-group">
-                                        <select class="form-control" ref="selectedPosition">
+                                        <select className="form-control" ref="selectedPosition">
                                             <option>Position</option>
                                             <option>Position 1</option>
                                             <option>Position 2</option>
                                         </select>
                                     </div>
                                     <div className="form-group">
-                                        <select class="form-control" ref="selectedLocation">
+                                        <select className="form-control" ref="selectedLocation">
                                             <option>Location</option>
                                             <option>Location 1</option>
                                             <option>Location 2</option>
@@ -79,7 +81,7 @@ class FreelancerProfile extends React.Component {
                             <fieldset>
                                 <h3>Experience in this Position</h3>
                                 <div className="form-group">
-                                    <select class="form-control" ref="selectedExperience">
+                                    <select className="form-control" ref="selectedExperience">
                                         <option>Experience in this Position</option>
                                         <option>Experience in this Position 1</option>
                                         <option>Experience in this Position 2</option>
@@ -87,17 +89,17 @@ class FreelancerProfile extends React.Component {
                                 </div>
 
                                 <div className="form-group">
-                                    <select class="form-control" ref="selectedRate">
+                                    <select className="form-control" ref="selectedRate">
                                         <option>Rate</option>
                                         <option>Rate 1</option>
                                         <option>Rate 2</option>
                                     </select>
-                                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> This is only
+                                    <span className="glyphicon glyphicon-lock" aria-hidden="true"></span> This is only
                                     visible to subscribers
                                 </div>
 
                                 <div className="form-group">
-                                    <input type="text" class="form-control" placeholder="Link" ref="link"/>
+                                    <input type="text" className="form-control" placeholder="Link" ref="link"/>
                                 </div>
                             </fieldset>
                         </div>
@@ -107,22 +109,22 @@ class FreelancerProfile extends React.Component {
                             <fieldset>
                                 <h2>Your details</h2>
                                 <div className="form-group">
-                                    <input type="text" class="form-control" placeholder="Headline" ref="headline"/>
+                                    <input type="text" className="form-control" placeholder="Headline" ref="headline"/>
                                 </div>
                                 <div className="form-group">
-                                    <textarea class="form-control" rows="5"
+                                    <textarea className="form-control" rows="5"
                                               placeholder="Introduce yourself in 300 characters" ref="introduce"></textarea>
                                     <p>243 characters left</p>
                                 </div>
                                 <div className="form-group">
-                                    <select class="form-control" ref="skill">
+                                    <select className="form-control" ref="skill">
                                         <option>Skills you have</option>
                                         <option>Skills you have 1</option>
                                         <option>Skills you have 2</option>
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <select class="form-control" ref="sector">
+                                    <select className="form-control" ref="sector">
                                         <option>Sectors you have worked in</option>
                                         <option>Sectors you have worked in 1</option>
                                         <option>Sectors you have worked in 2</option>
