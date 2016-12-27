@@ -15,7 +15,7 @@ export default {
     Accounts.forgotPassword(options);
     LocalState.set('EMAIL_ERROR', null);
     LocalState.set('SUCCESS', "Success");
-      
+
     FlowRouter.go('/account/forgot');
   },
 
@@ -37,15 +37,13 @@ export default {
 
     Meteor.loginWithPassword(email, password, function(error){
 //if have error
-      if(error.reason)
+      if(error)
         return LocalState.set('LOGIN_USER_ERROR', error.reason);
-      else {
-//don't have error
-        return FlowRouter.go('/');
-      }
-
+      else
+        FlowRouter.go('/');
     });
-
+    console.log("userId:");
+    console.log(Meteor.userId());
   },
 
   sendCode({Meteor, LocalState, FlowRouter}, inviteCode) {
@@ -85,35 +83,34 @@ export default {
   checkValidation({LocalState}, text, type) {
 
         let users_err = {
-          firstName: ['SIGNUP_COMPANY_FIRSTNAME', 'First name'],
-          lastName: ['SIGNUP_COMPANY_LASTNAME', 'Last name'],
-          email: ['SIGNUP_COMPANY_EMAIL', 'Email'],
-          company: ['SIGNUP_COMPANY_COMPANY', 'Company'],
-          password: ['SIGNUP_COMPANY_PASSWORD', 'Password']
+          firstName: ['SIGNUP_FIRSTNAME', 'First name'],
+          lastName: ['SIGNUP_LASTNAME', 'Last name'],
+          email: ['SIGNUP_EMAIL', 'Email'],
+          company: ['SIGNUP_COMPANY', 'Company'],
+          password: ['SIGNUP_PASSWORD', 'Password']
         };
 
 
         if (type === 'checkbox') {
-            console.log(type);
-            console.log(text);
+
             if (text === true) {
 
-                return LocalState.set('SIGNUP_COMPANAY_CHECKBOX', true);
+                return LocalState.set('SIGNUP_CHECKBOX', true);
 
             } else
-                return LocalState.set('SIGNUP_COMPANAY_CHECKBOX', false);
+                return LocalState.set('SIGNUP_CHECKBOX', false);
         }
         Meteor.call('users.checkValidation', text, type, function (error) {
-            if (error.error === 1) {
+            if (error) {
                 return LocalState.set(users_err[type][0], users_err[type][1] + " " + error.reason);
             }
-            if (error.error === 2) {
-                return LocalState.set('SIGNUP_COMPANY_EMAIL', error.reason);
-            }
         });
+      LocalState.set(users_err[type][0],true);
 
-      return LocalState.set(users_err[type][0],true);
-
+  },
+  createApplication({Meteor,LocalState,FlowRouter}, firstName, lastName, email, link, des) {
+    Meteor.call('applications.create', firstName, lastName, email, link, des);
+    FlowRouter.go('/');
   },
 //Check validation code
   checkInvitationCode({Meteor,LocalState,FlowRouter},invitationCode){
@@ -148,11 +145,11 @@ export default {
     LocalState.set("EMAIL_ERROR", null);
     LocalState.set("SUCCESS", null);
     LocalState.set("INVITATIONCODE_ERROR",null);
-    LocalState.set("SIGNUP_COMPANY_FIRSTNAME",null);
-    LocalState.set("SIGNUP_COMPANY_LASTNAME",null);
-    LocalState.set("SIGNUP_COMPANY_COMPANY",null);
-    LocalState.set("SIGNUP_COMPANY_EMAIL",null);
-    LocalState.set("SIGNUP_COMPANY_PASSWORD",null);
+    LocalState.set("SIGNUP_FIRSTNAME",null);
+    LocalState.set("SIGNUP_LASTNAME",null);
+    LocalState.set("SIGNUP_COMPANY",null);
+    LocalState.set("SIGNUP_EMAIL",null);
+    LocalState.set("SIGNUP_PASSWORD",null);
   }//end of clear errors
 
 };
