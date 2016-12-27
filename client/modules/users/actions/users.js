@@ -67,7 +67,7 @@ export default {
     },
 
     editFreelancerProfile({Meteor, LocalState, FlowRouter}, userId, fname, lname, position, location, experience, rate, link, travel, headline, introduce, skill, sector, img, bgimg) {
-        Meteor.call('users.editCompanyProfile', userId, fname, lname, company, companyURL, (err) => {
+        Meteor.call('users.editFreeLancerProfile', userId, fname, lname, position, location, experience, rate, link, travel, headline, introduce, skill, sector, img, bgimg, (err) => {
             if (err)
                 return LocalState.set("SAVING_ERROR");
         });

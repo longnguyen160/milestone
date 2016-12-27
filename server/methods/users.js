@@ -107,18 +107,18 @@ export default function() {
     });
 
     Meteor.methods({
-        'users.editCompanyProfile'(userId, fname, lname, company, companyURL, img) {
+        'users.editCompanyProfile'(userId, fname, lname, company, companyURL) {
             check(userId, String);
             check(fname, String);
             check(lname, String);
             check(company, String);
             check(companyURL, String);
-            users.update(userId, {
+            Meteor.users.update(userId, {
                 $set: {firstName: fname,
-                    lastName: lnamem,
-                    company: compnany,
-                    companyURL: companyURL,
-                    img: img}
+                    lastName: lname,
+                    company: company,
+                    companyURL: companyURL
+                    }
             });
         }
     });
@@ -128,7 +128,7 @@ export default function() {
             check(userId, String);
             check(email, String);
             check(password, String);
-            users.update(userId, {
+            Meteor.users.update(userId, {
                 $set: {email: email, password: password}
             });
         }
@@ -180,10 +180,10 @@ export default function() {
                 sector,
                 img,
                 bgimg], [String]);
-                users.update(userId, {
+                Meteor.users.update(userId, {
                     $set: {
                         firstName: fname,
-                        lastName: lnamem,
+                        lastName: lname,
                         company: compnany,
                         ExperienceInPosition: {experience: experience, rate: rate, link: link},
                         details: {headline: headline, introduce: introduce, skill: skill, sector: sector}
