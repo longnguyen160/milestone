@@ -9,7 +9,7 @@ export const composer = ({context,clearErrors},onData) => {
   error[3] = LocalState.get("SIGNUP_EMAIL");
   error[4] = LocalState.get("SIGNUP_PASSWORD");
   error[5] = LocalState.get('SIGNUP_CHECKBOX');
-  if (error[0] && error[1] && error[2] && error[3] && error[4] && error[5])
+  if (error[0] === true && error[1] === true && error[2] === true && error[3] === true && error[4] === true && error[5] === true)
     error[6] = true;
  else
     error[6] = false;

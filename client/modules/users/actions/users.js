@@ -90,7 +90,6 @@ export default {
             password: ['SIGNUP_PASSWORD', 'Password']
         };
 
-
         if (type === 'checkbox') {
 
             if (text === true) {
@@ -100,11 +99,24 @@ export default {
             } else
                 return LocalState.set('SIGNUP_CHECKBOX', false);
         }
-        Meteor.call('users.checkValidation', text, type, function (error) {
-            if (error) {
-                return LocalState.set(users_err[type][0], users_err[type][1] + " " + error.reason);
-            }
-        });
+
+        if (type === 'firstName' || type === 'lastName')  {
+
+          Meteor.call('users.checkValidation', text, 'text', function (error) {
+              if (error) {
+                  return LocalState.set(users_err[type][0], users_err[type][1] + " " + error.reason);
+              }
+          });
+
+        } else {
+              Meteor.call('users.checkValidation', text, type, function (error) {
+              if (error) {
+                  return LocalState.set(users_err[type][0], users_err[type][1] + " " + error.reason);
+              }
+          });
+        }
+        //console.log(type1);
+
         LocalState.set(users_err[type][0], true);
 
     },

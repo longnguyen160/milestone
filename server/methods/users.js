@@ -6,9 +6,13 @@ function verifyEmail(email) {
 	Accounts.sendVerificationEmail(id, email);
 
 };
+function checkArgument(argument, patten) {
+	console.log(argument);
+	return patten.test(argument);
+};
 
 export default function() {
-	
+
   //Add fields in to user database
     Accounts.onCreateUser(function(option, user) {
         //If user company
@@ -37,7 +41,7 @@ export default function() {
         // check(company,String);
         // check(email,String);
         // check(password, String);
-        check([firstName,lastName,company,email,password], [String]);
+				check([firstName,lastName,company,email,password], [String]);
         Accounts.createUser({
             email: email,
             password: password,
@@ -73,17 +77,24 @@ export default function() {
         check(text,String);
         check(type,String);
         //if empty content
-        console.log(text);
+
         let errorString = '';
         if(!text){
             errorString = ' is required';
-        }
-        if (text && type === 'email') {
-            const user = Accounts.findUserByEmail(text);
-            if (user) {
-                errorString = ' has been used';
-            }
-        }
+        } else if (type === 'text') {
+        	if (!checkArgument(text,/^[a-zA-Z]+(\s[a-zA-Z]+)?$/)) {
+        		errorString = ' is not correct.';
+        	}
+        } else if (type === 'email') {
+								if (!checkArgument(text, /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+        					errorString = ' is not correct.';
+        				} else {
+									const user = Accounts.findUserByEmail(text);
+									if (user) {
+										errorString = ' has been used';
+								}
+							}
+				}
         if (errorString.length !== 0) {
             throw new Meteor.Error('Error',errorString);
         }
@@ -103,10 +114,10 @@ export default function() {
             check(company, String);
             check(companyURL, String);
             users.update(userId, {
-                $set: {firstName: fname, 
-                    lastName: lnamem, 
-                    company: compnany, 
-                    companyURL: companyURL, 
+                $set: {firstName: fname,
+                    lastName: lnamem,
+                    company: compnany,
+                    companyURL: companyURL,
                     img: img}
             });
         }
@@ -125,20 +136,20 @@ export default function() {
 
     Meteor.methods({
         'users.editFreelancerProfile'(
-        userId, 
-        fname, 
-        lname, 
-        position, 
-        location, 
-        experience, 
-        rate, 
-        link, 
-        travel, 
-        headline, 
-        introduce, 
-        skill, 
-        sector, 
-        img, 
+        userId,
+        fname,
+        lname,
+        position,
+        location,
+        experience,
+        rate,
+        link,
+        travel,
+        headline,
+        introduce,
+        skill,
+        sector,
+        img,
         bgimg) {
                 // check(userId, String);
                 // check(fname, String);
@@ -154,20 +165,20 @@ export default function() {
                 // check(sector, String);
                 // check(img, String);
                 // check(bgimg, String);
-                check([userId, 
-                fname, 
-                lname, 
-                position, 
-                location, 
-                experience, 
-                rate, 
-                link, 
-                travel, 
-                headline, 
-                introduce, 
-                skill, 
-                sector, 
-                img, 
+                check([userId,
+                fname,
+                lname,
+                position,
+                location,
+                experience,
+                rate,
+                link,
+                travel,
+                headline,
+                introduce,
+                skill,
+                sector,
+                img,
                 bgimg], [String]);
                 users.update(userId, {
                     $set: {
