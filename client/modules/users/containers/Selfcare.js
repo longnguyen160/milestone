@@ -1,5 +1,5 @@
-import React from 'react';
-import Selfcare from './components/Selfcare.jsx';
+import Selfcare from '../components/Selfcare.jsx';
+import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, userId, clearErrors}, onData) => {
     const {LocalState} = context();

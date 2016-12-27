@@ -1,4 +1,4 @@
-import FreelancerProfile from '../profile/component/FreelancerProfile.jsx';
+import FreelancerProfile from '../../profile/component/FreelancerProfile.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, clearErrors}, onData) => {
