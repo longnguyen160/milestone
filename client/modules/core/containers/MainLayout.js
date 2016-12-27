@@ -10,7 +10,7 @@ export const composer = ({context, clearErrors}, onData) => {
     let role = null;
     let u = null;
     
-    if(Meteor.subscribe('users.single', Meteor.userId()).ready()){
+    if(Meteor.subscribe('user.single', Meteor.userId()).ready()){
         u = Meteor.user().roles;
     } else {
         console.log("Something went wrong!");
