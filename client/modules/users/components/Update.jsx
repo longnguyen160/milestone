@@ -4,7 +4,7 @@ require("./css/confirm.css");
 
 const Update = ({context} = () => null) => (
     <div id="mainLogin" className="text-center">
-        <div>
+        <div id="container">
             <div id="confirm">
                 <h1>Your status has been updated</h1>
                 {/* reaplce value with your message */}
