@@ -4,7 +4,9 @@ require("./css/style.css");
 class CompanyProfile extends React.Component {
 
 	render (){
-		const {user} = {currentUser};
+        const {user} = {currentUser: function() {
+            return Meteor.user();
+        }};
 		return(
 			<div className="container">
 			<div className="row">

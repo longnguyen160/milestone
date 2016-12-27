@@ -3,7 +3,7 @@ import {mount} from 'react-mounter';
 //Homepage
 import Home from '../users/components/Home.jsx';
 //Mainlayout
-import Layout from './components/MainLayout.jsx';
+import Layout from './containers/MainLayout.js';
 //Login page
 import Login from '../users/containers/Login.js';
 //Forgot password page
@@ -16,18 +16,16 @@ import InvittationCode from '../users/containers/InvitationCode.js';
 //Freelancer register form
 import FreelancerRegisterWithInvitationCode from '../users/containers/FreelancerRegisterWithInvitationCode.js';
 
-
-import NavBar from '../users/components/NavBar.jsx';
 import TOS from '../users/components/TOS.jsx';
-import Join from '../users/components/Join.jsx';
-import Apply from '../users/components/Apply.jsx';
 import Confirm from '../users/components/Confirm.jsx';
 import Update from '../users/components/Update.jsx';
 
 import Selfcare from '../users/components/Selfcare.jsx';
 import AdminInvite from '../users/components/AdminInvite.jsx';
 
+import ProfileEdit from '../users/containers/ProfileEdit.js';
 import Profile from '../users/components/UserProfile.jsx';
+import FreelancerApply from '../users/containers/FreelancerApply.js';
 
 export default function (injectDeps, {FlowRouter}) {
 	//Home pgae
@@ -94,12 +92,12 @@ export default function (injectDeps, {FlowRouter}) {
 			});
 		}
 	});
-
+//go to page register of freelancer with no invitation code
 	FlowRouter.route('/register/freelancer/apply', {
 		name: 'account.apply',
 		action() {
 			mount(MainLayoutCtx, {
-				content: () => (<Apply />)
+				content: () => (<FreelancerApply />)
 			});
 		}
 	});
@@ -126,7 +124,7 @@ export default function (injectDeps, {FlowRouter}) {
         name: 'profile.update',
         action() {
             mount(MainLayoutCtx, {
-                content: () => (<EditProfile />)
+                content: () => (<ProfileEdit />)
             });
         }
     });
@@ -155,6 +153,14 @@ export default function (injectDeps, {FlowRouter}) {
 			mount(MainLayoutCtx, {
 				content: () => (<Profile />)
 			});
+		}
+	});
+
+	FlowRouter.route('/logout', {
+		name: 'accounts.logout',
+		action() {
+			Meteor.logout();
+			FlowRouter.go("/");
 		}
 	});
 

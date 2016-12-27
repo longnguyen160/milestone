@@ -6,20 +6,36 @@ import AdminNavBar from '../../users/components/AdminNavBar.jsx'
 import DatePicker from 'react-datepicker';
 require("./style.css");
 
+class Layout  extends React.Component {
+    constructor(props, context){
+        super(props)
+        this.state = {}
+    }
+    render() {
+        const {content} = this.props;
+        let {role} = this.props;
+        return (
+        <div id="root" onLoad={this.reupdate.bind(this)}>
+            <div id="nav">
+                {role === null ? <NavBar /> : role === true ? <UserNavBar /> : <AdminNavBar /> }
+            </div>
+            <div id="content">
+            {content()}
+            </div>
+            { role === null ? 
+                <div id="footer">
+                    <Footer /> 
+                </div>
+            : "" }
+        </div>
+        );
 
-const Layout = ({content}) => (
-    <div id="root">
-        <div id="nav">
-            <NavBar />
-        </div>
-        <div id="content">
-        {content()}
-        </div>
-        <div id="footer">
-            <Footer />
-            {/* <DatePicker inline selected={this.state.startDate} onChange={this.handleChange} /> */}
-        </div>
-    </div>
-);
+    };
+
+    reupdate(e) {
+        this.role = this.props;
+    };
+
+};
 
 export default Layout;
