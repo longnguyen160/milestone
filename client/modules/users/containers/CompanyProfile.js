@@ -1,4 +1,4 @@
-import CompanyProfile from '../profile/component/CompanyProfile.jsx';
+import CompanyProfile from '../../profile/component/CompanyProfile.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, clearErrors}, onData) => {
