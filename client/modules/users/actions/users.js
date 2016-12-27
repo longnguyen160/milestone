@@ -37,11 +37,11 @@ export default {
 
     Meteor.loginWithPassword(email, password, function(error){
 //if have error
-      if(error.reason)
+      if(error)
         return LocalState.set('LOGIN_USER_ERROR', error.reason);
       else {
 //don't have error
-        return FlowRouter.go('/');
+        FlowRouter.go('/');
       }
 
     });
