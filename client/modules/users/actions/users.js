@@ -36,9 +36,13 @@ export default {
     LocalState.set('LOGIN_USER_ERROR',null);
 
     Meteor.loginWithPassword(email, password, function(error){
-
+//if have error
       if(error.reason)
         return LocalState.set('LOGIN_USER_ERROR', error.reason);
+      else {
+//don't have error
+        return FlowRouter.go('/');
+      }
 
     });
 
@@ -77,8 +81,9 @@ export default {
                 return LocalState.set("SAVING_ERROR");
         });
     },
-
+//check validation of firstName, lastName, email, company, password
   checkValidation({LocalState}, text, type) {
+
         let users_err = {
           firstName: ['SIGNUP_COMPANY_FIRSTNAME', 'First name'],
           lastName: ['SIGNUP_COMPANY_LASTNAME', 'Last name'],
@@ -87,12 +92,16 @@ export default {
           password: ['SIGNUP_COMPANY_PASSWORD', 'Password']
         };
 
+
         if (type === 'checkbox') {
             console.log(type);
             console.log(text);
             if (text === true) {
+
                 return LocalState.set('SIGNUP_COMPANAY_CHECKBOX', true);
-            } else return LocalState.set('SIGNUP_COMPANAY_CHECKBOX', false);
+
+            } else
+                return LocalState.set('SIGNUP_COMPANAY_CHECKBOX', false);
         }
         Meteor.call('users.checkValidation', text, type, function (error) {
             if (error.error === 1) {
@@ -102,6 +111,7 @@ export default {
                 return LocalState.set('SIGNUP_COMPANY_EMAIL', error.reason);
             }
         });
+
       return LocalState.set(users_err[type][0],true);
 
   },
@@ -118,7 +128,8 @@ export default {
   createUserCompany({Meteor}, firstName,lastName,company,email,password) {
 
     Meteor.call('users.createUserCompany',firstName, lastName,company,email,password);
-    
+    FlowRouter.go('/');
+
   },//end of create user company
 
 //Create user freelancer
