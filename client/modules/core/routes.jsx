@@ -25,6 +25,7 @@ import AdminInvite from '../users/components/AdminInvite.jsx';
 
 import ProfileEdit from '../users/containers/ProfileEdit.js';
 import Profile from '../users/components/UserProfile.jsx';
+import FreelancerApply from '../users/containers/FreelancerApply.js';
 
 export default function (injectDeps, {FlowRouter}) {
 	//Home pgae
@@ -96,7 +97,7 @@ export default function (injectDeps, {FlowRouter}) {
 		name: 'account.apply',
 		action() {
 			mount(MainLayoutCtx, {
-				content: () => (<Apply />)
+				content: () => (<FreelancerApply />)
 			});
 		}
 	});
