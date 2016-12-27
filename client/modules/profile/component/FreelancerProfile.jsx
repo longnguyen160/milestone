@@ -52,14 +52,14 @@ class FreelancerProfile extends React.Component {
                                         <input type="text" class="form-control" placeholder="Last name" ref="lname"/>
                                     </div>
                                     <div className="form-group">
-                                        <select class="form-control">
+                                        <select class="form-control" ref="selectedPosition">
                                             <option>Position</option>
                                             <option>Position 1</option>
                                             <option>Position 2</option>
                                         </select>
                                     </div>
                                     <div className="form-group">
-                                        <select class="form-control">
+                                        <select class="form-control" ref="selectedLocation">
                                             <option>Location</option>
                                             <option>Location 1</option>
                                             <option>Location 2</option>
@@ -68,7 +68,7 @@ class FreelancerProfile extends React.Component {
 
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox"/> Travel is possible
+                                            <input type="checkbox" ref="mark"/> Travel is possible
                                         </label>
                                     </div>
                                 </form>
@@ -79,7 +79,7 @@ class FreelancerProfile extends React.Component {
                             <fieldset>
                                 <h3>Experience in this Position</h3>
                                 <div className="form-group">
-                                    <select class="form-control">
+                                    <select class="form-control" ref="selectedExperience">
                                         <option>Experience in this Position</option>
                                         <option>Experience in this Position 1</option>
                                         <option>Experience in this Position 2</option>
@@ -87,7 +87,7 @@ class FreelancerProfile extends React.Component {
                                 </div>
 
                                 <div className="form-group">
-                                    <select class="form-control">
+                                    <select class="form-control" ref="selectedRate">
                                         <option>Rate</option>
                                         <option>Rate 1</option>
                                         <option>Rate 2</option>
@@ -97,7 +97,7 @@ class FreelancerProfile extends React.Component {
                                 </div>
 
                                 <div className="form-group">
-                                    <input type="text" class="form-control" placeholder="Link"/>
+                                    <input type="text" class="form-control" placeholder="Link" ref="link"/>
                                 </div>
                             </fieldset>
                         </div>
@@ -107,34 +107,48 @@ class FreelancerProfile extends React.Component {
                             <fieldset>
                                 <h2>Your details</h2>
                                 <div className="form-group">
-                                    <input type="text" class="form-control" placeholder="Headline"/>
+                                    <input type="text" class="form-control" placeholder="Headline" ref="headline"/>
                                 </div>
                                 <div className="form-group">
                                     <textarea class="form-control" rows="5"
-                                              placeholder="Introduce yourself in 300 characters"></textarea>
+                                              placeholder="Introduce yourself in 300 characters" ref="introduce"></textarea>
                                     <p>243 characters left</p>
                                 </div>
                                 <div className="form-group">
-                                    <select class="form-control">
+                                    <select class="form-control" ref="skill">
                                         <option>Skills you have</option>
                                         <option>Skills you have 1</option>
                                         <option>Skills you have 2</option>
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <select class="form-control">
+                                    <select class="form-control" ref="sector">
                                         <option>Sectors you have worked in</option>
                                         <option>Sectors you have worked in 1</option>
                                         <option>Sectors you have worked in 2</option>
                                     </select>
                                 </div>
-                                <button type="submit" className="btn btn-primary">Save</button>
+                                <button type="button" className="btn btn-primary" onClick={this.save.bind(this)}>Save</button>
                             </fieldset>
                         </div>
                     </div>
                 </div>
             </div>
         )
+    }
+
+    save(e) {
+        e.preventDefault();
+        const {editFreelancerProfile} = this.props;
+        const {fname, lname, position, location, experience, rate, link, travel, headline, introduce, skill, sector, img, bgimg} = this.refs;
+        const userId = this.props.user._id;
+        editFreelancerProfile(userId, fname, lname, position.value, location.value, experience.value, rate.value, link, travel.value, headline.value, introduce.value, skill.value, sector.value, img, bgimg);
+        this.refs.fname.value = '';
+        this.refs.lname.value = '';
+        this.refs.headline.value = '';
+        this.refs.introduce.value = '';
+        this.refs.link.value = '';
+
     }
 }
 export default FreelancerProfile;
