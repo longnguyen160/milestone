@@ -163,6 +163,7 @@ export default {
         LocalState.set("SIGNUP_EMAIL", null);
         LocalState.set("SIGNUP_PASSWORD", null);
         LocalState.set('SIGNUP_CONFIRM',null);
+        LocalState.set('SIGNUP_CHECKBOX',null);
     }//end of clear errors
 
 };
