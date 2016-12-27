@@ -4,9 +4,7 @@ require("./css/style.css");
 class CompanyProfile extends React.Component {
 
 	render (){
-        const {user} = {currentUser: function() {
-            return Meteor.user();
-        }};
+        const {userId, error} = this.props;
 		return(
 			<div className="container">
 			<div className="row">
@@ -48,8 +46,8 @@ class CompanyProfile extends React.Component {
 		e.preventDefault();
 		const {editCompanyProfile} = this.props;
 		const {fname, lname, company, companyURL} = this.refs;
-		const userId = this.props.user._id;
-		editCompanyProfile(userId, fname, lname, company, companyURL);
+		const userId = this.props.userId;
+		editCompanyProfile(userId, fname.value, lname.value, company.value, companyURL.value);
 		this.refs.fname.value = '';
         this.refs.lname.value = '';
         this.refs.company.value = '';

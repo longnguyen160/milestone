@@ -4,9 +4,7 @@ require("./css/style.css");
 
 class FreelancerProfile extends React.Component {
     render() {
-        const {user} = {currentUser: function() {
-            return Meteor.user();
-        }};
+        const {userId, error} = this.props;
         return (
             <div className="row">
                 <div className="col-sm-4">
@@ -143,7 +141,7 @@ class FreelancerProfile extends React.Component {
         e.preventDefault();
         const {editFreelancerProfile} = this.props;
         const {fname, lname, position, location, experience, rate, link, travel, headline, introduce, skill, sector, img, bgimg} = this.refs;
-        const userId = this.props.user._id;
+        const userId = this.props.userId;
         editFreelancerProfile(userId, fname, lname, position.value, location.value, experience.value, rate.value, link, travel.value, headline.value, introduce.value, skill.value, sector.value, img, bgimg);
         this.refs.fname.value = '';
         this.refs.lname.value = '';

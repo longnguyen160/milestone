@@ -14,7 +14,6 @@ export const composer = ({context, clearErrors}, onData) => {
 };
 
 export const depsMapper = (context, actions) => ({
-    edit: actions.users.eddit,
     clearErrors: actions.users.clearErrors,
     context: () => context
 });

@@ -4,12 +4,16 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 export const composer = ({context, clearErrors}, onData) => {
     const {LocalState} = context();
     const error = LocalState.get('SAVING_ERROR');
-    onData(null, {error});
+    if (Meteor.subscribe("users.single").ready()) {
+        const userId = Meteor.userId();
+        onData(null, {userId, error})
+    }
+    else onData(null, {error});
     return clearErrors;
 };
 
 export const depsMapper = (context, actions) => ({
-    editFreelancerProfile: actions.users.editUser,
+    editFreelancerProfile: actions.users.editFreelancerProfile,
     clearErrors: actions.users.clearErrors,
     context: () => context
 });
