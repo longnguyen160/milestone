@@ -2,28 +2,20 @@ export default {
 
   sendPassword({Meteor, LocalState, FlowRouter}, email) {
 
-      if (!email) {
+    if (!email) {
 
-        LocalState.set('SUCCESS', null);
-        return LocalState.set('EMAIL_ERROR', 'Email is required!');
+      LocalState.set('SUCCESS', null);
+      return LocalState.set('EMAIL_ERROR', 'Email is required!');
 
-      }
+    }
 
     LocalState.set('EMAIL_ERROR', 'User is not found!');
-    check(email, String);
-
-      if (Meteor.subscribe("users.email", email).ready()) {
-
-        var user = Collections.Users.findOne(email);
-
-          if (user) {
-
-            LocalState.set('EMAIL_ERROR', null);
-            LocalState.set('SUCCESS', "Success");
-            onData(null, {user});
-
-      }
-    }
+    let options = {};
+    options.email = email;
+    Accounts.forgotPassword(options);
+    LocalState.set('EMAIL_ERROR', null);
+    LocalState.set('SUCCESS', "Success");
+      
     FlowRouter.go('/account/forgot');
   },
 
@@ -87,6 +79,14 @@ export default {
     },
 
   checkValidation({LocalState}, text, type) {
+        let users_err = {
+          firstName: ['SIGNUP_COMPANY_FIRSTNAME', 'First name'],
+          lastName: ['SIGNUP_COMPANY_LASTNAME', 'Last name'],
+          email: ['SIGNUP_COMPANY_EMAIL', 'Email'],
+          company: ['SIGNUP_COMPANY_COMPANY', 'Company'],
+          password: ['SIGNUP_COMPANY_PASSWORD', 'Password']
+        };
+
         if (type === 'checkbox') {
             console.log(type);
             console.log(text);
@@ -96,45 +96,13 @@ export default {
         }
         Meteor.call('users.checkValidation', text, type, function (error) {
             if (error.error === 1) {
-                if (type === 'firstName') {
-                    return LocalState.set('SIGNUP_COMPANY_FIRSTNAME', 'First name' + " " + error.reason);
-                }
-                if (type === 'lastName') {
-                    return LocalState.set('SIGNUP_COMPANY_LASTNAME', 'Last name' + " " + error.reason);
-                }
-                if (type === 'email') {
-                    return LocalState.set('SIGNUP_COMPANY_EMAIL', 'Email' + " " + error.reason);
-                }
-                if (type === 'company') {
-                    return LocalState.set('SIGNUP_COMPANY_COMPANY', 'Company' + " " + error.reason);
-                }
-                if (type === 'password') {
-                    return LocalState.set('SIGNUP_COMPANY_PASSWORD', 'Password' + " " + error.reason);
-                }
+                return LocalState.set(users_err[type][0], users_err[type][1] + " " + error.reason);
             }
             if (error.error === 2) {
                 return LocalState.set('SIGNUP_COMPANY_EMAIL', error.reason);
             }
         });
-      if (type === 'firstName') {
-        return LocalState.set('SIGNUP_COMPANY_FIRSTNAME',true);
-      }
-
-      if (type === 'lastName') {
-        return LocalState.set('SIGNUP_COMPANY_LASTNAME',true);
-      }
-
-      if (type === 'email') {
-        return LocalState.set('SIGNUP_COMPANY_EMAIL',true);
-      }
-
-      if (type === 'company') {
-        return LocalState.set('SIGNUP_COMPANY_COMPANY',true);
-      }
-
-      if (type === 'password') {
-        return LocalState.set('SIGNUP_COMPANY_PASSWORD',true);
-      }
+      return LocalState.set(users_err[type][0],true);
 
   },
 //Check validation code
@@ -150,7 +118,7 @@ export default {
   createUserCompany({Meteor}, firstName,lastName,company,email,password) {
 
     Meteor.call('users.createUserCompany',firstName, lastName,company,email,password);
-
+    
   },//end of create user company
 
 //Create user freelancer

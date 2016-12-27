@@ -2,6 +2,12 @@ import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 import {Random} from 'meteor/random';
 
+function verifyEmail(email) {
+    let id = Accounts.findUserByEmail(email);
+    Accounts.sendVerificationEmail(id, email);
+    
+};
+
 export default function() {
 
   //Add fields in to user database
@@ -22,6 +28,7 @@ export default function() {
 
       return user
   });
+
 //Create user company
   Meteor.methods({'users.createUserCompany' (firstName,lastName,company,email,password) {
 
@@ -114,20 +121,21 @@ export default function() {
 
     Meteor.methods({
         'users.editFreelancerProfile'(userId, fname, lname, position, location, experience, rate, link, travel, headline, introduce, skill, sector, img, bgimg) {
-            check(userId, String);
-            check(fname, String);
-            check(lname, String);
-            check(position, String);
-            check(location, String);
-            check(experience, String);
-            check(rate, String);
-            check(link, String);
-            check(travel, Boolean);
-            check(introduce, String);
-            check(skill, String);
-            check(sector, String);
-            check(img, String);
-            check(bgimg, String);
+            // check(userId, String);
+            // check(fname, String);
+            // check(lname, String);
+            // check(position, String);
+            // check(location, String);
+            // check(experience, String);
+            // check(rate, String);
+            // check(link, String);
+            // check(travel, Boolean);
+            // check(introduce, String);
+            // check(skill, String);
+            // check(sector, String);
+            // check(img, String);
+            // check(bgimg, String);
+            check([userId, fname, lname, position, location, experience, rate, link, travel, headline, introduce, skill, sector, img, bgimg], [String]);
             users.update(userId, {
                 $set: {
                     firstName: fname,
