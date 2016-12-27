@@ -3,7 +3,7 @@ import {mount} from 'react-mounter';
 //Homepage
 import Home from '../users/components/Home.jsx';
 //Mainlayout
-import Layout from './components/MainLayout.jsx';
+import Layout from './containers/MainLayout.js';
 //Login page
 import Login from '../users/containers/Login.js';
 //Forgot password page
