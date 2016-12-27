@@ -1,13 +1,13 @@
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 export default function () {
-    Meteor.publish("users.single", function() {
-        return Meteor.users.find();
+    Meteor.publish("user.single", function(userId) {
+        check(userId, String)
+        return Meteor.users.find(userId);
     });
 
-    Meteor.publish("user.single", function(userId) {
-        check(userId, String);
-        return Meteor.users.find(userId);
+    Meteor.publish("users.single", function() {
+        return Meteor.users.find();
     });
 
 }
