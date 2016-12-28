@@ -59,8 +59,8 @@ export default {
         FlowRouter.go('/register/freelancer/finish');
     },
 
-    editCompanyProfile({Meteor, LocalState, FlowRouter}, userId, fname, lname, company, companyURL) {
-        Meteor.call('users.editCompanyProfile', userId, fname, lname, company, companyURL, (err) => {
+    editCompanyProfile({Meteor, LocalState, FlowRouter}, userId, fname, lname, company, companyURL, imgURL) {
+        Meteor.call('users.editCompanyProfile', userId, fname, lname, company, companyURL, imgURL, (err) => {
             if (err)
                 return LocalState.set("SAVING_ERROR");
         });
@@ -134,10 +134,10 @@ export default {
     },
 
 //Create user company
-    createUserCompany({Meteor}, firstName, lastName, company, email, password) {
+    createUserCompany({Meteor,LocalState}, firstName, lastName, company, email, password) {
 
         Meteor.call('users.createUserCompany', firstName, lastName, company, email, password);
-        FlowRouter.go('/');
+        LocalState.set('SIGNUP_CONFIRM',true);
 
     },//end of create user company
 
@@ -162,6 +162,8 @@ export default {
         LocalState.set("SIGNUP_COMPANY", null);
         LocalState.set("SIGNUP_EMAIL", null);
         LocalState.set("SIGNUP_PASSWORD", null);
+        LocalState.set('SIGNUP_CONFIRM',null);
+        LocalState.set('SIGNUP_CHECKBOX',null);
     }//end of clear errors
 
 };
