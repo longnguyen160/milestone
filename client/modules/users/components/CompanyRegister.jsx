@@ -120,7 +120,6 @@ class CompanyRegister extends React.Component {
         const {firstName,lastName,email,password,company,checkbox} = this.refs;
         console.log(this.refs);
         create(firstName.value,lastName.value,company.value,email.value,password.value);
-        login(email.value, password.value);
 
     };
       checkCheckedBox(e) {
