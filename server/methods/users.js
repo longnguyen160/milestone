@@ -2,8 +2,8 @@ import {Random} from 'meteor/random';
 
 function verifyEmail(email) {
 
-	let id = Accounts.findUserByEmail(email);
-	Accounts.sendVerificationEmail(id, email);
+	let user = Accounts.findUserByEmail(email);
+	Accounts.sendVerificationEmail(user._id, email);
 
 };
 function checkArgument(argument, patten) {

@@ -171,10 +171,16 @@ export default function (injectDeps, {FlowRouter}) {
 
 	FlowRouter.route('/verify-email/:token', {
 		name: 'accounts.verify',
-		action({token}) {
-			Accounts.verifyEmail(token);
-			console.log(token);
-			FlowRouter.go("/register/confirm/:token");
+		action(params) {
+				Accounts.verifyEmail(params.token, ( error ) =>{
+		if ( error ) {
+			console.error( error, 'danger' );
+		} else {
+			FlowRouter.go( '/' );
+			console.log( 'Email verified! Thanks!', 'success' );
+		}
+		});
+			// FlowRouter.go("/register/confirm/"+params.token);
 		}
 	});
 
