@@ -15,8 +15,8 @@ class Application extends React.Component {
                               </h4>
                           </div>
                           <div className="decision">
-                              <button type="button" className="btn btn-success more-spacing">Accept</button>
-                              <button type="button" className="btn btn-danger">Decline</button>
+                              <button onClick={this.accept.bind(this)} type="button" className="btn btn-success more-spacing">Accept</button>
+                              <button onClick={this.decline.bind(this)} type="button" className="btn btn-danger">Decline</button>
                           </div>
                       </div>
                   </div>
@@ -49,6 +49,26 @@ class Application extends React.Component {
               </div>
           </div>
       )
+    };
+    accept(e) {
+      e.preventDefault();
+      const {accept,apply} = this.props;
+      console.log('accept');
+      console.log(accept);
+      console.log('apply:');
+      console.log(apply);
+      accept(apply.firstName, apply.lastName, apply.email);
+
+    };
+
+    decline(e){
+      e.preventDefault();
+      const {accept,decline} = this.props;
+      console.log('decline');
+      console.log(decline);
+      console.log('apply:');
+      console.log(apply);
+      decline(apply.firstName, apply.lastName, apply.email);
     };
   }
 export default Application;

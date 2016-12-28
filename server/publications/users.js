@@ -7,7 +7,6 @@ export default function () {
         try {
             check(userId, String)
         } catch(err) {
-            console.log("Publications/Users - Invalid userID!");
             return;
         }
         return Meteor.users.find(userId);

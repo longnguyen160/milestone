@@ -115,8 +115,9 @@ class FreelancerRegisterWithInvitationCode extends React.Component {
     };
     createUser(e) {
       e.preventDefault();
-      const {create,invitationCode} = this.props;
+      const {create,invitationCode,} = this.props;
       const {firstName,lastName,email,password} = this.refs;
+
       create(firstName.value.trim(),lastName.value.trim(),email.value.trim(),password.value,invitationCode.toUpperCase());
   };
     checkCheckedBox(e) {

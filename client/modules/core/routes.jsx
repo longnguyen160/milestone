@@ -156,6 +156,9 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/admin/apply', {
 		name: 'admin.apply',
 		action() {
+			if (!Meteor.user() || !Meteor.user().roles === 'admin') {
+				return FlowRouter.go('/');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<Applications />)
 			});
@@ -185,15 +188,6 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 		action() {
 			mount(MainLayoutCtx, {
 				content: () => (<AdminInvite />)
-			});
-		}
-	});
-
-	FlowRouter.route('/admin/apply', {
-		name: 'admin.invites',
-		action() {
-			mount(MainLayoutCtx, {
-				content: () => (<Applications />)
 			});
 		}
 	});
