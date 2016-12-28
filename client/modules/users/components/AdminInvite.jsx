@@ -13,13 +13,13 @@ class AdminInvite extends React.Component {
                         <form className="centerlize">
                             <label for="email" className="go-left">Generate invite codes</label>
                             <div className="input-group">
-                                <input id="amount" type="text" className="form-control" name="amount" placeholder="How many codes?"/>
+                                <input ref='count' id="amount" type="text" className="form-control" name="amount" placeholder="How many codes?"/>
                             </div>
                             <div className="input-group">
-                                <input id="mlen" type="text" className="form-control" name="mlen" placeholder="Maximum usage of each code?"/>
+                                <input ref='usage' id="mlen" type="text" className="form-control" name="mlen" placeholder="Maximum usage of each code?"/>
                             </div>
                             <div className="text-center">
-                                <button type="submit" className="btn btn-info">Generate codes</button>
+                                <button onClick={this.generateCode.bind(this)} type="submit" className="btn btn-info">Generate codes</button>
                             </div>
                         </form>
                     </div>
@@ -37,6 +37,14 @@ class AdminInvite extends React.Component {
             </div>
         )
     };
+    generateCode(e) {
+      e.preventDefault();
+      const {generateCode} = this.props;
+      const {count,usage} = this.refs;
+      // console.log(count.value);
+      // console.log(usage);
+      generateCode(count.value, usage.value);
+    }
 
 };
 export default AdminInvite;

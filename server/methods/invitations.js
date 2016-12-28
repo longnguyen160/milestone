@@ -5,23 +5,29 @@ import {Random} from 'meteor/random'
 
 export default function() {
     Meteor.methods({'invitation.generate'(count, usage) {
-            check(usage, Integer);
-            check(count,Integer);
+            check(usage, Match.Any);
+            check(count,Match.Any);
+            count = parseInt(count);
+            usage = parseInt(usage);
             const date = new Date();
             console.log(date.valueOf());
-            for (var i = 0; i < count; i++) {
+            for (let i = 0; i < count; i++) {
               const code = Random.id(5).toUpperCase();
-              const dup = InvitationCode.find({code:code});
-              if (dup) {
+              const dup = InvitationCode.find({code:code}).fetch();
+              console.log('duplicated:');
+              console.log(dup);
+              if (dup[0]) {
+                console.log('xzx');
                 InvitationCode.update(
                   {code:code},
                   {$set:{
-                    usage:uasge,
+                    usage:usage,
                     uniqueCode: date.valueOf()
                     }
                   }
                 );
               } else {
+                console.log('abc');
                 InvitationCode.insert({
                   code:code,
                   usage:usage,
@@ -29,6 +35,7 @@ export default function() {
                 });
               }
             }
+            console.log(date.valueOf());
             return date.valueOf();
         }
     });

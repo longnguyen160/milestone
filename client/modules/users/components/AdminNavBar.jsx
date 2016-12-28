@@ -10,7 +10,7 @@ const UserNavBar = ({context} = () => null) => (
             </div>
             <ul className="nav navbar-nav">
                 <li><a href="#">MOTD</a></li>
-                <li><a href="#">Invites</a></li>
+                <li><a href="/admin/invites">Invites</a></li>
                 <li><a href="#">Positions</a></li>
                 <li><a href="#">Sectors</a></li>
                 <li><a href="#">Locations</a></li>

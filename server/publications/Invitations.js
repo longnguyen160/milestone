@@ -5,6 +5,7 @@ import {InvitationCode} from '/lib/collections';
 export default function() {
 
   Meteor.publish("Invitation.list", function(id){
-      return Invitation.find({uniqueCode:id});
+    check(id,Match.Any);
+      return InvitationCode.find({uniqueCode:id});
   });
 }
