@@ -5,10 +5,8 @@ export default {
     sendPassword({Meteor, LocalState, FlowRouter}, email) {
 
         if (!email) {
-
             LocalState.set('SUCCESS', null);
             return LocalState.set('EMAIL_ERROR', 'Email is required!');
-
         }
 
         LocalState.set('EMAIL_ERROR', 'User is not found!');
@@ -152,7 +150,6 @@ export default {
               }
           });
         }
-        //console.log(type1);
 
         LocalState.set(users_err[type][0], true);
 
@@ -168,7 +165,6 @@ export default {
             return LocalState.set('INVITATIONCODE_ERROR', "Invitation code is required.");
         } else {
           Meteor.call('invitation.checkInvitationCode', invitationCode, function(error) {
-            console.log(error);
             if (error) {
               return LocalState.set('INVITATIONCODE_ERROR',error.reason);
             } else {
@@ -228,7 +224,6 @@ export default {
     if (!usage || !patt.test(usage)) {
       usage = 5;
     }
-    console.log('count:' + count + ' usage:' + usage);
     Meteor.call('invitation.generate',count,usage, (err, response) => {
       if(err){
         return;
@@ -236,16 +231,14 @@ export default {
       else {
         LocalState.set('ID',response);
       }
-    });
+    })
+  },
     acceptApplications({LocalState},firstName,lastName,email) {
       const password = Random.id(10);
       Meteor.call('users.createUserFreelancer', firstName, lastName, email, password,'');
       Meteor.call('applications.delete',email);
-    }
-    declineApplications({LocalState}email) {
+    },
+    declineApplications({LocalState},email) {
       Meteor.call('applications.delete',email);
     }
-
-  }
-
 };

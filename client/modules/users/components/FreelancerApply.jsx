@@ -6,7 +6,6 @@ require("./css/apply.css");
 class FreelancerApply extends React.Component {
   render() {
     const {error} = this.props;
-    console.log(error);
     return (
       <div id="mainLogin" className="text-center">
           <div id="container">
@@ -120,7 +119,6 @@ class FreelancerApply extends React.Component {
         e.preventDefault();
         const {checkbox} = this.refs;
         const {checkValidation} = this.props;
-        console.log(checkbox.checked);
         checkValidation(checkbox.checked,'checkbox');
       };
 };

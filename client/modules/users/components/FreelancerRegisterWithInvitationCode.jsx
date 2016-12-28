@@ -5,7 +5,7 @@ require("./css/signup.css");
 class FreelancerRegisterWithInvitationCode extends React.Component {
   render() {
     const {error} = this.props;
-    console.log(error);
+
     return (
       <div id="mainLogin" className="text-center">
           <h1>Joining SI</h1>
@@ -117,15 +117,12 @@ class FreelancerRegisterWithInvitationCode extends React.Component {
       e.preventDefault();
       const {create,invitationCode} = this.props;
       const {firstName,lastName,email,password} = this.refs;
-      console.log(invitationCode);
-      console.log(this.refs);
       create(firstName.value.trim(),lastName.value.trim(),email.value.trim(),password.value,invitationCode.toUpperCase());
   };
     checkCheckedBox(e) {
       e.preventDefault();
       const {checkbox} = this.refs;
       const {checkValidation} = this.props;
-      console.log(checkbox.checked);
       checkValidation(checkbox.checked,'checkbox');
     };
 };

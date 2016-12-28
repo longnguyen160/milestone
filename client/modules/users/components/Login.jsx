@@ -4,7 +4,6 @@ require("./css/login.css");
 class Login extends React.Component {
     render() {
         const {error} = this.props;
-        console.log(error);
         return (
             <div id="mainLogin" className="text-center">
                 <div className="container">

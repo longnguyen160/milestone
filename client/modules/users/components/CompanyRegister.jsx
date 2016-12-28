@@ -6,7 +6,6 @@ require("./css/confirm.css");
 class CompanyRegister extends React.Component {
   render() {
     const {error} = this.props;
-    console.log(error);
     return (
       <div id="mainLogin" className="text-center">
       <div id="container">
@@ -85,32 +84,24 @@ class CompanyRegister extends React.Component {
       checkLastName(e) {
         e.preventDefault();
         const{lastName} = this.refs;
-        console.log("lastName:");
-        console.log(lastName.value);
         const{checkValidation} = this.props;
         checkValidation(lastName.value.trim(),'lastName');
       };
       checkCompany(e){
         e.preventDefault();
         const{company} = this.refs;
-        console.log("company:");
-        console.log(company.value);
         const{checkValidation} = this.props;
         checkValidation(company.value.trim(),'company');
       };
       checkEmail(e){
         e.preventDefault();
         const{email} = this.refs;
-        console.log("email:");
-        console.log(email.value);
         const{checkValidation} = this.props;
         checkValidation(email.value.trim(),'email');
       };
       checkPassword(e){
         e.preventDefault();
         const{password} = this.refs;
-        console.log("password:");
-        console.log(password.value);
         const{checkValidation} = this.props;
         checkValidation(password.value,'password');
       };
@@ -118,7 +109,6 @@ class CompanyRegister extends React.Component {
         e.preventDefault();
         const {create, login} = this.props;
         const {firstName,lastName,email,password,company,checkbox} = this.refs;
-        console.log(this.refs);
         create(firstName.value,lastName.value,company.value,email.value,password.value);
 
     };
@@ -126,7 +116,6 @@ class CompanyRegister extends React.Component {
         e.preventDefault();
         const {checkbox} = this.refs;
         const {checkValidation} = this.props;
-        console.log(checkbox.checked);
         checkValidation(checkbox.checked,'checkbox');
       };
 };

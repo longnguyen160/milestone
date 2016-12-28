@@ -28,9 +28,8 @@ import Profile from '../users/components/UserProfile.jsx';
 import FreelancerApply from '../users/containers/FreelancerApply.js';
 
 import NewPassword from '../users/containers/NewPassword.js';
-import Application from '../users/components/Application.jsx';
 
-import Applications from '../users/components/Applications.jsx'
+import Applications from '../users/containers/Applications.js'
 
 export default function (injectDeps, {FlowRouter,LocalState}) {
 
@@ -158,7 +157,7 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 		name: 'admin.apply',
 		action() {
 			mount(MainLayoutCtx, {
-				content: () => (<Application />)
+				content: () => (<Applications />)
 			});
 		}
 	});

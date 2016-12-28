@@ -5,11 +5,9 @@ require("./css/signup.css");
 class AdminInvite extends React.Component {
     render() {
         const {error,list} = this.props;
-        console.log(list);
-        console.log(error);
         return (
             <div id="mainLogin" className="text-center">
-            <title>Admin Panel - Invite</title> 
+            <title>Admin Panel - Invite</title>
                 <div id="container">
                     <div className="Card">
                         <form className="centerlize">
@@ -40,8 +38,6 @@ class AdminInvite extends React.Component {
       e.preventDefault();
       const {generateCode} = this.props;
       const {count,usage} = this.refs;
-      // console.log(count.value);
-      // console.log(usage);
       generateCode(count.value, usage.value);
     };
 

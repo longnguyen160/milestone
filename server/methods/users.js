@@ -11,7 +11,7 @@ function verifyEmail(email) {
 };
 
 function checkArgument(argument, patten) {
-    console.log(argument);
+
     return patten.test(argument);
 };
 
@@ -55,7 +55,7 @@ export default function () {
                 company: company,
                 roles: 'company'
             });
-            
+
             Meteor.call('sendVerifyEmail',email);
         }
     });
@@ -74,7 +74,6 @@ export default function () {
                 invitationCode: invitationCode
             });
             let code = InvitationCode.find({code: invitationCode}).fetch();
-            console.log(code);
             InvitationCode.update({code: invitationCode}, {$set: {usage: code[0].usage - 1}});
             Meteor.call('sendVerifyEmail',email);
         }
@@ -99,7 +98,7 @@ export default function () {
                 } else {
                     if (Accounts.findUserByEmail(text)) {
                         errorString = ' has been used';
-                    } else if (Applications.find({email:text})) {
+                    } else if (Applications.find({email:text})[0]) {
                         errorString = ' has been used';
                     }
                 }
