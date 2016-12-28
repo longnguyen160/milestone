@@ -1,7 +1,7 @@
 import React from 'react';
 require("./css/login.css");
 
-class Login extends React.Component {
+class NewPassword extends React.Component {
     render() {
         const {error} = this.props;
         console.log(error);
@@ -11,7 +11,13 @@ class Login extends React.Component {
                     <h1>Recovery New Password</h1>
                     <div id="Card">
                         <form className="centerlize">
+                            
                             <label>New Password</label>
+                            { error ? <div className="alert alert-danger alert-dismissable nomargin">
+                                    <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>{error}!</strong>
+                                </div> : null
+                            }
                             <div className="input-group">
                                 <span className="input-group-addon"><i className="glyphicon glyphicon-lock"></i></span>
                                 <input ref="password" id="password" type="password" className="form-control"
@@ -20,11 +26,11 @@ class Login extends React.Component {
                             
                             <div className="input-group">
                                 <span className="input-group-addon"><i className="glyphicon glyphicon-lock"></i></span>
-                                <input ref="password" id="password" type="password" className="form-control"
+                                <input ref="repassword" id="password" type="password" className="form-control"
                                        name="password" placeholder="Re-enter New Password"/>
                             </div>
                             <div className="text-center">
-                                <button onClick="" type="submit"
+                                <button onClick={this.newpassword.bind(this)} type="submit"
                                         className="btn btn-info btn-md">Reset Password
                                 </button>
                             </div>
@@ -37,10 +43,12 @@ class Login extends React.Component {
 
     newpassword(e) {
         e.preventDefault();
-        // const {login} = this.props;
-        // const {email, password} = this.refs;
-        // login(email.value.trim(), password.value);
+        
+        const {resetpassword, Token} = this.props;
+        const {password, repassword} = this.refs;
+        console.log(resetpassword);
+        resetpassword(password.value, repassword.value, Token);
     };
 };
 
-export default Login;
+export default NewPassword;

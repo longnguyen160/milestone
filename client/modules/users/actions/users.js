@@ -18,6 +18,26 @@ export default {
 
         FlowRouter.go('/account/forgot');
     },
+    
+    resetPassword({Meteor, LocalState, FlowRouter}, password, repassword, token) {
+        if(!password || !repassword) {
+            LocalState.set('SUCCESS', null);
+            return LocalState.set('PASSWORD_ERROR','Please fill in all the required fields!');
+        }
+        if(password !== repassword) {
+            LocalState.set('SUCCESS', null);
+            return LocalState.set('PASSWORD_ERROR','Password did not match!');
+        }
+        Accounts.resetPassword(token, password, (error) => {
+            Bert.defaults.hideDelay = 5555;
+            if ( error ) {
+                Bert.alert('<b>'+(error.reason === 'Token expired' ? "Your link has expired" : error.reason)+'</b>', 'danger');
+            } else {
+                Bert.alert('<b>Your password has been updated!', 'success');
+            }
+            FlowRouter.go("/");
+		});
+    },
 
     //Login fuction with email  and password
     login({Meteor, LocalState, FlowRouter}, email, password) {
@@ -34,16 +54,14 @@ export default {
         }
 
         LocalState.set('LOGIN_USER_ERROR', null);
-
-        Meteor.loginWithPassword(email, password, function (error) {
-//if have error
-            if (error)
-                return LocalState.set('LOGIN_USER_ERROR', error.reason);
-            else
-                FlowRouter.go('/');
-        });
-        console.log("userId:");
-        console.log(Meteor.userId());
+        Bert.alert('<b>You account has been created!', 'success');
+        //FlowRouter.go('/');
+        // Meteor.loginWithPassword(email, password, function (error) {
+        //     if (error)
+        //         return LocalState.set('LOGIN_USER_ERROR', error.reason);
+        //     else
+        //         FlowRouter.go('/');
+        // });
     },
 
     sendCode({Meteor, LocalState, FlowRouter}, inviteCode) {

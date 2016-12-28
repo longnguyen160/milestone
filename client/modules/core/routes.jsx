@@ -27,7 +27,7 @@ import ProfileEdit from '../users/containers/ProfileEdit.js';
 import Profile from '../users/components/UserProfile.jsx';
 import FreelancerApply from '../users/containers/FreelancerApply.js';
 
-import NewPassword from '../users/components/NewPassword.jsx';
+import NewPassword from '../users/containers/NewPassword.js';
 
 export default function (injectDeps, {FlowRouter,LocalState}) {
 
@@ -54,7 +54,7 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/account/forgot', {
 		name: 'account.sendPassword',
 		action() {
-			if (Meteor.userid()) {
+			if (Meteor.userId()) {
 				return FlowRouter.go('/');
 			}
 			mount(MainLayoutCtx, {
@@ -202,12 +202,10 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 		name: 'accounts.verify',
 		action(params) {
 			Accounts.verifyEmail(params.token, ( error ) =>{
+				Bert.defaults.hideDelay = 5555;
 				if ( error ) {
-					Bert.defaults.hideDelay = 5555;
-					Bert.alert('<b>'+error.reason+'</b>', 'warning');
-					
+					Bert.alert('<b>'+(error.reason === 'Token expired' ? "Your link has expired" : error.reason)+'</b>', 'danger');
 				} else {
-					Bert.defaults.hideDelay = 5555;
 					Bert.alert('<b>You email has been verified! Click <a href="register/confirm">here</a> to check again</b>', 'success');
 				}
 				FlowRouter.go("/");
