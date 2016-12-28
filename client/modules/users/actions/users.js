@@ -82,6 +82,7 @@ export default {
             if (err)
                 return LocalState.set("SAVING_ERROR");
         });
+        FlowRouter.go("/profile/edit");
     },
 
     editFreelancerProfile({Meteor, LocalState, FlowRouter}, userId, fname, lname, position, location, experience, rate, link, travel, headline, introduce, skill, sector, img, bgimg) {
@@ -96,6 +97,14 @@ export default {
             if (err)
                 return LocalState.set("SAVING_ERROR");
         });
+    },
+
+    deleteIMG({Meteor, LocalState, FlowRouter}, userId) {
+        Meteor.call('users.deleteIMG', userId, (err) => {
+            if (err)
+                return LocalState.set("DELETE_ERROR");
+        });
+        FlowRouter.go("/profile/edit");
     },
 //check validation of firstName, lastName, email, company, password
     checkValidation({LocalState}, text, type) {

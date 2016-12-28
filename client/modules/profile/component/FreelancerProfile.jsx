@@ -165,12 +165,6 @@ class FreelancerProfile extends React.Component {
         const img = this.state.thumnail;
         const bgimg = this.state.bgthumnail;
         editFreelancerProfile(userId, fname.value, lname.value, position.value, location.value, experience.value, rate.value, link, travel.value, headline.value, introduce.value, skill.value, sector.value, img, bgimg);
-        this.refs.fname.value = '';
-        this.refs.lname.value = '';
-        this.refs.headline.value = '';
-        this.refs.introduce.value = '';
-        this.refs.link.value = '';
-
     }
 }
 export default FreelancerProfile;

@@ -1,5 +1,7 @@
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
+import {Image} from '/lib/collections';
+
 export default function () {
     Meteor.publish("user.single", function(userId) {
         try {
@@ -14,6 +16,10 @@ export default function () {
 
     Meteor.publish("users.single", function() {
         return Meteor.users.find();
+    });
+
+    Meteor.publish("img.single", function() {
+        return Image.find();
     });
 
 }
