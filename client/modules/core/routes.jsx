@@ -51,6 +51,9 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/account/forgot', {
 		name: 'account.sendPassword',
 		action() {
+			if (Meteor.userid()) {
+				return FlowRouter.go('/');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<ForgotPassword />)
 			});
@@ -60,7 +63,7 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/account/login', {
 		name: 'account.login',
 		action() {
-			
+
 			if(Meteor.userId() != null) {
 				FlowRouter.go("/");
 				return;
@@ -74,6 +77,10 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/register/company', {
 		name: 'account.signup',
 		action() {
+			if (Meteor.userId()) {
+				console.log(Meteor.userId());
+				return FlowRouter.go('/');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<CompanyRegister />)
 			});
@@ -83,8 +90,10 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/register/freelancer', {
         name: 'account.join',
 		action() {
+			if (Meteor.userId()) {
+				return FlowRouter.go('/');
+			}
 			const invitationCode = LocalState.get('INVITATIONCODE');
-			console.log('invitationCode at invitation code:' + invitationCode);
 			if (invitationCode) {
 				return FlowRouter.go('/register/freelancer/finish');
 			}
@@ -98,7 +107,9 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 		name: 'account.finish',
 		action() {
 			const invitationCode = LocalState.get('INVITATIONCODE');
-			console.log('invitationCode: at finish' + invitationCode);
+			if (Meteor.userId()) {
+				return FlowRouter.go('/');
+			}
 			if (!invitationCode) {
 				return FlowRouter.go('/register/freelancer');
 			}
@@ -111,6 +122,9 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/register/freelancer/apply', {
 		name: 'account.apply',
 		action() {
+			if (Meteor.userId()) {
+				return FlowRouter.go('/');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<FreelancerApply />)
 			});
