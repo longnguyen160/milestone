@@ -1,13 +1,12 @@
 #uprofile_container {
-  width: 40%;
-  height: 520px;
-  margin: 0 auto;
+  width: 35%;
+  height: 80vh;
+  margin: 1.5vh auto;
   background-color: white;
 }
 
 #uprofile {
   height: 100%;
-
 }
 
 .flex_center {
@@ -24,19 +23,19 @@
 }
 
 #warning_mess {
-  height: 5rem;
-  background-color: crimson;
+  height: 6rem;
+  background-color: #F03250;
   color: white;
 }
 
 #success_mess {
-  height: 5rem;
+  height: 6rem;
   background-color:#3AC162;
   color: white;
 }
 
 #info_mess {
-  height: 5rem;
+  height: 6rem;
   background-color: orange;
   color: white;
 }

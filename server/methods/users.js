@@ -3,8 +3,8 @@ import {Image} from '/lib/collections';
 
 function verifyEmail(email) {
 
-	let id = Accounts.findUserByEmail(email);
-	Accounts.sendVerificationEmail(id, email);
+	let user = Accounts.findUserByEmail(email);
+	Accounts.sendVerificationEmail(user._id, email);
 
 };
 function checkArgument(argument, patten) {
@@ -51,7 +51,7 @@ export default function() {
             company:company,
             roles:'company'
         });
-        verifyEmail(email);
+        verifyEmail(email, password);
     }});
     //Create user freelancer
     Meteor.methods({'users.createUserFreelancer' (firstName,lastName,email,password) {
@@ -70,7 +70,7 @@ export default function() {
             lastName:lastName,
             roles:'freelancer',
         });
-        verifyEmail(email);
+        verifyEmail(email, password);
     }});
     //Check validation
     //Check validation

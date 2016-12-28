@@ -60,6 +60,11 @@ export default function (injectDeps, {FlowRouter}) {
 	FlowRouter.route('/account/login', {
 		name: 'account.login',
 		action() {
+			
+			if(Meteor.userId() != null) {
+				FlowRouter.go("/");
+				return;
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<Login />)
 			});
@@ -102,9 +107,9 @@ export default function (injectDeps, {FlowRouter}) {
 		}
 	});
 
-	FlowRouter.route('/register/confirm', {
+	FlowRouter.route('/register/confirm/:token', {
 		name: 'account.confirm',
-		action() {
+		action({token}) {
 			mount(MainLayoutCtx, {
 				content: () => (<Confirm />)
 			});
@@ -161,6 +166,21 @@ export default function (injectDeps, {FlowRouter}) {
 		action() {
 			Meteor.logout();
 			FlowRouter.go("/");
+		}
+	});
+
+	FlowRouter.route('/verify-email/:token', {
+		name: 'accounts.verify',
+		action(params) {
+				Accounts.verifyEmail(params.token, ( error ) =>{
+		if ( error ) {
+			console.error( error, 'danger' );
+		} else {
+			FlowRouter.go( '/' );
+			console.log( 'Email verified! Thanks!', 'success' );
+		}
+		});
+			// FlowRouter.go("/register/confirm/"+params.token);
 		}
 	});
 
