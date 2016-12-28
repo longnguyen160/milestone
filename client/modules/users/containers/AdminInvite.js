@@ -3,15 +3,13 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, clearErrors}, onData) => {
   const {LocalState, Collections} = context();
-  const error = LocalState.get('GENERATE_INVITATIONCODE');
   const id = LocalState.get('ID');
   console.log('id:' + id);
+  let list = null;
   if(Meteor.subscribe("Invitation.list", id).ready()){
-    const list = Collections.InvitationCode.find({uniqueCode:id}).fetch();
-    console.log('List invitation');
-    console.log(list);
+    list = Collections.InvitationCode.find({uniqueCode:id}).fetch();
   }
-  onData(null,{error,id});
+  onData(null,{id,list});
   return clearErrors;
 };
 

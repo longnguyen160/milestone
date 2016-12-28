@@ -4,7 +4,8 @@ require("./css/signup.css");
 
 class AdminInvite extends React.Component {
     render() {
-        const {error} = this.props;
+        const {error,list} = this.props;
+        console.log(list);
         console.log(error);
         return (
             <div id="mainLogin" className="text-center">
@@ -26,10 +27,7 @@ class AdminInvite extends React.Component {
                     <div id="result">
                         <div className="go-left-text">
                             <h4>Result:</h4>
-                            <p>code 1</p>
-                            <p>code 1</p>
-                            <p>code 1</p>
-                            <p>code 1</p>
+                            {list ? list.map((result,index) => (<li key={index} >{result.code}</li>)) : null}
 
                         </div>
                     </div>
@@ -44,7 +42,7 @@ class AdminInvite extends React.Component {
       // console.log(count.value);
       // console.log(usage);
       generateCode(count.value, usage.value);
-    }
+    };
 
 };
 export default AdminInvite;

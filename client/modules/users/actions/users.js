@@ -18,7 +18,7 @@ export default {
 
         FlowRouter.go('/account/forgot');
     },
-    
+
     resetPassword({Meteor, LocalState, FlowRouter}, password, repassword, token) {
         if(!password || !repassword) {
             LocalState.set('SUCCESS', null);
@@ -209,10 +209,11 @@ export default {
 
 //Generate code methods
   generateCode({LocalState,Meteor, Collections}, count, usage) {
-    if (!count || typeof count === 'string') {
+    const patt = /^\d$/;
+    if (!count || !patt.test(count)) {
       count = 1;
     }
-    if (!usage || typeof usage === 'string') {
+    if (!usage || !patt.test(usage)) {
       usage = 5;
     }
     console.log('count:' + count + ' usage:' + usage);
