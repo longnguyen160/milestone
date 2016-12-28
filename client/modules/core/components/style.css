@@ -23,9 +23,22 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 84vh;
+    min-height: 92vh;
     padding: 0;
-    background: url('https://www.mylinea.com/wp-content/uploads/4k-Colourful-Wallpaper-05.jpg') fixed;
+}
+
+.background_free_profile {
+    background: url('http://wallpapers.ae/wp-content/uploads/2014/08/polygon_green-wallpaper-1024x768.jpg') fixed center;
+}
+
+.background_comp_profile {
+    background: url('https://www.mylinea.com/wp-content/uploads/4k-Colourful-Wallpaper-05.jpg') fixed center;
+}
+
+#maincontent {
+    min-height: 80vh;
+    width: 100%;
+    margin-top: 1em;
 }
 
 @media screen and (max-width: 720px) {

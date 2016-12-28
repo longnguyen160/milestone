@@ -18,6 +18,26 @@ export default {
 
         FlowRouter.go('/account/forgot');
     },
+    
+    resetPassword({Meteor, LocalState, FlowRouter}, password, repassword, token) {
+        if(!password || !repassword) {
+            LocalState.set('SUCCESS', null);
+            return LocalState.set('PASSWORD_ERROR','Please fill in all the required fields!');
+        }
+        if(password !== repassword) {
+            LocalState.set('SUCCESS', null);
+            return LocalState.set('PASSWORD_ERROR','Password did not match!');
+        }
+        Accounts.resetPassword(token, password, (error) => {
+            Bert.defaults.hideDelay = 5555;
+            if ( error ) {
+                Bert.alert('<b>'+(error.reason === 'Token expired' ? "Your link has expired" : error.reason)+'</b>', 'danger');
+            } else {
+                Bert.alert('<b>Your password has been updated!', 'success');
+            }
+            FlowRouter.go("/");
+		});
+    },
 
     //Login fuction with email  and password
     login({Meteor, LocalState, FlowRouter}, email, password) {
@@ -33,17 +53,12 @@ export default {
 
         }
 
-        LocalState.set('LOGIN_USER_ERROR', null);
-
         Meteor.loginWithPassword(email, password, function (error) {
-//if have error
             if (error)
                 return LocalState.set('LOGIN_USER_ERROR', error.reason);
             else
                 FlowRouter.go('/');
         });
-        console.log("userId:");
-        console.log(Meteor.userId());
     },
 
     sendCode({Meteor, LocalState, FlowRouter}, inviteCode) {
@@ -154,22 +169,24 @@ export default {
     },
 
 //Create user company
-    createUserCompany({Meteor,LocalState}, firstName, lastName, company, email, password) {
+    createUserCompany({Meteor,LocalState, FlowRouter}, firstName, lastName, company, email, password) {
 
         Meteor.call('users.createUserCompany', firstName, lastName, company, email, password);
         LocalState.set('SIGNUP_CONFIRM',true);
-
+        Bert.alert('<b>You company account has been created! Please check your email to verify your account!', 'success');
+        Meteor.setTimeout(function() {FlowRouter.go("/");}, 2500);
     },//end of create user company
 
 //Create user freelancer
-    createUserFreelancer({Meteor, LocalState}, firstName, lastName, email, password,invitationCode) {
+    createUserFreelancer({Meteor, LocalState, FlowRouter}, firstName, lastName, email, password,invitationCode) {
 
         const invitaionCode = LocalState.get('INVITATIONCODE');
         console.log(invitaionCode);
         LocalState.set('SIGNUP_CONFIRM',true);
         Meteor.call('users.createUserFreelancer', firstName, lastName, email, password, invitaionCode);
         LocalState.set('INVITATIONCODE',null);
-
+        Bert.alert('<b>You freelancer account has been created! Please check your email to verify your account!', 'success');
+        Meteor.setTimeout(function() {FlowRouter.go("/");}, 2500);
     },//end of create user freelancer
 
 //Clear errors

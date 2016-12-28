@@ -1,11 +1,11 @@
-#mainLogin {
+/*#mainLogin {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
+}*/
 
 #Card {
     border-top: 0.5em solid #5CD8E4;

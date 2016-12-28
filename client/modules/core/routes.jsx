@@ -17,7 +17,7 @@ import InvittationCode from '../users/containers/InvitationCode.js';
 import FreelancerRegisterWithInvitationCode from '../users/containers/FreelancerRegisterWithInvitationCode.js';
 
 import TOS from '../users/components/TOS.jsx';
-import Confirm from '../users/components/Confirm.jsx';
+import Confirm from '../users/containers/Confirm.js';
 import Update from '../users/components/Update.jsx';
 
 import Selfcare from '../users/components/Selfcare.jsx';
@@ -27,7 +27,10 @@ import ProfileEdit from '../users/containers/ProfileEdit.js';
 import Profile from '../users/components/UserProfile.jsx';
 import FreelancerApply from '../users/containers/FreelancerApply.js';
 
+import NewPassword from '../users/containers/NewPassword.js';
+
 export default function (injectDeps, {FlowRouter,LocalState}) {
+
 	//Home pgae
 	const MainLayoutCtx = injectDeps(Layout);
 	FlowRouter.route('/', {
@@ -51,7 +54,7 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/account/forgot', {
 		name: 'account.sendPassword',
 		action() {
-			if (Meteor.userid()) {
+			if (Meteor.userId()) {
 				return FlowRouter.go('/');
 			}
 			mount(MainLayoutCtx, {
@@ -63,7 +66,6 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/account/login', {
 		name: 'account.login',
 		action() {
-
 			if(Meteor.userId() != null) {
 				FlowRouter.go("/");
 				return;
@@ -131,9 +133,9 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 		}
 	});
 
-	FlowRouter.route('/register/confirm/:token', {
+	FlowRouter.route('/register/confirm/', {
 		name: 'account.confirm',
-		action({token}) {
+		action() {
 			mount(MainLayoutCtx, {
 				content: () => (<Confirm />)
 			});
@@ -180,7 +182,9 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 		name: 'profile',
 		action() {
 			mount(MainLayoutCtx, {
-				content: () => (<Profile />)
+				content: () => (<Profile />),
+				isNotShowFooter: true,
+				changeBackground: true
 			});
 		}
 	});
@@ -196,15 +200,31 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/verify-email/:token', {
 		name: 'accounts.verify',
 		action(params) {
-				Accounts.verifyEmail(params.token, ( error ) =>{
-		if ( error ) {
-			console.error( error, 'danger' );
-		} else {
-			FlowRouter.go( '/' );
-			console.log( 'Email verified! Thanks!', 'success' );
+			Accounts.verifyEmail(params.token, ( error ) =>{
+				Bert.defaults.hideDelay = 5555;
+				if ( error ) {
+					Bert.alert('<b>'+(error.reason === 'Token expired' ? "Your link has expired" : error.reason)+'</b>', 'danger');
+				} else {
+					Bert.alert('<b>You email has been verified! Click <a href="register/confirm">here</a> to check again</b>', 'success');
+				}
+				FlowRouter.go("/");
+			});
 		}
-		});
-			// FlowRouter.go("/register/confirm/"+params.token);
+	});
+
+	FlowRouter.route('/new-password/:token', {
+		name: 'accounts.newpw',
+		action({token}) {
+			mount(MainLayoutCtx, {
+				content: () => (<NewPassword token={token}/>),
+			});
+		}
+	});
+
+	FlowRouter.route('/reset-password/:token', {
+		name: 'accounts.resetpw',
+		action(params) {
+			FlowRouter.go("/new-password/"+params.token);
 		}
 	});
 
