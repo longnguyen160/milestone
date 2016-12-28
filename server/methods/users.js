@@ -4,8 +4,8 @@ import {InvitationCode} from '/lib/collections';
 
 function verifyEmail(email) {
 
-	let id = Accounts.findUserByEmail(email);
-	Accounts.sendVerificationEmail(id, email);
+	let user = Accounts.findUserByEmail(email);
+	Accounts.sendVerificationEmail(user._id, email);
 
 };
 function checkArgument(argument, patten) {
@@ -47,7 +47,7 @@ export default function() {
             company:company,
             roles:'company'
         });
-        verifyEmail(email);
+        verifyEmail(email, password);
     }});
     //Create user freelancer
     Meteor.methods({'users.createUserFreelancer' (firstName,lastName,email,password,invitationCode) {
@@ -62,7 +62,6 @@ export default function() {
             roles:'freelancer',
 						invitationCode: invitationCode
         });
-
 				let code = InvitationCode.find({code:invitationCode}).fetch();
 				console.log(code);
 				InvitationCode.update({code:invitationCode},{$set: {usage: code[0].usage - 1}});

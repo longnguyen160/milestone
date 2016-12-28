@@ -14,19 +14,21 @@ class Layout  extends React.Component {
     render() {
         const {content} = this.props;
         let {role} = this.props;
+        let {foot} = this.props;
         return (
         <div id="root" onLoad={this.reupdate.bind(this)}>
             <div id="nav">
                 {role === null ? <NavBar /> : role === true ? <UserNavBar /> : <AdminNavBar /> }
             </div>
-            <div id="content">
-            {content()}
+            <div id="mainlayout">
+                {content()}
             </div>
-            { role === null ? 
+            {!foot ?
                 <div id="footer">
                     <Footer /> 
                 </div>
-            : "" }
+                : ""
+            }
         </div>
         );
 
