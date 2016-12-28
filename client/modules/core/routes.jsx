@@ -66,7 +66,6 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/account/login', {
 		name: 'account.login',
 		action() {
-
 			if(Meteor.userId() != null) {
 				FlowRouter.go("/");
 				return;

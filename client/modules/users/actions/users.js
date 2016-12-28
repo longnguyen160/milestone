@@ -53,15 +53,12 @@ export default {
 
         }
 
-        LocalState.set('LOGIN_USER_ERROR', null);
-        Bert.alert('<b>You account has been created!', 'success');
-        //FlowRouter.go('/');
-        // Meteor.loginWithPassword(email, password, function (error) {
-        //     if (error)
-        //         return LocalState.set('LOGIN_USER_ERROR', error.reason);
-        //     else
-        //         FlowRouter.go('/');
-        // });
+        Meteor.loginWithPassword(email, password, function (error) {
+            if (error)
+                return LocalState.set('LOGIN_USER_ERROR', error.reason);
+            else
+                FlowRouter.go('/');
+        });
     },
 
     sendCode({Meteor, LocalState, FlowRouter}, inviteCode) {
@@ -172,22 +169,24 @@ export default {
     },
 
 //Create user company
-    createUserCompany({Meteor,LocalState}, firstName, lastName, company, email, password) {
+    createUserCompany({Meteor,LocalState, FlowRouter}, firstName, lastName, company, email, password) {
 
         Meteor.call('users.createUserCompany', firstName, lastName, company, email, password);
         LocalState.set('SIGNUP_CONFIRM',true);
-
+        Bert.alert('<b>You company account has been created! Please check your email to verify your account!', 'success');
+        Meteor.setTimeout(function() {FlowRouter.go("/");}, 2500);
     },//end of create user company
 
 //Create user freelancer
-    createUserFreelancer({Meteor, LocalState}, firstName, lastName, email, password,invitationCode) {
+    createUserFreelancer({Meteor, LocalState, FlowRouter}, firstName, lastName, email, password,invitationCode) {
 
         const invitaionCode = LocalState.get('INVITATIONCODE');
         console.log(invitaionCode);
         LocalState.set('SIGNUP_CONFIRM',true);
         Meteor.call('users.createUserFreelancer', firstName, lastName, email, password, invitaionCode);
         LocalState.set('INVITATIONCODE',null);
-
+        Bert.alert('<b>You freelancer account has been created! Please check your email to verify your account!', 'success');
+        Meteor.setTimeout(function() {FlowRouter.go("/");}, 2500);
     },//end of create user freelancer
 
 //Clear errors

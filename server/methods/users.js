@@ -68,7 +68,6 @@ export default function () {
             console.log(code);
             InvitationCode.update({code: invitationCode}, {$set: {usage: code[0].usage - 1}});
             verifyEmail(email);
-
         }
     });
     //Check validation
