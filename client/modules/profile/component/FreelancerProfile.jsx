@@ -1,22 +1,28 @@
 import React from 'react';
-require("./css/login.css");
-require("./css/style.css");
+import {render}  from 'react-dom';
+import Switch from 'react-toggle-switch';
 
+// require("./css/toggle.css");
+require("./css/style.css");
+import "/node_modules/react-toggle-switch/dist/css/switch.min.css" 
 class FreelancerProfile extends React.Component {
     render() {
         const {userId, error} = this.props;
         return (
+            <div className="container text-center">
             <div className="row">
-                <div className="col-sm-4">
-                    <div id="Card">
+                <div className="col-md-3">
+                    <div className="row well">
                         <div className="card card-block text-xs-center">
                             <h4 className="card-title">Are you available?</h4>
-                            <a href="#" className="btn btn-info">Y/N Toggle</a>
+                            <br/>
+                            <Switch/>
+                            <br/>
                             <a href="#">Seen</a>
                         </div>
                     </div>
-
-                    <div className="Card">
+                    <br/>
+                    <div className= "row well">
                         <h4>Profile image</h4>
                         <img src="css/img/default-avatar.jpg" alt="avatar"/>
                         <form>
@@ -26,8 +32,8 @@ class FreelancerProfile extends React.Component {
                         </form>
                         <button type="submit" className="btn btn-danger">Delete profile logo</button>
                     </div>
-
-                    <div className="Card">
+                    <br/>
+                    <div className="row well">
                         <h4>Background image</h4>
                         <form>
                             <div className="form-group">
@@ -36,11 +42,11 @@ class FreelancerProfile extends React.Component {
                         </form>
                         <button type="submit" className="btn btn-danger">Delete Background company logo</button>
                     </div>
-
+                    <br/>
                 </div>
 
-                <div className="col-sm-8">
-                    <div className="Card">
+                <div className="col-md-8 col-md-offset-1 well">
+                    
                         <div className="col-sm-6">
                             <fieldset>
                                 <form>
@@ -131,8 +137,9 @@ class FreelancerProfile extends React.Component {
                                 <button type="button" className="btn btn-primary" onClick={this.save.bind(this)}>Save</button>
                             </fieldset>
                         </div>
-                    </div>
+                    
                 </div>
+            </div>
             </div>
         )
     }

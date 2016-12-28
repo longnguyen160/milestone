@@ -8,7 +8,7 @@ class CompanyProfile extends React.Component {
 		return(
 			<div className="container">
 			<div className="row">
-				<div className="col-md-4">		
+				<div className="col-md-3 well">		
 						<h4>Company Logo</h4>
 						<img src="css/img/default-avatar.jpg" alt="avatar"/>
 						<form>
@@ -18,7 +18,7 @@ class CompanyProfile extends React.Component {
 						</form>
 						<button type="submit" className="btn btn-danger">Delete company logo</button>
 				</div>
-				<div className="col-md-8">
+				<div className="col-md-8 well">
 						<form>
 							<div className="form-group">
 								<input type="text" className="form-control" placeholder="First name" ref="fname"/>
