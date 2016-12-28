@@ -34,7 +34,13 @@ export default function () {
         }
         return user
     });
-
+    Meteor.methods({
+        'sendVerifyEmail'(email) {
+            check(email, String);
+            let user = Accounts.findUserByEmail(email);
+            Accounts.sendVerificationEmail(user._id, email);
+        }
+    });
     Meteor.methods({
         'users.createUserCompany' (firstName, lastName, company, email, password) {
 
@@ -47,7 +53,8 @@ export default function () {
                 company: company,
                 roles: 'company'
             });
-            verifyEmail(email, password);
+            
+            Meteor.call('sendVerifyEmail',email);
         }
     });
     //Create user freelancer
@@ -67,7 +74,7 @@ export default function () {
             let code = InvitationCode.find({code: invitationCode}).fetch();
             console.log(code);
             InvitationCode.update({code: invitationCode}, {$set: {usage: code[0].usage - 1}});
-            verifyEmail(email);
+            Meteor.call('sendVerifyEmail',email);
         }
     });
     //Check validation
