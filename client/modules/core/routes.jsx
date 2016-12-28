@@ -29,6 +29,8 @@ import FreelancerApply from '../users/containers/FreelancerApply.js';
 
 import NewPassword from '../users/containers/NewPassword.js';
 
+import Applications from '../users/components/Applications.jsx'
+
 export default function (injectDeps, {FlowRouter,LocalState}) {
 
 	//Home pgae
@@ -174,6 +176,15 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 		action() {
 			mount(MainLayoutCtx, {
 				content: () => (<AdminInvite />)
+			});
+		}
+	});
+
+	FlowRouter.route('/admin/apply', {
+		name: 'admin.invites',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<Applications />)
 			});
 		}
 	});

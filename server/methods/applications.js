@@ -17,7 +17,13 @@ export  default function() {
       lastName:lastName,
       email:email,
       link:link,
-      introduction: introduction
+      introduction: introduction,
+      createAt: new Date()
     })
   }});
+
+  Meteor.methods({'applications.delete'(email){
+    check(email,String);
+    Applications.remove({email:email});
+  }})
 }

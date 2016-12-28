@@ -1,6 +1,7 @@
 import {Random} from 'meteor/random';
 import {Image} from '/lib/collections';
 import {InvitationCode} from '/lib/collections';
+import {Applications} from '/lib/collections';
 
 function verifyEmail(email) {
 
@@ -31,6 +32,7 @@ export default function () {
             user.lastName = option.lastName;
             user.roles = option.roles;
             user.invitationCode = option.invitationCode;
+            user.status = 'available';
         }
         return user
     });
@@ -71,7 +73,6 @@ export default function () {
         }
     });
     //Check validation
-    //Check validation
     Meteor.methods({
         'users.checkValidation' (text, type) {
             check(text, String);
@@ -89,8 +90,9 @@ export default function () {
                 if (!checkArgument(text, /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
                     errorString = ' is not correct.';
                 } else {
-                    const user = Accounts.findUserByEmail(text);
-                    if (user) {
+                    if (Accounts.findUserByEmail(text)) {
+                        errorString = ' has been used';
+                    } else if (Applications.find({email:text})) {
                         errorString = ' has been used';
                     }
                 }
@@ -158,21 +160,7 @@ export default function () {
     });
 
     Meteor.methods({
-        'users.editFreelancerProfile'(userId,
-                                      fname,
-                                      lname,
-                                      position,
-                                      location,
-                                      experience,
-                                      rate,
-                                      link,
-                                      travel,
-                                      headline,
-                                      introduce,
-                                      skill,
-                                      sector,
-                                      img,
-                                      bgimg) {
+        'users.editFreelancerProfile'(userId,fname,lname,position,location,experience,rate,link,travel,headline,introduce,skill,sector,img,bgimg) {
             // check(userId, String);
             // check(fname, String);
             // check(lname, String);
@@ -187,21 +175,7 @@ export default function () {
             // check(sector, String);
             // check(img, String);
             // check(bgimg, String);
-            check([userId,
-                fname,
-                lname,
-                position,
-                location,
-                experience,
-                rate,
-                link,
-                travel,
-                headline,
-                introduce,
-                skill,
-                sector,
-                img,
-                bgimg], [String]);
+            check([userId,fname,lname,position,location,experience,rate,link,travel,headline,introduce,skill,sector,img,bgimg], [String]);
             Meteor.users.update(userId, {
                 $set: {
                     firstName: fname,

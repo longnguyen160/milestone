@@ -15,6 +15,7 @@ const UserNavBar = ({context} = () => null) => (
                 <li><a href="#">Sectors</a></li>
                 <li><a href="#">Locations</a></li>
                 <li><a href="#">Rates</a></li>
+                <li><a href="/admin/apply">Application</a></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
                 <li><a href="/logout">Logout</a></li>

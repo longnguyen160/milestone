@@ -1,3 +1,5 @@
+import {Random} from 'meteor/random';
+
 export default {
 
     sendPassword({Meteor, LocalState, FlowRouter}, email) {
@@ -181,7 +183,6 @@ export default {
     createUserFreelancer({Meteor, LocalState, FlowRouter}, firstName, lastName, email, password,invitationCode) {
 
         const invitaionCode = LocalState.get('INVITATIONCODE');
-        console.log(invitaionCode);
         LocalState.set('SIGNUP_CONFIRM',true);
         Meteor.call('users.createUserFreelancer', firstName, lastName, email, password, invitaionCode);
         LocalState.set('INVITATIONCODE',null);
@@ -208,7 +209,7 @@ export default {
     },//end of clear errors
 
 //Generate code methods
-  generateCode({LocalState,Meteor, Collections}, count, usage) {
+  generateCode({LocalState}, count, usage) {
     const patt = /^\d$/;
     if (!count || !patt.test(count)) {
       count = 1;
@@ -225,6 +226,14 @@ export default {
         LocalState.set('ID',response);
       }
     });
+    acceptApplications({LocalState},firstName,lastName,email) {
+      const password = Random.id(10);
+      Meteor.call('users.createUserFreelancer', firstName, lastName, email, password,'');
+      Meteor.call('applications.delete',email);
+    }
+    declineApplications({LocalState}email) {
+      Meteor.call('applications.delete',email);
+    }
 
   }
 
