@@ -14,7 +14,7 @@ class FreelancerRegisterWithInvitationCode extends React.Component {
               <form className="centerlize">
                   <h3>Your basic information</h3>
                   <div className="input-group">
-                      <input onBlur={this.checkFirstName.bind(this)} ref="firstName" id="fname" type="text" className="form-control" name="fname" placeholder="First name" />
+                      <input disabled={error[6]} onBlur={this.checkFirstName.bind(this)} ref="firstName" id="fname" type="text" className="form-control" name="fname" placeholder="First name" />
                         {!error[0] ?
                           null
                           : error[0] == true
@@ -28,7 +28,7 @@ class FreelancerRegisterWithInvitationCode extends React.Component {
                           : null}
                   </div>
                   <div className="input-group">
-                      <input onBlur={this.checkLastName.bind(this)} ref="lastName" id="lname" type="text" className="form-control" name="lname" placeholder="Last name" />
+                      <input disabled={error[6]} onBlur={this.checkLastName.bind(this)} ref="lastName" id="lname" type="text" className="form-control" name="lname" placeholder="Last name" />
                         {!error[1] ? null
                            : error[1] == true
                            ?  <i className="form-control-feedback glyphicon glyphicon-ok-sign"></i>
@@ -42,7 +42,7 @@ class FreelancerRegisterWithInvitationCode extends React.Component {
                   <h3>Your Account Information</h3>
                   <div className="input-group">
                       <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
-                      <input onBlur={this.checkEmail.bind(this)} ref="email" id="email" type="text" className="form-control" name="email" placeholder="Email" />
+                      <input disabled={error[6]} onBlur={this.checkEmail.bind(this)} ref="email" id="email" type="text" className="form-control" name="email" placeholder="Email" />
                         {!error[2]
                           ? null
                           : error[2] == true
@@ -57,7 +57,7 @@ class FreelancerRegisterWithInvitationCode extends React.Component {
                   </div>
                   <div className="input-group">
                       <span className="input-group-addon"><i className="glyphicon glyphicon-lock"></i></span>
-                      <input onBlur={this.checkPassword.bind(this)} ref="password" id="password" type="password" className="form-control" name="pasword" placeholder="Password" />
+                      <input disabled={error[6]} onBlur={this.checkPassword.bind(this)} ref="password" id="password" type="password" className="form-control" name="pasword" placeholder="Password" />
                         {!error[3]
                           ? null
                           : error[3] == true
@@ -71,13 +71,17 @@ class FreelancerRegisterWithInvitationCode extends React.Component {
                   </div>
                   <div className="checkbox">
                     {error[4] === true
-                      ? <label><input ref="checkbox" checked onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/">terms of service</a></label>
-                      : <label><input ref="checkbox" onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/">terms of service</a></label>}
+                      ? <label><input ref="checkbox" disabled={error[6]} checked onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/">terms of service</a></label>
+                      : <label><input ref="checkbox" disabled={error[6]} onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/">terms of service</a></label>}
                   </div>
                   <div className="text-center">
-                    {error[5]
-                      ? <button onClick={this.createUser.bind(this)} type="submit" className="btn btn-info">Register</button>
-                      : <button disabled type="submit" className="btn btn-info">Register</button>}
+                    { error[6] ?  <div className="input-group">
+                                    <span className="input-group-addon greenpls"><i className="glyphicon glyphicon-ok colorpls"></i></span>
+                                    <input id="greenpls" type="text" className="form-control colorpls" name="success" value="Please confirm your email" readOnly/>
+                                </div>
+                              : error[5] ? <button onClick={this.createUser.bind(this)} type="submit" className="btn btn-info">Register</button>
+                                         : <button disabled type="submit" className="btn btn-info">Register</button>
+                    }
                   </div>
               </form>
               </div>
@@ -89,13 +93,13 @@ class FreelancerRegisterWithInvitationCode extends React.Component {
       e.preventDefault();
       const{firstName} = this.refs;
       const{checkValidation} = this.props;
-      checkValidation(firstName.value.trim(),'text');
+      checkValidation(firstName.value.trim(),'firstName');
   };
     checkLastName(e) {
       e.preventDefault();
       const{lastName} = this.refs;
       const{checkValidation} = this.props;
-      checkValidation(lastName.value.trim(),'text');
+      checkValidation(lastName.value.trim(),'lastName');
     };
     checkEmail(e){
       e.preventDefault();
@@ -111,10 +115,11 @@ class FreelancerRegisterWithInvitationCode extends React.Component {
     };
     createUser(e) {
       e.preventDefault();
-      const {create} = this.props;
+      const {create,invitationCode} = this.props;
       const {firstName,lastName,email,password} = this.refs;
+      console.log(invitationCode);
       console.log(this.refs);
-      create(firstName.value.trim(),lastName.value.trim(),email.value.trim(),password.value);
+      create(firstName.value.trim(),lastName.value.trim(),email.value.trim(),password.value,invitationCode.toUpperCase());
   };
     checkCheckedBox(e) {
       e.preventDefault();

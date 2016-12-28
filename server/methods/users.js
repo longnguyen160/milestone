@@ -1,5 +1,6 @@
 import {Random} from 'meteor/random';
 import {Image} from '/lib/collections';
+import {InvitationCode} from '/lib/collections';
 
 function verifyEmail(email) {
 
@@ -28,8 +29,8 @@ export default function() {
             user.firstName = option.firstName;
             user.lastName = option.lastName;
             user.roles = option.roles;
+						user.invitationCode = option.invitationCode;
         }
-
         return user
     });
 
@@ -37,11 +38,6 @@ export default function() {
     //Create user company
     Meteor.methods({'users.createUserCompany' (firstName,lastName,company,email,password) {
 
-        // check(firstName,String);
-        // check(lastName,String);
-        // check(company,String);
-        // check(email,String);
-        // check(password, String);
 				check([firstName,lastName,company,email,password], [String]);
         Accounts.createUser({
             email: email,
@@ -54,14 +50,9 @@ export default function() {
         verifyEmail(email, password);
     }});
     //Create user freelancer
-    Meteor.methods({'users.createUserFreelancer' (firstName,lastName,email,password) {
+    Meteor.methods({'users.createUserFreelancer' (firstName,lastName,email,password,invitationCode) {
 
-        check(firstName,String);
-        check(lastName,String);
-        check(invitationCode,String);
-        check(email,String);
-        check(password, String);
-        check([firstName,lastName,email,password], [String]);
+        check([firstName,lastName,email,password,invitationCode], [String]);
         //Call create user method
         Accounts.createUser({
             email: email,
@@ -69,17 +60,22 @@ export default function() {
             firstName:firstName,
             lastName:lastName,
             roles:'freelancer',
+						invitationCode: invitationCode
         });
-        verifyEmail(email, password);
+				let code = InvitationCode.find({code:invitationCode}).fetch();
+				console.log(code);
+				InvitationCode.update({code:invitationCode},{$set: {usage: code[0].usage - 1}});
+        verifyEmail(email);
+
     }});
     //Check validation
     //Check validation
   Meteor.methods({'users.checkValidation' (text,type) {
         check(text,String);
         check(type,String);
-        //if empty content
 
-        let errorString = '';
+				//if empty content
+				let errorString = '';
         if(!text){
             errorString = ' is required';
         } else if (type === 'text') {

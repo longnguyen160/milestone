@@ -6,9 +6,10 @@ export default function () {
             check(userId, String)
         } catch(err) {
             console.log("Publications/Users - Invalid userID!");
-            return;    
+            return;
         }
         return Meteor.users.find(userId);
+
     });
 
     Meteor.publish("users.single", function() {
@@ -28,5 +29,3 @@ export default function () {
     //         return this.ready();
     //     }
     // });
-
-

@@ -29,7 +29,8 @@ import FreelancerApply from '../users/containers/FreelancerApply.js';
 
 import NewPassword from '../users/components/NewPassword.jsx';
 
-export default function (injectDeps, {FlowRouter}) {
+export default function (injectDeps, {FlowRouter,LocalState}) {
+
 	//Home pgae
 	const MainLayoutCtx = injectDeps(Layout);
 	FlowRouter.route('/', {
@@ -53,6 +54,9 @@ export default function (injectDeps, {FlowRouter}) {
 	FlowRouter.route('/account/forgot', {
 		name: 'account.sendPassword',
 		action() {
+			if (Meteor.userid()) {
+				return FlowRouter.go('/');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<ForgotPassword />)
 			});
@@ -62,7 +66,7 @@ export default function (injectDeps, {FlowRouter}) {
 	FlowRouter.route('/account/login', {
 		name: 'account.login',
 		action() {
-			
+
 			if(Meteor.userId() != null) {
 				FlowRouter.go("/");
 				return;
@@ -76,6 +80,10 @@ export default function (injectDeps, {FlowRouter}) {
 	FlowRouter.route('/register/company', {
 		name: 'account.signup',
 		action() {
+			if (Meteor.userId()) {
+				console.log(Meteor.userId());
+				return FlowRouter.go('/');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<CompanyRegister />)
 			});
@@ -85,6 +93,13 @@ export default function (injectDeps, {FlowRouter}) {
 	FlowRouter.route('/register/freelancer', {
         name: 'account.join',
 		action() {
+			if (Meteor.userId()) {
+				return FlowRouter.go('/');
+			}
+			const invitationCode = LocalState.get('INVITATIONCODE');
+			if (invitationCode) {
+				return FlowRouter.go('/register/freelancer/finish');
+			}
 			mount(MainLayoutCtx, {
                 content: () => (<InvittationCode />)
             });
@@ -94,6 +109,13 @@ export default function (injectDeps, {FlowRouter}) {
 	FlowRouter.route('/register/freelancer/finish', {
 		name: 'account.finish',
 		action() {
+			const invitationCode = LocalState.get('INVITATIONCODE');
+			if (Meteor.userId()) {
+				return FlowRouter.go('/');
+			}
+			if (!invitationCode) {
+				return FlowRouter.go('/register/freelancer');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<FreelancerRegisterWithInvitationCode />)
 			});
@@ -103,6 +125,9 @@ export default function (injectDeps, {FlowRouter}) {
 	FlowRouter.route('/register/freelancer/apply', {
 		name: 'account.apply',
 		action() {
+			if (Meteor.userId()) {
+				return FlowRouter.go('/');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<FreelancerApply />)
 			});
