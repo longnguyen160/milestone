@@ -3,9 +3,9 @@ require("./css/login.css");
 
 class ForgotPassword extends React.Component {
   render() {
-    const {error, success} = this.props;
+    const {error, success, role, emails} = this.props;
     return (
-        <div id="mainLogin" className="text-center">
+        <div id="mainLogin" className="text-center" onLoad={this.reupdate.bind(this)}>
             <div id="container">
                 <h1>Password Recover</h1>
                 <div id="Card">
@@ -18,22 +18,36 @@ class ForgotPassword extends React.Component {
                 : null}
                     <div className="input-group">
                         <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
-                        <input id="email" type="text" className="form-control" name="email" placeholder="Email" ref="email"/>
+                        {emails ? 
+                        <input id="email" type="text" className="form-control" name="email" placeholder="Email" ref="email"
+                        value={emails} disabled/> 
+                        : <input id="email" type="text" className="form-control" name="email" placeholder="Email" ref="email"
+                        />
+                        }
                     </div>
-
+                    {success  ?
+                    <div className="input-group">
+                        <span className="input-group-addon greenpls"><i className="glyphicon glyphicon-ok colorpls"></i></span>
+                        <input id="greenpls" type="text" className="form-control colorpls" name="success" value='Your emails has been confirmed' disabled/> 
+                    </div>    
+                    :
                     <div className="text-center">
                         <button type="button" className={success ? "btn btn-success btn-md": "btn btn-info btn-md"}
                           onClick={success ? this.exactEmail.bind(this) : this.sendResetPasswordEmail.bind(this)}>
-
-                          {success ? "Please check your email for further instructions" : "Reset Password"}
+                         Reset Password
                         </button>
                     </div>
-                    <a href="/account/login" id="forgotpw" >Login</a>
+                    }
+                    {role === null ? <a href="/account/login" id="forgotpw" >Login</a> : "" }
                 </form>
               </div>
             </div>
         </div>
     )
+  }
+
+  reupdate(e) {
+      this.role = this.props;
   }
 
   exactEmail(e) {

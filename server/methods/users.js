@@ -1,10 +1,11 @@
 import {Random} from 'meteor/random';
 import {Image} from '/lib/collections';
+import {InvitationCode} from '/lib/collections';
 
 function verifyEmail(email) {
 
-    let id = Accounts.findUserByEmail(email);
-    Accounts.sendVerificationEmail(id, email);
+    let user = Accounts.findUserByEmail(email);
+    Accounts.sendVerificationEmail(user._id, email);
 
 };
 
@@ -12,9 +13,6 @@ function checkArgument(argument, patten) {
     console.log(argument);
     return patten.test(argument);
 };
-
-function updateImage(userId) {
-}
 
 export default function () {
 
@@ -32,21 +30,14 @@ export default function () {
             user.firstName = option.firstName;
             user.lastName = option.lastName;
             user.roles = option.roles;
+            user.invitationCode = option.invitationCode;
         }
-
         return user
     });
 
-
-    //Create user company
     Meteor.methods({
         'users.createUserCompany' (firstName, lastName, company, email, password) {
 
-            // check(firstName,String);
-            // check(lastName,String);
-            // check(company,String);
-            // check(email,String);
-            // check(password, String);
             check([firstName, lastName, company, email, password], [String]);
             Accounts.createUser({
                 email: email,
@@ -56,19 +47,14 @@ export default function () {
                 company: company,
                 roles: 'company'
             });
-            verifyEmail(email);
+            verifyEmail(email, password);
         }
     });
     //Create user freelancer
     Meteor.methods({
-        'users.createUserFreelancer' (firstName, lastName, email, password) {
+        'users.createUserFreelancer' (firstName, lastName, email, password, invitationCode) {
 
-            check(firstName, String);
-            check(lastName, String);
-            check(invitationCode, String);
-            check(email, String);
-            check(password, String);
-            check([firstName, lastName, email, password], [String]);
+            check([firstName, lastName, email, password, invitationCode], [String]);
             //Call create user method
             Accounts.createUser({
                 email: email,
@@ -76,8 +62,13 @@ export default function () {
                 firstName: firstName,
                 lastName: lastName,
                 roles: 'freelancer',
+                invitationCode: invitationCode
             });
+            let code = InvitationCode.find({code: invitationCode}).fetch();
+            console.log(code);
+            InvitationCode.update({code: invitationCode}, {$set: {usage: code[0].usage - 1}});
             verifyEmail(email);
+
         }
     });
     //Check validation
@@ -86,8 +77,8 @@ export default function () {
         'users.checkValidation' (text, type) {
             check(text, String);
             check(type, String);
-            //if empty content
 
+            //if empty content
             let errorString = '';
             if (!text) {
                 errorString = ' is required';

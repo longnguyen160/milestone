@@ -4,8 +4,14 @@ import {Image} from '/lib/collections';
 
 export default function () {
     Meteor.publish("user.single", function(userId) {
-        check(userId, String)
+        try {
+            check(userId, String)
+        } catch(err) {
+            console.log("Publications/Users - Invalid userID!");
+            return;
+        }
         return Meteor.users.find(userId);
+
     });
 
     Meteor.publish("users.single", function() {
@@ -29,5 +35,3 @@ export default function () {
     //         return this.ready();
     //     }
     // });
-
-

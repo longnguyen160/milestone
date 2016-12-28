@@ -19,7 +19,7 @@ const Confirm = ({context} = () => null) => (
                 
             </div>
             <div className="text-center"> 
-                   <button type="submit" className="btn btn-info"><b>Continue</b></button>
+                   <button type="submit" className="btn btn-info "><b>Continue</b></button>
             </div>
         </div>
     </div>
