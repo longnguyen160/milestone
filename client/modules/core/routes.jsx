@@ -21,7 +21,7 @@ import Confirm from '../users/containers/Confirm.js';
 import Update from '../users/components/Update.jsx';
 
 import Selfcare from '../users/components/Selfcare.jsx';
-import AdminInvite from '../users/components/AdminInvite.jsx';
+import AdminInvite from '../users/containers/AdminInvite.js';
 
 import ProfileEdit from '../users/containers/ProfileEdit.js';
 import Profile from '../users/components/UserProfile.jsx';

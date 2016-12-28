@@ -18,6 +18,7 @@ export default {
 
         FlowRouter.go('/account/forgot');
     },
+
     resendEmail({Meteor, LocalState, FlowRouter}, email) {
         Meteor.call('sendVerifyEmail', email, (err) => {
             if(err)
@@ -27,6 +28,7 @@ export default {
             }
         });
     },
+
 
     resetPassword({Meteor, LocalState, FlowRouter}, password, repassword, token) {
         if(!password || !repassword) {
@@ -212,19 +214,29 @@ export default {
         LocalState.set("SIGNUP_PASSWORD", null);
         LocalState.set('SIGNUP_CONFIRM',null);
         LocalState.set('SIGNUP_CHECKBOX',null);
+        LocalState.set('GENERATE_INVITATIONCODE',null);
+        LocalState.set('ID',null);
     },//end of clear errors
 
 //Generate code methods
-  generateCode(count, usage) {
-    if (!count) {
+  generateCode({LocalState,Meteor, Collections}, count, usage) {
+    const patt = /^\d$/;
+    if (!count || !patt.test(count)) {
       count = 1;
     }
-    if (!usage) {
+    if (!usage || !patt.test(usage)) {
       usage = 5;
     }
-    const id = Meteor.call('invitation.generate',count,usage);
-    const list = Meteor.subscribe("Invitation.list", id);
-    console.log(list);
+    console.log('count:' + count + ' usage:' + usage);
+    Meteor.call('invitation.generate',count,usage, (err, response) => {
+      if(err){
+        return;
+      }
+      else {
+        LocalState.set('ID',response);
+      }
+    });
+
   }
 
 };
