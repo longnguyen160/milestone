@@ -8,6 +8,7 @@ class AdminInvite extends React.Component {
         console.log(error);
         return (
             <div id="mainLogin" className="text-center">
+            <title>Admin Panel - Invite</title> 
                 <div id="container">
                     <div className="Card">
                         <form className="centerlize">
