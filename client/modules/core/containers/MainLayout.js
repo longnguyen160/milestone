@@ -7,6 +7,9 @@ export const composer = ({context, clearErrors}, onData) => {
     // if(id === undefined) {
     //     return clearErrors;
     // }
+
+    const {content} = context();
+
     let role = null;
     let u = null;
     
@@ -18,6 +21,7 @@ export const composer = ({context, clearErrors}, onData) => {
     if(u != null)
         role = u != "admin";
     onData(null, {role});
+
     return clearErrors;
 };
 

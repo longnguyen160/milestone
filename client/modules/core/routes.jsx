@@ -27,7 +27,7 @@ import ProfileEdit from '../users/containers/ProfileEdit.js';
 import Profile from '../users/components/UserProfile.jsx';
 import FreelancerApply from '../users/containers/FreelancerApply.js';
 
-export default function (injectDeps, {FlowRouter}) {
+export default function (injectDeps, {FlowRouter,LocalState}) {
 	//Home pgae
 	const MainLayoutCtx = injectDeps(Layout);
 	FlowRouter.route('/', {
@@ -51,6 +51,9 @@ export default function (injectDeps, {FlowRouter}) {
 	FlowRouter.route('/account/forgot', {
 		name: 'account.sendPassword',
 		action() {
+			if (Meteor.userid()) {
+				return FlowRouter.go('/');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<ForgotPassword />)
 			});
@@ -60,6 +63,11 @@ export default function (injectDeps, {FlowRouter}) {
 	FlowRouter.route('/account/login', {
 		name: 'account.login',
 		action() {
+
+			if(Meteor.userId() != null) {
+				FlowRouter.go("/");
+				return;
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<Login />)
 			});
@@ -69,6 +77,10 @@ export default function (injectDeps, {FlowRouter}) {
 	FlowRouter.route('/register/company', {
 		name: 'account.signup',
 		action() {
+			if (Meteor.userId()) {
+				console.log(Meteor.userId());
+				return FlowRouter.go('/');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<CompanyRegister />)
 			});
@@ -78,6 +90,13 @@ export default function (injectDeps, {FlowRouter}) {
 	FlowRouter.route('/register/freelancer', {
         name: 'account.join',
 		action() {
+			if (Meteor.userId()) {
+				return FlowRouter.go('/');
+			}
+			const invitationCode = LocalState.get('INVITATIONCODE');
+			if (invitationCode) {
+				return FlowRouter.go('/register/freelancer/finish');
+			}
 			mount(MainLayoutCtx, {
                 content: () => (<InvittationCode />)
             });
@@ -87,6 +106,13 @@ export default function (injectDeps, {FlowRouter}) {
 	FlowRouter.route('/register/freelancer/finish', {
 		name: 'account.finish',
 		action() {
+			const invitationCode = LocalState.get('INVITATIONCODE');
+			if (Meteor.userId()) {
+				return FlowRouter.go('/');
+			}
+			if (!invitationCode) {
+				return FlowRouter.go('/register/freelancer');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<FreelancerRegisterWithInvitationCode />)
 			});
@@ -96,15 +122,18 @@ export default function (injectDeps, {FlowRouter}) {
 	FlowRouter.route('/register/freelancer/apply', {
 		name: 'account.apply',
 		action() {
+			if (Meteor.userId()) {
+				return FlowRouter.go('/');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<FreelancerApply />)
 			});
 		}
 	});
 
-	FlowRouter.route('/register/confirm', {
+	FlowRouter.route('/register/confirm/:token', {
 		name: 'account.confirm',
-		action() {
+		action({token}) {
 			mount(MainLayoutCtx, {
 				content: () => (<Confirm />)
 			});
@@ -161,6 +190,21 @@ export default function (injectDeps, {FlowRouter}) {
 		action() {
 			Meteor.logout();
 			FlowRouter.go("/");
+		}
+	});
+
+	FlowRouter.route('/verify-email/:token', {
+		name: 'accounts.verify',
+		action(params) {
+				Accounts.verifyEmail(params.token, ( error ) =>{
+		if ( error ) {
+			console.error( error, 'danger' );
+		} else {
+			FlowRouter.go( '/' );
+			console.log( 'Email verified! Thanks!', 'success' );
+		}
+		});
+			// FlowRouter.go("/register/confirm/"+params.token);
 		}
 	});
 

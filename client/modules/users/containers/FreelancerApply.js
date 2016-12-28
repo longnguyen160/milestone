@@ -10,7 +10,7 @@ export const composer = ({context, clearErrors}, onData) => {
     error[3] = LocalState.get('SIGNUP_CHECKBOX');
     console.log(error);
     error[4] = false;
-    if (error[0] && error[1] && error[2] && error[3]) {
+    if (error[0] === true && error[1] === true && error[2] === true && error[3] === true) {
       error[4] = true;
     } else error[4] = false;
     onData(null, {error});

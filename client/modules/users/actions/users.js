@@ -59,11 +59,12 @@ export default {
         FlowRouter.go('/register/freelancer/finish');
     },
 
-    editCompanyProfile({Meteor, LocalState, FlowRouter}, userId, fname, lname, company, companyURL) {
-        Meteor.call('users.editCompanyProfile', userId, fname, lname, company, companyURL, (err) => {
+    editCompanyProfile({Meteor, LocalState, FlowRouter}, userId, fname, lname, company, companyURL, imgURL) {
+        Meteor.call('users.editCompanyProfile', userId, fname, lname, company, companyURL, imgURL, (err) => {
             if (err)
                 return LocalState.set("SAVING_ERROR");
         });
+        FlowRouter.go("/profile/edit");
     },
 
     editFreelancerProfile({Meteor, LocalState, FlowRouter}, userId, fname, lname, position, location, experience, rate, link, travel, headline, introduce, skill, sector, img, bgimg) {
@@ -79,6 +80,14 @@ export default {
                 return LocalState.set("SAVING_ERROR");
         });
     },
+
+    deleteIMG({Meteor, LocalState, FlowRouter}, userId) {
+        Meteor.call('users.deleteIMG', userId, (err) => {
+            if (err)
+                return LocalState.set("DELETE_ERROR");
+        });
+        FlowRouter.go("/profile/edit");
+    },
 //check validation of firstName, lastName, email, company, password
     checkValidation({LocalState}, text, type) {
 
@@ -90,7 +99,6 @@ export default {
             password: ['SIGNUP_PASSWORD', 'Password']
         };
 
-
         if (type === 'checkbox') {
 
             if (text === true) {
@@ -100,11 +108,24 @@ export default {
             } else
                 return LocalState.set('SIGNUP_CHECKBOX', false);
         }
-        Meteor.call('users.checkValidation', text, type, function (error) {
-            if (error) {
-                return LocalState.set(users_err[type][0], users_err[type][1] + " " + error.reason);
-            }
-        });
+
+        if (type === 'firstName' || type === 'lastName')  {
+
+          Meteor.call('users.checkValidation', text, 'text', function (error) {
+              if (error) {
+                  return LocalState.set(users_err[type][0], users_err[type][1] + " " + error.reason);
+              }
+          });
+
+        } else {
+              Meteor.call('users.checkValidation', text, type, function (error) {
+              if (error) {
+                  return LocalState.set(users_err[type][0], users_err[type][1] + " " + error.reason);
+              }
+          });
+        }
+        //console.log(type1);
+
         LocalState.set(users_err[type][0], true);
 
     },
@@ -117,24 +138,37 @@ export default {
 
         if (!invitationCode) {
             return LocalState.set('INVITATIONCODE_ERROR', "Invitation code is required.");
+        } else {
+          Meteor.call('invitation.checkInvitationCode', invitationCode, function(error) {
+            console.log(error);
+            if (error) {
+              return LocalState.set('INVITATIONCODE_ERROR',error.reason);
+            } else {
+              LocalState.set('INVITATIONCODE', invitationCode);
+              FlowRouter.go('/register/freelancer/finish');
+            }
+          })
         }
+
 
     },
 
 //Create user company
-    createUserCompany({Meteor}, firstName, lastName, company, email, password) {
+    createUserCompany({Meteor,LocalState}, firstName, lastName, company, email, password) {
 
         Meteor.call('users.createUserCompany', firstName, lastName, company, email, password);
-        FlowRouter.go('/');
+        LocalState.set('SIGNUP_CONFIRM',true);
 
     },//end of create user company
 
 //Create user freelancer
-    createUserFreelancer({Meteor, LocalState}, firstName, lastName, email, password) {
+    createUserFreelancer({Meteor, LocalState}, firstName, lastName, email, password,invitationCode) {
 
         const invitaionCode = LocalState.get('INVITATIONCODE');
         console.log(invitaionCode);
+        LocalState.set('SIGNUP_CONFIRM',true);
         Meteor.call('users.createUserFreelancer', firstName, lastName, email, password, invitaionCode);
+        LocalState.set('INVITATIONCODE',null);
 
     },//end of create user freelancer
 
@@ -150,6 +184,21 @@ export default {
         LocalState.set("SIGNUP_COMPANY", null);
         LocalState.set("SIGNUP_EMAIL", null);
         LocalState.set("SIGNUP_PASSWORD", null);
-    }//end of clear errors
+        LocalState.set('SIGNUP_CONFIRM',null);
+        LocalState.set('SIGNUP_CHECKBOX',null);
+    },//end of clear errors
+
+//Generate code methods
+  generateCode(count, usage) {
+    if (!count) {
+      count = 1;
+    }
+    if (!usage) {
+      usage = 5;
+    }
+    const id = Meteor.call('invitation.generate',count,usage);
+    const list = Meteor.subscribe("Invitation.list", id);
+    console.log(list);
+  }
 
 };

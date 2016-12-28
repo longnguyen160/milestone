@@ -24,7 +24,7 @@ class FreelancerProfile extends React.Component {
                     <br/>
                     <div className= "row well">
                         <h4>Profile image</h4>
-                        <img src="css/img/default-avatar.jpg" alt="avatar"/>
+                        <img src={this.state.thumnail} alt="avatar"/>
                         <form>
                             <div className="form-group">
                                 <input type="file" id="exampleInputFile"/>
@@ -35,6 +35,7 @@ class FreelancerProfile extends React.Component {
                     <br/>
                     <div className="row well">
                         <h4>Background image</h4>
+                        <img src={this.state.bgthumnail} alt="avatar"/>
                         <form>
                             <div className="form-group">
                                 <input type="file" id="exampleInputFile"/>
@@ -144,18 +145,33 @@ class FreelancerProfile extends React.Component {
         )
     }
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            thumnail: '',
+            bgthumnail: ''
+        };
+        this.onChangeFile = this.onChangeFile.bind(this);
+    }
+
+    onChangeFile(e){
+        const FR= new FileReader();
+        const instance = this;
+        FR.onload = function(e) {
+            instance.setState({thumnail: e.target.result});
+            instance.setState({bgthumnail: e.target.result});
+        };
+        FR.readAsDataURL( e.target.files[0] );
+    }
+
     save(e) {
         e.preventDefault();
         const {editFreelancerProfile} = this.props;
-        const {fname, lname, position, location, experience, rate, link, travel, headline, introduce, skill, sector, img, bgimg} = this.refs;
+        const {fname, lname, position, location, experience, rate, link, travel, headline, introduce, skill, sector} = this.refs;
         const userId = this.props.userId;
-        editFreelancerProfile(userId, fname, lname, position.value, location.value, experience.value, rate.value, link, travel.value, headline.value, introduce.value, skill.value, sector.value, img, bgimg);
-        this.refs.fname.value = '';
-        this.refs.lname.value = '';
-        this.refs.headline.value = '';
-        this.refs.introduce.value = '';
-        this.refs.link.value = '';
-
+        const img = this.state.thumnail;
+        const bgimg = this.state.bgthumnail;
+        editFreelancerProfile(userId, fname.value, lname.value, position.value, location.value, experience.value, rate.value, link, travel.value, headline.value, introduce.value, skill.value, sector.value, img, bgimg);
     }
 }
 export default FreelancerProfile;

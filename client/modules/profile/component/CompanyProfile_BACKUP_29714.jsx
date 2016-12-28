@@ -3,7 +3,7 @@ require("./css/style.css");
 
 class CompanyProfile extends React.Component {
 
-
+<<<<<<< HEAD
 	render (){
         const {userId, error} = this.props;
 		return(
@@ -42,7 +42,7 @@ class CompanyProfile extends React.Component {
 			</div>
 		)
 	}
-
+=======
     render() {
         const {user, img, error} = this.props;
         return (
@@ -86,7 +86,7 @@ class CompanyProfile extends React.Component {
             </div>
         )
     }
-
+>>>>>>> 815e2480602214645d9fd52999674ae1397f9847
 
     constructor(props) {
         super(props);

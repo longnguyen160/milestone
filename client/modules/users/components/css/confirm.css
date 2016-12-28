@@ -3,15 +3,17 @@
 }
 
 .moreheightpls {
-    height: 45px !important;
+    height: 55px !important;
 }
 
 .greenpls {
     background: #3AC162 !important;
+    height: 37px;
 }
 
 #greenpls {
     background:#3AC162 !important;
+    height: 37px;
 }
 
 .redpls {
