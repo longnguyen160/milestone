@@ -17,7 +17,7 @@ import InvittationCode from '../users/containers/InvitationCode.js';
 import FreelancerRegisterWithInvitationCode from '../users/containers/FreelancerRegisterWithInvitationCode.js';
 
 import TOS from '../users/components/TOS.jsx';
-import Confirm from '../users/components/Confirm.jsx';
+import Confirm from '../users/containers/Confirm.js';
 import Update from '../users/components/Update.jsx';
 
 import Selfcare from '../users/components/Selfcare.jsx';
@@ -107,9 +107,9 @@ export default function (injectDeps, {FlowRouter}) {
 		}
 	});
 
-	FlowRouter.route('/register/confirm/:token', {
+	FlowRouter.route('/register/confirm/', {
 		name: 'account.confirm',
-		action({token}) {
+		action() {
 			mount(MainLayoutCtx, {
 				content: () => (<Confirm />)
 			});
@@ -172,15 +172,13 @@ export default function (injectDeps, {FlowRouter}) {
 	FlowRouter.route('/verify-email/:token', {
 		name: 'accounts.verify',
 		action(params) {
-				Accounts.verifyEmail(params.token, ( error ) =>{
-		if ( error ) {
-			console.error( error, 'danger' );
-		} else {
-			FlowRouter.go( '/' );
-			console.log( 'Email verified! Thanks!', 'success' );
-		}
-		});
-			// FlowRouter.go("/register/confirm/"+params.token);
+			Accounts.verifyEmail(params.token, ( error ) =>{
+				if ( error ) {
+					console.error( error, 'danger' );
+				} else {
+					FlowRouter.go("/register/confirm/");
+				}
+			});
 		}
 	});
 

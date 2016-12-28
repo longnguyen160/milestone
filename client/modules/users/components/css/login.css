@@ -1,7 +1,7 @@
 #mainLogin {
   width: 100%;
-  height: 100%;
-  display: flex;
+  min-height: 100%;
+  display: block;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -107,7 +107,7 @@ i.glyphicon-ok-sign {
 }
 
 i.glyphicon-exclamation-sign {
-  color: crimson;
+  color: #F03250;
 }
 
 div.input-group {
@@ -115,7 +115,7 @@ div.input-group {
 }
 
 p.error-msg {
-  color:crimson;
+  color:#F03250;
   margin: 0;
   text-align: left;
 }

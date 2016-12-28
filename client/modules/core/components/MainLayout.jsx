@@ -21,17 +21,18 @@ class Layout  extends React.Component {
                 {role === null ? <NavBar /> : role === true ? <UserNavBar /> : <AdminNavBar /> }
             </div>
             <div id="mainlayout">
-                {content()}
-            </div>
-            {!foot ?
+                <div id="maincontent">
+                    {content()}
+                </div>
+                {!foot ?
                 <div id="footer">
                     <Footer /> 
                 </div>
                 : ""
             }
+            </div>  
         </div>
         );
-
     };
 
     reupdate(e) {

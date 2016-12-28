@@ -3,12 +3,8 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, clearErrors}, onData) => {
     const {Meteor} = context();
-	// let id = Meteor.user();
-    // if(id === undefined) {
-    //     return clearErrors;
-    // }
-
     const {content} = context();
+    const {foot} = context();
 
     let role = null;
     let u = null;
@@ -20,7 +16,7 @@ export const composer = ({context, clearErrors}, onData) => {
     }
     if(u != null)
         role = u != "admin";
-    onData(null, {role});
+    onData(null, {role, foot});
 
     return clearErrors;
 };

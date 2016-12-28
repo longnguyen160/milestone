@@ -8,20 +8,22 @@
 
 .greenpls {
     background: #3AC162 !important;
-    height: 37px;
+    height: 3.5em;
 }
 
 #greenpls {
     background:#3AC162 !important;
-    height: 37px;
+    height: 3.5em;
 }
 
 .redpls {
-    background: crimson !important;
+    background: #F03250 !important;
+    height: 3.5em;
 }
 
 #redpls {
-    background:crimson !important;
+    background:#F03250 !important;
+    height: 3.5em;
 }
 
 #confirm {
