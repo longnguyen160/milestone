@@ -26,7 +26,40 @@
     height: 3em;
 }
 
+.orangepls {
+    background:orange !important;
+    height: 3em;
+}
+
+#orangepls {
+    background:orange !important;
+    height: 3em;
+}
+
 #confirm {
     width: 40%;
     margin: 0 auto;
+}
+
+
+.react-datepicker__current-month {
+    font-size: 2rem !important;
+}
+
+.react-datepicker__day-name {
+    margin: 0.5rem !important;
+    font-size: 1.5rem;
+    width: 2.5rem !important;
+    height: 2rem;
+}
+
+.react-datepicker__day {
+    margin: 0.5rem !important;
+    font-size: 1.5rem;
+    width: 2.5rem !important;
+    height: 2rem;
+}
+
+#morespace {
+    margin-bottom: 1em;
 }
