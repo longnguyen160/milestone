@@ -3,52 +3,12 @@ require("./css/style.css");
 
 class CompanyProfile extends React.Component {
 
-
-	render (){
-        const {userId, error} = this.props;
-		return(
-			<div className="container">
-			<div className="row">
-				<div className="col-md-3 well">		
-						<h4>Company Logo</h4>
-						<img src="css/img/default-avatar.jpg" alt="avatar"/>
-						<form>
-							<div className="form-group">
-								<input type="file" id="exampleInputFile"/>
-							</div>
-						</form>
-						<button type="submit" className="btn btn-danger">Delete company logo</button>
-				</div>
-				<div className="col-md-8 well">
-						<form>
-							<div className="form-group">
-								<input type="text" className="form-control" placeholder="First name" ref="fname"/>
-							</div>
-							<div className="form-group">
-								<input type="text" className="form-control" placeholder="Last name" ref="lname"/>
-							</div>
-							<div className="form-group">
-								<input type="text" className="form-control" placeholder="Company" ref="company"/>
-							</div>
-							<div className="form-group">
-								<input type="text" className="form-control" placeholder="Company URL" ref="companyURL"/>
-							</div>
-							<div className="text-center"> 
-								<button type="button" className="btn btn-info" onClick={this.edit.bind(this)}>Save</button>
-							</div>
-						</form>	
-				</div>
-			</div>
-			</div>
-		)
-	}
-
     render() {
         const {user, img, error} = this.props;
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-md-3 well">
                         <h4>Company Logo</h4>
                         <img src={(this.state.thumnail == "" && img) ? img[0].imgURL : this.state.thumnail} alt="avatar" className="small-image"/>
                         <form>
@@ -58,7 +18,7 @@ class CompanyProfile extends React.Component {
                         </form>
                         <button type="button" className="btn btn-danger" onClick={this.delete.bind(this)}>Delete company logo</button>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-md-8 col-md-offset-1 well">
                         <form>
                             <div className="form-group">
                                 <input type="text" className="form-control" placeholder={user ? "" : "First name"}
