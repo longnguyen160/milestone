@@ -16,6 +16,31 @@ Meteor.startup(function() {
     Accounts.urls.verifyEmail = function(token){
         return Meteor.absoluteUrl("verify-email/" + token);
     };
+    
+    var MyLogger = function(opts) {
+        console.log('Level', opts.level);
+        console.log('Message', opts.message);
+        console.log('Tag', opts.tag);
+        }
 
+        SyncedCron.config({
+        logger: MyLogger
+    });
+
+    SyncedCron.add({
+        name: 'Test Send Mail Scheduler',
+        schedule: function(parser) {
+            // parser is a later.parse object
+            return parser.text('at 7:00am on the last day of the week');
+        },
+        job: function() {
+            console.log("Hi there! I'm a scheduler!");
+            Meteor.call('sendEmail','a@a.com','b@b.com','Test Subject','Test text');
+            
+        }
+    });
+    SyncedCron.start();
+    console.log("Scheudler started!");
 });
+
 

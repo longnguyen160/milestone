@@ -19,6 +19,17 @@ export default {
         FlowRouter.go('/account/forgot');
     },
 
+    resendEmail({Meteor, LocalState, FlowRouter}, email) {
+        Meteor.call('sendVerifyEmail', email, (err) => {
+            if(err)
+                Bert.alert('<b>Unexpected errors has occurred! Sorry for this inconvenience</b>','danger');
+            else {
+                Bert.alert('<b>Your verify link has been resent! Please check your email!</b>', 'success');
+            }
+        });
+    },
+
+
     resetPassword({Meteor, LocalState, FlowRouter}, password, repassword, token) {
         if(!password || !repassword) {
             LocalState.set('SUCCESS', null);
