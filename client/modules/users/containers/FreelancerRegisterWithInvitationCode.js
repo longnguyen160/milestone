@@ -9,11 +9,14 @@ export const composer = ({context,clearErrors},onData) => {
   error[2] = LocalState.get("SIGNUP_EMAIL");
   error[3] = LocalState.get("SIGNUP_PASSWORD");
   error[4] = LocalState.get('SIGNUP_CHECKBOX');
+  error[6] = LocalState.get('SIGNUP_CONFIRM');
   if (error[0] === true && error[1] === true && error[2] === true && error[3] === true && error[4] === true)
     error[5] = true;
  else
     error[5] = false;
-  onData(null,{error});
+  const invitationCode = LocalState.get('INVITATIONCODE');
+  console.log(invitationCode);
+  onData(null,{error,invitationCode});
   return clearErrors;
 };
 

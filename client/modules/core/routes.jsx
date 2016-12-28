@@ -27,7 +27,7 @@ import ProfileEdit from '../users/containers/ProfileEdit.js';
 import Profile from '../users/components/UserProfile.jsx';
 import FreelancerApply from '../users/containers/FreelancerApply.js';
 
-export default function (injectDeps, {FlowRouter}) {
+export default function (injectDeps, {FlowRouter,LocalState}) {
 	//Home pgae
 	const MainLayoutCtx = injectDeps(Layout);
 	FlowRouter.route('/', {
@@ -78,6 +78,11 @@ export default function (injectDeps, {FlowRouter}) {
 	FlowRouter.route('/register/freelancer', {
         name: 'account.join',
 		action() {
+			const invitationCode = LocalState.get('INVITATIONCODE');
+			console.log('invitationCode at invitation code:' + invitationCode);
+			if (invitationCode) {
+				return FlowRouter.go('/register/freelancer/finish');
+			}
 			mount(MainLayoutCtx, {
                 content: () => (<InvittationCode />)
             });
@@ -87,6 +92,11 @@ export default function (injectDeps, {FlowRouter}) {
 	FlowRouter.route('/register/freelancer/finish', {
 		name: 'account.finish',
 		action() {
+			const invitationCode = LocalState.get('INVITATIONCODE');
+			console.log('invitationCode: at finish' + invitationCode);
+			if (!invitationCode) {
+				return FlowRouter.go('/register/freelancer');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<FreelancerRegisterWithInvitationCode />)
 			});

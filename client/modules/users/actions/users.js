@@ -129,7 +129,18 @@ export default {
 
         if (!invitationCode) {
             return LocalState.set('INVITATIONCODE_ERROR', "Invitation code is required.");
+        } else {
+          Meteor.call('invitation.checkInvitationCode', invitationCode, function(error) {
+            console.log(error);
+            if (error) {
+              return LocalState.set('INVITATIONCODE_ERROR',error.reason);
+            } else {
+              LocalState.set('INVITATIONCODE', invitationCode);
+              FlowRouter.go('/register/freelancer/finish');
+            }
+          })
         }
+
 
     },
 
@@ -142,11 +153,13 @@ export default {
     },//end of create user company
 
 //Create user freelancer
-    createUserFreelancer({Meteor, LocalState}, firstName, lastName, email, password) {
+    createUserFreelancer({Meteor, LocalState}, firstName, lastName, email, password,invitationCode) {
 
         const invitaionCode = LocalState.get('INVITATIONCODE');
         console.log(invitaionCode);
+        LocalState.set('SIGNUP_CONFIRM',true);
         Meteor.call('users.createUserFreelancer', firstName, lastName, email, password, invitaionCode);
+        LocalState.set('INVITATIONCODE',null);
 
     },//end of create user freelancer
 
@@ -164,6 +177,19 @@ export default {
         LocalState.set("SIGNUP_PASSWORD", null);
         LocalState.set('SIGNUP_CONFIRM',null);
         LocalState.set('SIGNUP_CHECKBOX',null);
-    }//end of clear errors
+    },//end of clear errors
+
+//Generate code methods
+  generateCode(count, usage) {
+    if (!count) {
+      count = 1;
+    }
+    if (!usage) {
+      usage = 5;
+    }
+    const id = Meteor.call('invitation.generate',count,usage);
+    const list = Meteor.subscribe("Invitation.list", id);
+    console.log(list);
+  }
 
 };
