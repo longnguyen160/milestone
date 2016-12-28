@@ -11,24 +11,21 @@ class Login extends React.Component {
                     <h1>Recovery New Password</h1>
                     <div id="Card">
                         <form className="centerlize">
-                            { error ? <div className="alert alert-danger alert-dismissable nomargin">
-                                    <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                    <strong>{error}!</strong>
-                                </div> : null
-                            }
-                            <div className="input-group">
-                                <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
-                                <input ref="email" id="email" type="text" className="form-control" name="email"
-                                       placeholder="Email"/>
-                            </div>
+                            <label>New Password</label>
                             <div className="input-group">
                                 <span className="input-group-addon"><i className="glyphicon glyphicon-lock"></i></span>
                                 <input ref="password" id="password" type="password" className="form-control"
-                                       name="password" placeholder="Password"/>
+                                       name="password" placeholder="New Password"/>
+                            </div>
+                            
+                            <div className="input-group">
+                                <span className="input-group-addon"><i className="glyphicon glyphicon-lock"></i></span>
+                                <input ref="password" id="password" type="password" className="form-control"
+                                       name="password" placeholder="Re-enter New Password"/>
                             </div>
                             <div className="text-center">
                                 <button onClick="" type="submit"
-                                        className="btn btn-info btn-md">Submit
+                                        className="btn btn-info btn-md">Reset Password
                                 </button>
                             </div>
                         </form>

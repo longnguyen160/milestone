@@ -27,6 +27,8 @@ import ProfileEdit from '../users/containers/ProfileEdit.js';
 import Profile from '../users/components/UserProfile.jsx';
 import FreelancerApply from '../users/containers/FreelancerApply.js';
 
+import NewPassword from '../users/components/NewPassword.jsx';
+
 export default function (injectDeps, {FlowRouter}) {
 	//Home pgae
 	const MainLayoutCtx = injectDeps(Layout);
@@ -156,7 +158,9 @@ export default function (injectDeps, {FlowRouter}) {
 		name: 'profile',
 		action() {
 			mount(MainLayoutCtx, {
-				content: () => (<Profile />)
+				content: () => (<Profile />),
+				isNotShowFooter: true,
+				changeBackground: true
 			});
 		}
 	});
@@ -174,11 +178,31 @@ export default function (injectDeps, {FlowRouter}) {
 		action(params) {
 			Accounts.verifyEmail(params.token, ( error ) =>{
 				if ( error ) {
-					console.error( error, 'danger' );
+					Bert.defaults.hideDelay = 5555;
+					Bert.alert('<b>'+error.reason+'</b>', 'warning');
+					
 				} else {
-					FlowRouter.go("/register/confirm/");
+					Bert.defaults.hideDelay = 5555;
+					Bert.alert('<b>You email has been verified! Click <a href="register/confirm">here</a> to check again</b>', 'success');
 				}
+				FlowRouter.go("/");
 			});
+		}
+	});
+
+	FlowRouter.route('/new-password/:token', {
+		name: 'accounts.newpw',
+		action({token}) {
+			mount(MainLayoutCtx, {
+				content: () => (<NewPassword token={token}/>),
+			});
+		}
+	});
+
+	FlowRouter.route('/reset-password/:token', {
+		name: 'accounts.resetpw',
+		action(params) {
+			FlowRouter.go("/new-password/"+params.token);
 		}
 	});
 

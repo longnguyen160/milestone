@@ -12,19 +12,25 @@ class Layout  extends React.Component {
         this.state = {}
     }
     render() {
-        const {content} = this.props;
+        const {content, isNotShowFooter, changeBackground} = this.props;
         let {role} = this.props;
-        let {foot} = this.props;
         return (
         <div id="root" onLoad={this.reupdate.bind(this)}>
             <div id="nav">
                 {role === null ? <NavBar /> : role === true ? <UserNavBar /> : <AdminNavBar /> }
             </div>
-            <div id="mainlayout">
+            
+            <div id="mainlayout" className={
+                changeBackground !== undefined && changeBackground !== null ?
+                    changeBackground === true ? 'background_free_profile'
+                    : 'background_comp_profile'
+                : ""}
+            >
                 <div id="maincontent">
                     {content()}
                 </div>
-                {!foot ?
+                
+                {isNotShowFooter !== true ?
                 <div id="footer">
                     <Footer /> 
                 </div>

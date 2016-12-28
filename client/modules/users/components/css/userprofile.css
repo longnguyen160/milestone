@@ -24,27 +24,28 @@
 }
 
 #warning_mess {
-  height: 6rem;
+  height: 3.5em;
   background-color: #F03250;
   color: white;
 }
 
 #success_mess {
-  height: 6rem;
+  height: 3.5em;
   background-color:#3AC162;
   color: white;
 }
 
 #info_mess {
-  height: 6rem;
+  height: 3.5em;
   background-color: orange;
   color: white;
 }
 
 #avatar_user > img {
   border: 5px solid #48B7C1;
-  width: 50%;
-  height: 50%;
+  width: 35%;
+  height: 35%;
+  margin-top: 1em;
 }
 
 

@@ -28,7 +28,7 @@ class ForgotPassword extends React.Component {
                     {success  ?
                     <div className="input-group">
                         <span className="input-group-addon greenpls"><i className="glyphicon glyphicon-ok colorpls"></i></span>
-                        <input id="greenpls" type="text" className="form-control colorpls" name="success" value='Your emails has been confirmed' disabled/> 
+                        <input id="greenpls" type="text" className="form-control colorpls" name="success" value='Reset password link has been sent' disabled/> 
                     </div>    
                     :
                     <div className="text-center">
