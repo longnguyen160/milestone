@@ -9,21 +9,23 @@ export const composer = ({context, username, clearErrors}, onData) => {
     let status = null;
     let date = null;
     
-
+    console.log("Username: " + username);
     if(Meteor.subscribe('username.find', username).ready()){
         u = Meteor.users.find({username:username}).fetch()[0];
+        if(u === null || u === undefined) {
+            onData(null, {});
+        } else {
+            availability = (u !== null || u !== undefined) && u.roles === 'freelancer';
+            name = u.firstName + " " + u.lastName;
+            status = u.availability.status;
+            date = u.availability.date;
+            onData(null, {availability, name, status, date, username});
+        }
     } else {
         console.log("Something went wrong UserProfile!");
-    }
-    if(u === null || u === undefined) {
         onData(null, {});
-    } else {
-        availability = (u !== null || u !== undefined) && u.roles === 'freelancer';
-        name = u.firstName + " " + u.lastName;
-        status = u.availability.status;
-        date = u.availability.date;
-        onData(null, {availability, name, status, date, username});
     }
+    
     return clearErrors;
 };
 

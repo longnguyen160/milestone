@@ -19,6 +19,7 @@ class Update extends React.Component {
 
   render() {
     const {status} = this.props;
+    
     return (
       <div id="mainLogin" className="text-center">
         <div id="container">
@@ -61,6 +62,8 @@ class Update extends React.Component {
                                     value="You are now listed as not available" readOnly/>        
                             </div>
                         :
+                    status === 'soon'
+                        ?
                         <span>
                             <DatePicker inline
                                 selected={this.state.startDate}
@@ -77,6 +80,8 @@ class Update extends React.Component {
 
                             </div>
                         </span>
+                        :
+                        ""
                 }
                 <div className="text-center">
                     <button type="submit" className="btn btn-info"><b>Continue to your profile</b></button>

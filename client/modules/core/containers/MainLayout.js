@@ -9,16 +9,10 @@ export const composer = ({context, clearErrors}, onData) => {
 
     let role = null;
     let u = null;
-<<<<<<< HEAD
-    //console.log(Meteor.userId());
-    if(Meteor.userId() !== null || Meteor.userId() !== undefined) {
-        onData(null, {role, foot});    
-        return clearErrors;
-    }
-=======
+
     let img = null;
     let bgURL = null;
->>>>>>> upstream/master
+
     if(Meteor.subscribe('user.single', Meteor.userId()).ready()){
         u = Meteor.user().roles;
         const userId = Meteor.userId();
