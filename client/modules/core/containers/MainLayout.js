@@ -17,7 +17,7 @@ export const composer = ({context, clearErrors}, onData) => {
         if (Meteor.subscribe('img.single').ready()) {
             img = Image.find({userId: userId}).fetch();
             if (img[0] !== undefined)
-                bgURL = img[0].bgimgURL;
+               bgURL = img[0].bgimgURL;
             else bgURL = '';
         }
 
@@ -34,7 +34,7 @@ export const composer = ({context, clearErrors}, onData) => {
 };
 
 export const depsMapper = (context, actions) => ({
-    
+
     clearErrors: actions.home.clearRole,
     context: () => context
 });

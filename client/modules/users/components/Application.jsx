@@ -53,7 +53,7 @@ class Application extends React.Component {
     accept(e) {
       e.preventDefault();
       const {accept,apply} = this.props;
-      accept(apply.firstName, apply.lastName, apply.email);
+      accept(apply.firstName, apply.lastName, apply.email, apply.link, apply.introduction);
 
     };
 
