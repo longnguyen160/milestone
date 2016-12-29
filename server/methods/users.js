@@ -57,6 +57,7 @@ export default function () {
 
             check([firstName, lastName, company, email, password], [String]);
             let username = firstName + lastName;
+            username = username.replace(/\s/g,'');
             let i = 1;
 
             while (Accounts.findUserByUsername(username)) {
@@ -83,6 +84,7 @@ export default function () {
           console.log('abc');
             check([firstName, lastName, email, password, invitationCode], [String]);
             let username = firstName + lastName;
+            username.replace(/\s/g,'');
             let i = 1;
             while (Accounts.findUserByUsername(username)) {
                 username = username + i;
