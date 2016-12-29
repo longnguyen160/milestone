@@ -7,12 +7,12 @@ function verifyEmail(email) {
     let user = Accounts.findUserByEmail(email);
     Accounts.sendVerificationEmail(user._id, email);
 
-};
+}
 
 function checkArgument(argument, patten) {
     console.log(argument);
     return patten.test(argument);
-};
+}
 
 export default function () {
 
@@ -36,6 +36,46 @@ export default function () {
     });
 
     Meteor.methods({
+        'users.editFreelancerProfile'(userId,
+                                      status,
+                                      info,
+                                      ExperienceInPosition,
+                                      details,
+                                      image) {
+            check(userId, String);
+            check(status, Boolean);
+            check(info, Object);
+            check(ExperienceInPosition, Object);
+            check(details, Object);
+            check(image, Object);
+            Meteor.users.update(userId, {
+                $set: {
+                    firstName: info.fname,
+                    lastName: info.lname,
+                    position: info.position,
+                    location: info.location,
+                    travel: info.travel,
+                    'availability.status': status,
+                    ExperienceInPosition: ExperienceInPosition,
+                    details: details
+                }
+            });
+            if (Meteor.subscribe("img.single").ready()) {
+                const img = Image.find({userId: userId}).fetch();
+                if (img[0] !== undefined)
+                    Image.update(img[0]._id, {$set: {imgURL: image.img, bgimgURL: image.bgimg}});
+                else {
+                    const addimg = {userId, image};
+                    Image.insert(addimg);
+                }
+            }
+        },
+
+        'users.updateIntroduce' (userId, introduce) {
+            check([userId, introduce], [String]);
+            Meteor.users.update(userId, {$set: {'details.introduce': introduce}});
+        },
+
         'users.createUserCompany' (firstName, lastName, company, email, password) {
 
             check([firstName, lastName, company, email, password], [String]);
@@ -48,10 +88,8 @@ export default function () {
                 roles: 'company'
             });
             verifyEmail(email, password);
-        }
-    });
+        },
     //Create user freelancer
-    Meteor.methods({
         'users.createUserFreelancer' (firstName, lastName, email, password, invitationCode) {
 
             check([firstName, lastName, email, password, invitationCode], [String]);
@@ -68,11 +106,8 @@ export default function () {
             console.log(code);
             InvitationCode.update({code: invitationCode}, {$set: {usage: code[0].usage - 1}});
             verifyEmail(email);
-        }
-    });
+        },
     //Check validation
-    //Check validation
-    Meteor.methods({
         'users.checkValidation' (text, type) {
             check(text, String);
             check(type, String);
@@ -98,16 +133,12 @@ export default function () {
             if (errorString.length !== 0) {
                 throw new Meteor.Error('Error', errorString);
             }
-        }
-    });
+        },
 
-    Meteor.methods({
         'users.sendPassword'(email) {
             check(email, String);
-        }
-    });
+        },
 
-    Meteor.methods({
         'users.editCompanyProfile'(userId, fname, lname, company, companyURL, imgURL) {
             check(userId, String);
             check(fname, String);
@@ -132,10 +163,8 @@ export default function () {
                     Image.insert(image);
                 }
             }
-        }
-    });
+        },
 
-    Meteor.methods({
         'users.edit'(userId, email, password) {
             check(userId, String);
             check(email, String);
@@ -143,74 +172,17 @@ export default function () {
             Meteor.users.update(userId, {
                 $set: {email: email, password: password}
             });
-        }
-    });
+        },
 
-    Meteor.methods({
         'users.deleteIMG'(userId) {
             check(userId, String);
             if (Meteor.subscribe("img.single").ready()) {
                 const img = Image.find({userId: userId}).fetch();
                 if (img[0] !== undefined)
-                    Image.update(img[0]._id, {$set: {imgURL: ''}});
+                    Image.update(img[0]._id, {$set: {imgURL: '', bgimgURL: ''}});
             }
         }
     });
 
-    Meteor.methods({
-        'users.editFreelancerProfile'(userId,
-                                      fname,
-                                      lname,
-                                      position,
-                                      location,
-                                      experience,
-                                      rate,
-                                      link,
-                                      travel,
-                                      headline,
-                                      introduce,
-                                      skill,
-                                      sector,
-                                      img,
-                                      bgimg) {
-            // check(userId, String);
-            // check(fname, String);
-            // check(lname, String);
-            // check(position, String);
-            // check(location, String);
-            // check(experience, String);
-            // check(rate, String);
-            // check(link, String);
-            // check(travel, Boolean);
-            // check(introduce, String);
-            // check(skill, String);
-            // check(sector, String);
-            // check(img, String);
-            // check(bgimg, String);
-            check([userId,
-                fname,
-                lname,
-                position,
-                location,
-                experience,
-                rate,
-                link,
-                travel,
-                headline,
-                introduce,
-                skill,
-                sector,
-                img,
-                bgimg], [String]);
-            Meteor.users.update(userId, {
-                $set: {
-                    firstName: fname,
-                    lastName: lname,
-                    company: compnany,
-                    ExperienceInPosition: {experience: experience, rate: rate, link: link},
-                    details: {headline: headline, introduce: introduce, skill: skill, sector: sector}
-                }
-            });
-        }
-    });
+    Meteor.methods({});
 }

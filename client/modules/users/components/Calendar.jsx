@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-class Calendar extends Component {
+class Calendar extends React.Component {
   constructor() {
     super();
     this.state = {
