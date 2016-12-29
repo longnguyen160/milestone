@@ -113,7 +113,7 @@ export default function () {
             Meteor.call('sendVerifyEmail',email);
         },
     //Create user freelancer
-    Meteor.methods({
+
         'users.createUserFreelancer' (firstName, lastName, email, password, invitationCode,option) {
 
             check([firstName, lastName, email, password, invitationCode], [String]);
