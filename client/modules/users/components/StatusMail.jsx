@@ -1,22 +1,20 @@
 import React from 'react';
+require("./css/statusmail.css");
 
 class StatusMail extends React.Component {
 	render(){
 		return(
-			<div className="container">
-				
-					<div className="row">
-						<div className="col-md-6 col-md-offset-3 well">
-							<h3 className="text-center">Hi fname lname</h3>
-							<p className="text-center">Are you available ?</p>
-							<br></br>
-							<div className="row text-center">
-								<button type="submit" className="btn btn-success">YES</button> &nbsp;
-								<button type="submit" className="btn btn-danger">NO</button> &nbsp;
-								<button type="submit" className="btn btn-info">SOON</button>
-							</div>
-						</div>
+			<div id="container">
+				<div id="box">
+					<h3>Hi fname lname</h3>
+					<p>Are you available ?</p>
+					<br></br>
+					<div id="btn">
+						<button id="btn1">YES</button> &nbsp;
+						<button id="btn2">NO</button> &nbsp;
+						<button id="btn3">SOON</button>
 					</div>
+				</div>
 			</div>
 		)
 	}
