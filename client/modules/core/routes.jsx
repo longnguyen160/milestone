@@ -186,6 +186,9 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/admin/invites', {
 		name: 'admin.invites',
 		action() {
+			if (!Meteor.user() || !Meteor.user().roles === 'admin') {
+				return FlowRouter.go('/');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<AdminInvite />)
 			});

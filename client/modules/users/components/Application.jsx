@@ -43,7 +43,7 @@ class Application extends React.Component {
                       <p>{apply.introduction}</p>
                   </div>
                   <div className="panel-body">
-                      <p>Apply at</p>
+                      <p>Registration Date</p>
                       <p>{apply.createAt.toString()}</p>
                   </div>
               </div>
@@ -53,10 +53,6 @@ class Application extends React.Component {
     accept(e) {
       e.preventDefault();
       const {accept,apply} = this.props;
-      console.log('accept');
-      console.log(accept);
-      console.log('apply:');
-      console.log(apply);
       accept(apply.firstName, apply.lastName, apply.email);
 
     };
@@ -64,10 +60,6 @@ class Application extends React.Component {
     decline(e){
       e.preventDefault();
       const {accept,decline} = this.props;
-      console.log('decline');
-      console.log(decline);
-      console.log('apply:');
-      console.log(apply);
       decline(apply.firstName, apply.lastName, apply.email);
     };
   }

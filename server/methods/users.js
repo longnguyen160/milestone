@@ -73,9 +73,11 @@ export default function () {
                 roles: 'freelancer',
                 invitationCode: invitationCode
             });
+            // if admin accept apply without invitationCode
             if (invitationCode.length !== 0) {
               let code = InvitationCode.find({code: invitationCode}).fetch();
               InvitationCode.update({code: invitationCode}, {$set: {usage: code[0].usage - 1}});
+
             }
             Meteor.call('sendVerifyEmail',email);
         }
