@@ -86,10 +86,18 @@ export default {
         FlowRouter.go("/profile/edit");
     },
 
-    editFreelancerProfile({Meteor, LocalState, FlowRouter}, userId, fname, lname, position, location, experience, rate, link, travel, headline, introduce, skill, sector, img, bgimg) {
-        Meteor.call('users.editFreeLancerProfile', userId, fname, lname, position, location, experience, rate, link, travel, headline, introduce, skill, sector, img, bgimg, (err) => {
+    editFreelancerProfile({Meteor, LocalState, FlowRouter}, userId, status, info, ExperienceInPosition, details, image) {
+        Meteor.call('users.editFreelancerProfile', userId, status, info, ExperienceInPosition, details, image, (err) => {
             if (err)
                 return LocalState.set("SAVING_ERROR");
+        });
+        FlowRouter.go("/profile/edit");
+    },
+
+    updateIntroduce({Meteor, LocalState, FlowRouter}, userId, introduce) {
+        Meteor.call('users.updateIntroduce', userId, introduce, (err) => {
+           if (err)
+               return LocalState.set("UPDATE_ERROR");
         });
     },
 
@@ -236,9 +244,9 @@ export default {
       }
     })
   },
-    acceptApplications({LocalState},firstName,lastName,email) {
+    acceptApplications({LocalState},firstName,lastName,email,link,introduce) {
       const password = Random.id(10);
-      Meteor.call('users.createUserFreelancer', firstName, lastName, email, password,'');
+      Meteor.call('users.createUserFreelancer', firstName, lastName, email, password,'',{link: link, introduce:introduce});
       Meteor.call('applications.delete',email);
     },
     declineApplications({LocalState},email) {
