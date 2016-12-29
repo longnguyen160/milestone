@@ -31,13 +31,19 @@ class Confirm extends React.Component {
                     </div>
                 :
                     <div className="text-center"> 
-                        <button type="submit" className="btn btn-info "><b>Resend</b></button>
+                        <button onClick={this.resendpls.bind(this)} type="submit" className="btn btn-info "><b>Resend</b></button>
                     </div>
                 }
             </div>
         </div>
         </div>
         );
+    };
+
+    resendpls(e) {
+        e.preventDefault();
+        const {resend, emails} = this.props;
+        resend(emails);
     }
 
 } 

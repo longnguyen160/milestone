@@ -1,24 +1,41 @@
+import {Random} from 'meteor/random';
+
 export default {
 
     sendPassword({Meteor, LocalState, FlowRouter}, email) {
 
         if (!email) {
-
             LocalState.set('SUCCESS', null);
             return LocalState.set('EMAIL_ERROR', 'Email is required!');
-
         }
 
         LocalState.set('EMAIL_ERROR', 'User is not found!');
         let options = {};
         options.email = email;
-        Accounts.forgotPassword(options);
-        LocalState.set('EMAIL_ERROR', null);
-        LocalState.set('SUCCESS', "Success");
+        Accounts.forgotPassword(options, (err) => {
+            if(err) {
+                LocalState.set('EMAIL_ERROR', 'Email is not found!');
+                LocalState.set('SUCCESS', null);
+            } else {
+                LocalState.set('EMAIL_ERROR', null);
+                LocalState.set('SUCCESS', "Success");
+            }
+        });
 
         FlowRouter.go('/account/forgot');
     },
-    
+
+    resendEmail({Meteor, LocalState, FlowRouter}, email) {
+        Meteor.call('sendVerifyEmail', email, (err) => {
+            if(err)
+                Bert.alert('<b>Unexpected errors has occurred! Sorry for this inconvenience</b>','danger');
+            else {
+                Bert.alert('<b>Your verify link has been resent! Please check your email!</b>', 'success');
+            }
+        });
+    },
+
+
     resetPassword({Meteor, LocalState, FlowRouter}, password, repassword, token) {
         if(!password || !repassword) {
             LocalState.set('SUCCESS', null);
@@ -59,19 +76,6 @@ export default {
             else
                 FlowRouter.go('/');
         });
-    },
-
-    sendCode({Meteor, LocalState, FlowRouter}, inviteCode) {
-        if (!inviteCode)
-            return LocalState.set('INVITECODE_ERROR', 'Invite code is required');
-        check(inviteCode, String);
-        LocalState.set('INVITECODE_ERROR', 'Invilad code!');
-        Meteor.call("invitation.validation", inviteCode, (error) => {
-            if (error) {
-                return LocalState.set('SAVING_ERROR', error.message);
-            }
-        });
-        FlowRouter.go('/register/freelancer/finish');
     },
 
     editCompanyProfile({Meteor, LocalState, FlowRouter}, userId, fname, lname, company, companyURL, imgURL) {
@@ -147,7 +151,6 @@ export default {
               }
           });
         }
-        //console.log(type1);
 
         LocalState.set(users_err[type][0], true);
 
@@ -155,6 +158,9 @@ export default {
     createApplication({Meteor, LocalState, FlowRouter}, firstName, lastName, email, link, des) {
         Meteor.call('applications.create', firstName, lastName, email, link, des);
         FlowRouter.go('/');
+        Bert.alert('<b>Successful', 'success');
+
+
     },
 //Check validation code
     checkInvitationCode({Meteor, LocalState, FlowRouter}, invitationCode){
@@ -163,7 +169,6 @@ export default {
             return LocalState.set('INVITATIONCODE_ERROR', "Invitation code is required.");
         } else {
           Meteor.call('invitation.checkInvitationCode', invitationCode, function(error) {
-            console.log(error);
             if (error) {
               return LocalState.set('INVITATIONCODE_ERROR',error.reason);
             } else {
@@ -189,8 +194,14 @@ export default {
     createUserFreelancer({Meteor, LocalState, FlowRouter}, firstName, lastName, email, password,invitationCode) {
 
         const invitaionCode = LocalState.get('INVITATIONCODE');
-        console.log(invitaionCode);
         LocalState.set('SIGNUP_CONFIRM',true);
+        Meteor.call('invitation.checkInvitationCode',invitationCode,function(error) {
+          if (error) {
+            Bert.alert('<b>Your invitation code is not available!', 'danger');
+            FlowRouter.go('/register/freelancer');
+
+          }
+        })
         Meteor.call('users.createUserFreelancer', firstName, lastName, email, password, invitaionCode);
         LocalState.set('INVITATIONCODE',null);
         Bert.alert('<b>You freelancer account has been created! Please check your email to verify your account!', 'success');
@@ -211,19 +222,35 @@ export default {
         LocalState.set("SIGNUP_PASSWORD", null);
         LocalState.set('SIGNUP_CONFIRM',null);
         LocalState.set('SIGNUP_CHECKBOX',null);
+        LocalState.set('GENERATE_INVITATIONCODE',null);
+        LocalState.set('ID',null);
     },//end of clear errors
 
 //Generate code methods
-  generateCode(count, usage) {
-    if (!count) {
+  generateCode({LocalState}, count, usage) {
+    const patt = /^\d$/;
+    if (!count || !patt.test(count) || count < 0) {
       count = 1;
     }
-    if (!usage) {
+    if (!usage || !patt.test(usage) || usage < 0) {
       usage = 5;
     }
-    const id = Meteor.call('invitation.generate',count,usage);
-    const list = Meteor.subscribe("Invitation.list", id);
-    console.log(list);
-  }
-
+    Meteor.call('invitation.generate',count,usage, (err, response) => {
+      if(err){
+        return;
+      }
+      else {
+        LocalState.set('ID',response);
+      }
+    })
+  },
+    acceptApplications({LocalState},firstName,lastName,email) {
+      const password = Random.id(10);
+      Meteor.call('users.createUserFreelancer', firstName, lastName, email, password,'');
+      Meteor.call('applications.delete',email);
+    },
+    declineApplications({LocalState},email) {
+      console.log('abc');
+      Meteor.call('applications.delete',email);
+    }
 };

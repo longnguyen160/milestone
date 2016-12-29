@@ -6,7 +6,6 @@ require("./css/confirm.css");
 class CompanyRegister extends React.Component {
   render() {
     const {error} = this.props;
-    console.log(error);
     return (
       <div id="mainLogin" className="text-center">
       <div id="container">
@@ -56,8 +55,8 @@ class CompanyRegister extends React.Component {
                         {!error[4] ? null : error[4] != true ? <p className="error-msg">{error[4]}</p> : null}
                   </div>
                   <div className="checkbox">
-                    {error[5] === true ? <label><input disabled={error[7]} checked onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/">terms of service</a></label>
-                  : <label><input onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/">terms of service</a></label>}
+                    {error[5] === true ? <label><input disabled={error[7]} checked onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/tos">terms of service</a></label>
+                  : <label><input onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/tos">terms of service</a></label>}
 
                 </div>
                   <div className="text-center">
@@ -65,7 +64,7 @@ class CompanyRegister extends React.Component {
                       { error[7] ?  <div className="input-group">
                                       <span className="input-group-addon greenpls"><i className="glyphicon glyphicon-ok colorpls"></i></span>
                                       <input id="greenpls" type="text" className="form-control colorpls" name="success" value="Please confirm your email" readOnly/>
-                                  </div>
+                                    </div>
                                 : error[6] ? <button onClick={this.createUser.bind(this)} type="submit" className="btn btn-info">Register</button>
                                            : <button disabled type="submit" className="btn btn-info">Register</button>
                       }
@@ -85,32 +84,24 @@ class CompanyRegister extends React.Component {
       checkLastName(e) {
         e.preventDefault();
         const{lastName} = this.refs;
-        console.log("lastName:");
-        console.log(lastName.value);
         const{checkValidation} = this.props;
         checkValidation(lastName.value.trim(),'lastName');
       };
       checkCompany(e){
         e.preventDefault();
         const{company} = this.refs;
-        console.log("company:");
-        console.log(company.value);
         const{checkValidation} = this.props;
         checkValidation(company.value.trim(),'company');
       };
       checkEmail(e){
         e.preventDefault();
         const{email} = this.refs;
-        console.log("email:");
-        console.log(email.value);
         const{checkValidation} = this.props;
         checkValidation(email.value.trim(),'email');
       };
       checkPassword(e){
         e.preventDefault();
         const{password} = this.refs;
-        console.log("password:");
-        console.log(password.value);
         const{checkValidation} = this.props;
         checkValidation(password.value,'password');
       };
@@ -118,7 +109,6 @@ class CompanyRegister extends React.Component {
         e.preventDefault();
         const {create, login} = this.props;
         const {firstName,lastName,email,password,company,checkbox} = this.refs;
-        console.log(this.refs);
         create(firstName.value,lastName.value,company.value,email.value,password.value);
 
     };
@@ -126,7 +116,6 @@ class CompanyRegister extends React.Component {
         e.preventDefault();
         const {checkbox} = this.refs;
         const {checkValidation} = this.props;
-        console.log(checkbox.checked);
         checkValidation(checkbox.checked,'checkbox');
       };
 };

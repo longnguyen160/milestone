@@ -1,24 +1,24 @@
-import AdminInvite from '../components/AdminInvite.jsx';
+import Applications from '../components/Applications.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, clearErrors}, onData) => {
   const {LocalState, Collections} = context();
-  const id = LocalState.get('ID');
-  let list = null;
-  if(Meteor.subscribe("Invitation.list", id).ready()){
-    list = Collections.InvitationCode.find({uniqueCode:id}).fetch();
+  let list = new Array();
+  if(Meteor.subscribe("application.list").ready()){
+    list = Collections.Applications.find().fetch();
   }
-  onData(null,{id,list});
+  onData(null,{list});
   return clearErrors;
 };
 
 export const depsMapper = (context, actions) => ({
+  accept : actions.users.acceptApplications,
+  decline : actions.users.declineApplications,
   clearErrors : actions.users.clearErrors,
-  generateCode: actions.users.generateCode,
   context: () => context
 });
 
 export default composeAll(
   composeWithTracker(composer),
   useDeps(depsMapper)
-)(AdminInvite)
+)(Applications)

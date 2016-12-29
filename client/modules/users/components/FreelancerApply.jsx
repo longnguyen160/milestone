@@ -6,7 +6,6 @@ require("./css/apply.css");
 class FreelancerApply extends React.Component {
   render() {
     const {error} = this.props;
-    console.log(error);
     return (
       <div id="mainLogin" className="text-center">
           <div id="container">
@@ -71,8 +70,8 @@ class FreelancerApply extends React.Component {
 
                       <div className="checkbox">
 
-                            {error[3] === true ? <label><input checked onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/">terms of service</a></label>
-                          : <label><input onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/">terms of service</a></label>}
+                            {error[3] === true ? <label><input checked onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/tos">terms of service</a></label>
+                          : <label><input onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/tos">terms of service</a></label>}
 
                     </div>
 
@@ -120,7 +119,6 @@ class FreelancerApply extends React.Component {
         e.preventDefault();
         const {checkbox} = this.refs;
         const {checkValidation} = this.props;
-        console.log(checkbox.checked);
         checkValidation(checkbox.checked,'checkbox');
       };
 };

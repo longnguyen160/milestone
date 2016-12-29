@@ -5,7 +5,7 @@ require("./css/signup.css");
 class FreelancerRegisterWithInvitationCode extends React.Component {
   render() {
     const {error} = this.props;
-    console.log(error);
+
     return (
       <div id="mainLogin" className="text-center">
           <h1>Joining SI</h1>
@@ -71,8 +71,8 @@ class FreelancerRegisterWithInvitationCode extends React.Component {
                   </div>
                   <div className="checkbox">
                     {error[4] === true
-                      ? <label><input ref="checkbox" disabled={error[6]} checked onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/">terms of service</a></label>
-                      : <label><input ref="checkbox" disabled={error[6]} onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/">terms of service</a></label>}
+                      ? <label><input ref="checkbox" disabled={error[6]} checked onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/tos">terms of service</a></label>
+                      : <label><input ref="checkbox" disabled={error[6]} onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/tos">terms of service</a></label>}
                   </div>
                   <div className="text-center">
                     { error[6] ?  <div className="input-group">
@@ -115,17 +115,15 @@ class FreelancerRegisterWithInvitationCode extends React.Component {
     };
     createUser(e) {
       e.preventDefault();
-      const {create,invitationCode} = this.props;
+      const {create,invitationCode,} = this.props;
       const {firstName,lastName,email,password} = this.refs;
-      console.log(invitationCode);
-      console.log(this.refs);
+
       create(firstName.value.trim(),lastName.value.trim(),email.value.trim(),password.value,invitationCode.toUpperCase());
   };
     checkCheckedBox(e) {
       e.preventDefault();
       const {checkbox} = this.refs;
       const {checkValidation} = this.props;
-      console.log(checkbox.checked);
       checkValidation(checkbox.checked,'checkbox');
     };
 };

@@ -21,13 +21,15 @@ import Confirm from '../users/containers/Confirm.js';
 import Update from '../users/components/Update.jsx';
 
 import Selfcare from '../users/components/Selfcare.jsx';
-import AdminInvite from '../users/components/AdminInvite.jsx';
+import AdminInvite from '../users/containers/AdminInvite.js';
 
 import ProfileEdit from '../users/containers/ProfileEdit.js';
-import Profile from '../users/components/UserProfile.jsx';
+import Profile from '../users/containers/UserProfile.js';
 import FreelancerApply from '../users/containers/FreelancerApply.js';
 
 import NewPassword from '../users/containers/NewPassword.js';
+
+import Applications from '../users/containers/Applications.js'
 
 export default function (injectDeps, {FlowRouter,LocalState}) {
 
@@ -62,7 +64,7 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 			});
 		}
 	});
-//Login page
+//Login page/register/freelancer
 	FlowRouter.route('/account/login', {
 		name: 'account.login',
 		action() {
@@ -151,6 +153,18 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 		}
 	});
 
+	FlowRouter.route('/admin/apply', {
+		name: 'admin.apply',
+		action() {
+			if (!Meteor.user() || !Meteor.user().roles === 'admin') {
+				return FlowRouter.go('/');
+			}
+			mount(MainLayoutCtx, {
+				content: () => (<Applications />)
+			});
+		}
+	});
+
     FlowRouter.route('/profile/edit', {
         name: 'profile.update',
         action() {
@@ -172,17 +186,20 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/admin/invites', {
 		name: 'admin.invites',
 		action() {
+			if (!Meteor.user() || !Meteor.user().roles === 'admin') {
+				return FlowRouter.go('/');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<AdminInvite />)
 			});
 		}
 	});
 
-	FlowRouter.route('/profile', {
+	FlowRouter.route('/profile/:username', {
 		name: 'profile',
-		action() {
+		action({username}) {
 			mount(MainLayoutCtx, {
-				content: () => (<Profile />),
+				content: () => (<Profile username={username}/>),
 				isNotShowFooter: true,
 				changeBackground: true
 			});

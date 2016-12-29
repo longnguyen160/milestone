@@ -4,15 +4,14 @@ require("./css/login.css");
 class Login extends React.Component {
     render() {
         const {error} = this.props;
-        console.log(error);
         return (
             <div id="mainLogin" className="text-center">
                 <div className="container">
                     <h1>Welcome to SI</h1>
                     <div id="Card">
                         <form className="centerlize">
-                            { error ? <div className="alert alert-danger alert-dismissable nomargin">
-                                    <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            { error ? <div className="alert alert-danger  nomargin">
+
                                     <strong>{error}!</strong>
                                 </div> : null
                             }
@@ -28,7 +27,7 @@ class Login extends React.Component {
                             </div>
                             <div className="text-center">
                                 <button onClick={this.loginUser.bind(this)} type="submit"
-                                        className="btn btn-info btn-md">Submit
+                                        className="btn btn-info btn-md">Login
                                 </button>
                             </div>
                             <a href="/account/forgot" id="forgotpw">I forgot my password</a>

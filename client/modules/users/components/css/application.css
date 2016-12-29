@@ -1,0 +1,45 @@
+.more-spacing {
+    margin-right: 1rem;
+}
+.panel-title {
+    
+}
+
+.panel-heading {
+    display: block;
+}
+
+.title {
+    align-self: flex-start;
+    float: left;
+}
+
+.decision {
+    align-self: flex-end;
+    float: right;
+}
+
+#freelancer {
+    width: 70%;
+    margin: 1em auto;
+}
+
+.collapse, .panel-collapse{
+    text-align: left !important;
+    font-size: 1.25em;
+    padding: 0px 15px;
+}
+
+.collapse p:first-child {
+    color:#48B7C1;
+    font-weight: bold;
+    padding: 0;
+    margin: 1px 0;
+}
+
+.panel-collapse p:first-child {
+    color:#48B7C1;
+    font-weight: bold;
+    padding: 0;
+    margin: 1px 0;
+}

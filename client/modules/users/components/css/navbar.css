@@ -1,15 +1,78 @@
 .redd {
-    background-color: crimson !important;
+    background-color: #F03250 !important;
 }
 
-.redd > div > ul > li > a {
+.redd > div > div > ul > li > a {
     color:#fff !important;
+}
+
+.redd > div > div > ul > li > a:hover {
+    color:#F03250 !important;
+    background: white !important;
 }
 
 .bluee {
     background-color: #48B7C1 !important;
 }
 
-.bluee > div > ul > li > a {
+.bluee > div > div > ul > li > a {
     color:#fff !important;
+}
+
+.nav > li > a {
+    font-size: 1.6rem;
+}
+
+
+.admin-icon{
+    color: white;
+}
+
+.admin-btn span {
+    background: white !important;
+}
+
+.admin-btn:hover {
+    background: white !important;
+}
+
+.admin-btn:focus {
+    background: white !important;
+}
+
+.admin-btn:hover span {
+    background: #F03250 !important;
+}
+
+.admin-btn:focus span {
+    background: #F03250 !important;
+}
+
+/*
+
+
+*/
+
+.user-icon{
+    color: white;
+}
+
+.user-btn span {
+    background: white !important;
+}
+
+.user-btn:hover {
+    background: white !important;
+}
+
+.user-btn:focus {
+    background: white !important;
+}
+
+.user-btn:hover span {
+    background: #48B7C1 !important;
+}
+
+.user-btn:focus span {
+    background: #48B7C1 !important;
 }

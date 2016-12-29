@@ -15,7 +15,6 @@ export const composer = ({context,clearErrors},onData) => {
  else
     error[5] = false;
   const invitationCode = LocalState.get('INVITATIONCODE');
-  console.log(invitationCode);
   onData(null,{error,invitationCode});
   return clearErrors;
 };

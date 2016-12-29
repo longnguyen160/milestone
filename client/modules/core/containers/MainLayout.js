@@ -11,7 +11,6 @@ export const composer = ({context, clearErrors}, onData) => {
     let u = null;
     let img = null;
     let bgURL = null;
-    console.log(Meteor.userId());
     if(Meteor.subscribe('user.single', Meteor.userId()).ready()){
         u = Meteor.user().roles;
         const userId = Meteor.userId();

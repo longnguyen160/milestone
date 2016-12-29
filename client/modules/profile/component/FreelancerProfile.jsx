@@ -36,7 +36,7 @@ class FreelancerProfile extends React.Component {
                         <br/>
                         <div className="row well">
                             <h4>Background image</h4>
-                            <img src="" alt="avatar" ref="bgimg"/>
+                            <img className="small-image" src={(this.state.bgthumnail == "" && img) ? img[0].bgimgURL : this.state.bgthumnail} alt="avatar" ref="bgimg"/>
                             <form>
                                 <div className="form-group">
                                     <input type="file" id="exampleInputFile" onChange={this.onChangeFileBG}/>

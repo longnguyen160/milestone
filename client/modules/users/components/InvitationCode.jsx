@@ -38,7 +38,6 @@ class InvitationCode extends React.Component {
     e.preventDefault();
     const {inviteCode} = this.refs;
     const {checkInvitationCode} = this.props;
-    console.log(inviteCode.value.toUpperCase());
     checkInvitationCode(inviteCode.value.toUpperCase());
   }
 }
