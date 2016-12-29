@@ -12,9 +12,15 @@ export default {
         LocalState.set('EMAIL_ERROR', 'User is not found!');
         let options = {};
         options.email = email;
-        Accounts.forgotPassword(options);
-        LocalState.set('EMAIL_ERROR', null);
-        LocalState.set('SUCCESS', "Success");
+        Accounts.forgotPassword(options, (err) => {
+            if(err) {
+                LocalState.set('EMAIL_ERROR', 'Email is not found!');
+                LocalState.set('SUCCESS', null);        
+            } else {
+                LocalState.set('EMAIL_ERROR', null);
+                LocalState.set('SUCCESS', "Success");
+            }
+        });
 
         FlowRouter.go('/account/forgot');
     },
