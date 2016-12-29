@@ -11,7 +11,7 @@ class Login extends React.Component {
                     <div id="Card">
                         <form className="centerlize">
                             { error ? <div className="alert alert-danger  nomargin">
-                                    
+
                                     <strong>{error}!</strong>
                                 </div> : null
                             }
@@ -27,7 +27,7 @@ class Login extends React.Component {
                             </div>
                             <div className="text-center">
                                 <button onClick={this.loginUser.bind(this)} type="submit"
-                                        className="btn btn-info btn-md">Submit
+                                        className="btn btn-info btn-md">Login
                                 </button>
                             </div>
                             <a href="/account/forgot" id="forgotpw">I forgot my password</a>

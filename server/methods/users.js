@@ -37,11 +37,6 @@ export default function () {
             user.availability = {};
             user.availability.status = 'not available';
             user.availability.date = '';
-
-            // {
-            //   status: 'not available',
-            //   date: ''
-            // }
         }
         return user
     });
@@ -57,7 +52,8 @@ export default function () {
 
             check([firstName, lastName, company, email, password], [String]);
             let username = firstName + lastName;
-            username.toLowerCase() = username.replace(/\s/g,'');
+            username = username.replace(/\s/g,'');
+            username = username.toLowerCase();
             let i = 1;
 
             while (Accounts.findUserByUsername(username)) {
@@ -83,7 +79,8 @@ export default function () {
         'users.createUserFreelancer' (firstName, lastName, email, password, invitationCode) {
           console.log('abc');
             check([firstName, lastName, email, password, invitationCode], [String]);
-            let username.toLowerCase() = firstName + lastName;
+            let username = firstName + lastName;
+            username = username.toLowerCase();
             username.replace(/\s/g,'');
             let i = 1;
             while (Accounts.findUserByUsername(username)) {
@@ -115,7 +112,6 @@ export default function () {
                 'Your password: '+password+'</br>');
 
             }
-            console.log("ABASDFASDFADSF");
             Meteor.call('sendVerifyEmail',email);
         }
     });
@@ -208,20 +204,7 @@ export default function () {
 
     Meteor.methods({
         'users.editFreelancerProfile'(userId,fname,lname,position,location,experience,rate,link,travel,headline,introduce,skill,sector,img,bgimg) {
-            // check(userId, String);
-            // check(fname, String);
-            // check(lname, String);
-            // check(position, String);
-            // check(location, String);
-            // check(experience, String);
-            // check(rate, String);
-            // check(link, String);
-            // check(travel, Boolean);
-            // check(introduce, String);
-            // check(skill, String);
-            // check(sector, String);
-            // check(img, String);
-            // check(bgimg, String);
+
             check([userId,fname,lname,position,location,experience,rate,link,travel,headline,introduce,skill,sector,img,bgimg], [String]);
             Meteor.users.update(userId, {
                 $set: {

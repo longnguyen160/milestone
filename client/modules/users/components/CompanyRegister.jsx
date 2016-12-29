@@ -64,7 +64,7 @@ class CompanyRegister extends React.Component {
                       { error[7] ?  <div className="input-group">
                                       <span className="input-group-addon greenpls"><i className="glyphicon glyphicon-ok colorpls"></i></span>
                                       <input id="greenpls" type="text" className="form-control colorpls" name="success" value="Please confirm your email" readOnly/>
-                                  </div>
+                                    </div>
                                 : error[6] ? <button onClick={this.createUser.bind(this)} type="submit" className="btn btn-info">Register</button>
                                            : <button disabled type="submit" className="btn btn-info">Register</button>
                       }

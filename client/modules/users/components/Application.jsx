@@ -59,8 +59,8 @@ class Application extends React.Component {
 
     decline(e){
       e.preventDefault();
-      const {accept,decline} = this.props;
-      decline(apply.firstName, apply.lastName, apply.email);
+      const {apply,decline} = this.props;
+      decline(apply.email);
     };
   }
 export default Application;
