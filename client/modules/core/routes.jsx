@@ -64,7 +64,7 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 			});
 		}
 	});
-//Login page
+//Login page/register/freelancer
 	FlowRouter.route('/account/login', {
 		name: 'account.login',
 		action() {

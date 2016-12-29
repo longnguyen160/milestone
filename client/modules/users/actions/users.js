@@ -191,6 +191,13 @@ export default {
 
         const invitaionCode = LocalState.get('INVITATIONCODE');
         LocalState.set('SIGNUP_CONFIRM',true);
+        Meteor.call('invitation.checkInvitationCode',invitationCode,function(error) {
+          if (error) {
+            Bert.alert('<b>Your invitation code is not available!', 'danger');
+            FlowRouter.go('/register/freelancer');
+
+          }
+        })
         Meteor.call('users.createUserFreelancer', firstName, lastName, email, password, invitaionCode);
         LocalState.set('INVITATIONCODE',null);
         Bert.alert('<b>You freelancer account has been created! Please check your email to verify your account!', 'success');
