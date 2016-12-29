@@ -21,6 +21,7 @@ export default function () {
     Accounts.onCreateUser(function (option, user) {
         //If user company
         if (option.roles === 'company') {
+            user.username = option.username,
             user.firstName = option.firstName;
             user.lastName = option.lastName;
             user.company = option.company;
@@ -28,6 +29,7 @@ export default function () {
         }
         //Add user freelancer
         else {
+            user.username = option.username,
             user.firstName = option.firstName;
             user.lastName = option.lastName;
             user.roles = option.roles;
@@ -47,7 +49,16 @@ export default function () {
         'users.createUserCompany' (firstName, lastName, company, email, password) {
 
             check([firstName, lastName, company, email, password], [String]);
+            let userName = firstName + lastName;
+            console.log(userName);
+            let i = 1;
+            while (Accounts.findUserByEmail(email)) {
+              username = username + i;
+              i++;
+            }
+
             Accounts.createUser({
+                username:username,
                 email: email,
                 password: password,
                 firstName: firstName,
@@ -64,6 +75,14 @@ export default function () {
         'users.createUserFreelancer' (firstName, lastName, email, password, invitationCode) {
 
             check([firstName, lastName, email, password, invitationCode], [String]);
+            let userName = firstName + lastName;
+            console.log(userName);
+            let i = 1;
+            while (Accounts.findUserByEmail(email)) {
+              username = username + i;
+              i++;
+            }
+            console.log(username);
             //Call create user method
             Accounts.createUser({
                 email: email,
@@ -73,15 +92,18 @@ export default function () {
                 roles: 'freelancer',
                 invitationCode: invitationCode
             });
+            // if admin accept apply without invitationCode
             if (invitationCode.length !== 0) {
               let code = InvitationCode.find({code: invitationCode}).fetch();
               InvitationCode.update({code: invitationCode}, {$set: {usage: code[0].usage - 1}});
+
             } else {
                 Meteor.call('sendEmail',
                 email,'admin@zigvy.com',
                 'Welcome to Friendzone!', 'Welcome to Friendzone, '+firstName + ' ' + lastName + '</br>' +
                 'Your email: '+email+'</br>'+
                 'Your password: '+password+'</br>');
+
             }
             Meteor.call('sendVerifyEmail',email);
         }

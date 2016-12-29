@@ -9,8 +9,8 @@ const NavBar = ({context} = () => null) => (
             <a className="navbar-brand" href="/"><span className="glyphicon glyphicon-leaf bluue"></span></a>
             </div>
             <ul className="nav navbar-nav">
-                <li><a href="#">For freelancer</a></li>
-                <li><a href="#">For company</a></li>
+                <li><a href="/register/freelancer">For freelancer</a></li>
+                <li><a href="/register/company">For company</a></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
                 <li><a href="/account/login">Login</a></li>
