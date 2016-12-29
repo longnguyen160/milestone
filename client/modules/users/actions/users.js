@@ -225,10 +225,10 @@ export default {
 //Generate code methods
   generateCode({LocalState}, count, usage) {
     const patt = /^\d$/;
-    if (!count || !patt.test(count)) {
+    if (!count || !patt.test(count) || count < 0) {
       count = 1;
     }
-    if (!usage || !patt.test(usage)) {
+    if (!usage || !patt.test(usage) || usage < 0) {
       usage = 5;
     }
     Meteor.call('invitation.generate',count,usage, (err, response) => {

@@ -34,7 +34,7 @@ export default function () {
             user.lastName = option.lastName;
             user.roles = option.roles;
             user.invitationCode = option.invitationCode;
-            user.status = 'available';
+            user.status = 'not available';
         }
         return user
     });
@@ -49,12 +49,12 @@ export default function () {
         'users.createUserCompany' (firstName, lastName, company, email, password) {
 
             check([firstName, lastName, company, email, password], [String]);
-            let userName = firstName + lastName;
-            console.log(userName);
+            let username = firstName + lastName;
             let i = 1;
-            while (Accounts.findUserByEmail(email)) {
-              username = username + i;
-              i++;
+
+            while (Accounts.findUserByUsername(username)) {
+                username = username + i;
+                i++;
             }
 
             Accounts.createUser({
@@ -76,7 +76,6 @@ export default function () {
 
             check([firstName, lastName, email, password, invitationCode], [String]);
             let userName = firstName + lastName;
-            console.log(userName);
             let i = 1;
             while (Accounts.findUserByEmail(email)) {
               username = username + i;
