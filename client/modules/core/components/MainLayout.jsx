@@ -15,7 +15,7 @@ class Layout  extends React.Component {
         const {content, isNotShowFooter, changeBackground} = this.props;
         let {role} = this.props;
         return (
-        <div id="root" onLoad={this.reupdate.bind(this)}>
+        <div id="root">
             <div id="nav">
                 {role === null ? <NavBar /> : role === true ? <UserNavBar /> : <AdminNavBar /> }
             </div>
@@ -42,7 +42,8 @@ class Layout  extends React.Component {
     };
 
     reupdate(e) {
-        this.role = this.props;
+        console.log("HI: " + this.props.role);
+        this.role = this.props.role;
     };
 
 };

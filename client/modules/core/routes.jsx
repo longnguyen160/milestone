@@ -144,11 +144,11 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 		}
 	});
 
-	FlowRouter.route('/profile/update', {
+	FlowRouter.route('/profile/update/:token', {
 		name: 'profile.update',
-		action() {
+		action({token}) {
 			mount(MainLayoutCtx, {
-				content: () => (<Update />)
+				content: () => (<Update token={token}/>)
 			});
 		}
 	});
