@@ -9,8 +9,11 @@ require("./css/confirm.css");
 class Update extends React.Component {
   constructor() {
     super();
+    const today = moment();
     this.state = {
-      startDate: moment()
+        today: today,
+        startDate: moment(),
+        error: ''
     };
   }
 
@@ -61,7 +64,9 @@ class Update extends React.Component {
                     <span className="input-group-addon orangepls"><i
                         className="glyphicon glyphicon-calendar colorpls"></i></span>
                     <input id="orangepls" type="text" className="form-control colorpls" name="warning"
-                           value="You will be available from DD.MM.YYYY" readOnly/>
+                           value={!this.state.error 
+                                    ? 'You will be available from '+ moment(this.state.startDate).format("MM.DD.YYYY")
+                                    : this.state.error}  readOnly/>
 
                 </div>
                 <div className="text-center">
@@ -74,10 +79,17 @@ class Update extends React.Component {
   }
 
   handleChange(date) {
+    if(moment(date).isBefore(this.state.today, "day")) {
+        this.setState({
+            error: 'Your selected date is not allowed!'
+        })    
+        return;
+    }
     this.setState({
-      startDate: date
+        startDate: date,
+        error: ''
     });
-  }
+}
 }
 
 export default Update;
