@@ -12,7 +12,7 @@ export const composer = ({context, username, clearErrors}, onData) => {
     let img = null;
     let imgURL = null;
     
-
+    console.log("Username: " + username);
     if(Meteor.subscribe('username.find', username).ready()){
         u = Meteor.users.find({username:username}).fetch()[0];
         const userId = Meteor.userId();
@@ -34,6 +34,7 @@ export const composer = ({context, username, clearErrors}, onData) => {
         date = u.availability.date;
         onData(null, {availability, name, status, date, username, imgURL});
     }
+    
     return clearErrors;
 };
 

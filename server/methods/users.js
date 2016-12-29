@@ -227,13 +227,16 @@ export default function () {
             });
         },
 
-        'users.deleteIMG'(userId) {
+        'users.deleteIMG'(userId, i) {
 
             check(userId, String);
             if (Meteor.subscribe("img.single").ready()) {
                 const img = Image.find({userId: userId}).fetch();
-                if (img[0] !== undefined)
-                    Image.update(img[0]._id, {$set: {imgURL: '', bgimgURL: ''}});
+                if (img[0] !== undefined) {
+                    if (i == 1)
+                        Image.update(img[0]._id, {$set: {imgURL: ''}});
+                    else Image.update(img[0]._id, {$set: {bgimgURL: ''}});
+                }
             }
         }
     });

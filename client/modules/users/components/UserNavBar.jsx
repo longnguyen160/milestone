@@ -30,5 +30,4 @@ const UserNavBar = ({context} = () => null) => (
 
 );
 
-
 export default UserNavBar;

@@ -108,8 +108,8 @@ export default {
         });
     },
 
-    deleteIMG({Meteor, LocalState, FlowRouter}, userId) {
-        Meteor.call('users.deleteIMG', userId, (err) => {
+    deleteIMG({Meteor, LocalState, FlowRouter}, userId, i) {
+        Meteor.call('users.deleteIMG', userId, i, (err) => {
             if (err)
                 return LocalState.set("DELETE_ERROR");
         });
