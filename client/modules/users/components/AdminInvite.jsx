@@ -27,7 +27,6 @@ class AdminInvite extends React.Component {
                         <div className="go-left-text">
                             <h4>Result:</h4>
                             {list ? list.map((result,index) => (<li key={index} >{result.code}</li>)) : null}
-
                         </div>
                     </div>
                 </div>

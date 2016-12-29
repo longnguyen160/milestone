@@ -37,11 +37,6 @@ export default function () {
             user.availability = {};
             user.availability.status = 'not available';
             user.availability.date = '';
-
-            // {
-            //   status: 'not available',
-            //   date: ''
-            // }
         }
         return user
     });
@@ -117,7 +112,6 @@ export default function () {
                 'Your password: '+password+'</br>');
 
             }
-            console.log("ABASDFASDFADSF");
             Meteor.call('sendVerifyEmail',email);
         }
     });
@@ -210,20 +204,7 @@ export default function () {
 
     Meteor.methods({
         'users.editFreelancerProfile'(userId,fname,lname,position,location,experience,rate,link,travel,headline,introduce,skill,sector,img,bgimg) {
-            // check(userId, String);
-            // check(fname, String);
-            // check(lname, String);
-            // check(position, String);
-            // check(location, String);
-            // check(experience, String);
-            // check(rate, String);
-            // check(link, String);
-            // check(travel, Boolean);
-            // check(introduce, String);
-            // check(skill, String);
-            // check(sector, String);
-            // check(img, String);
-            // check(bgimg, String);
+
             check([userId,fname,lname,position,location,experience,rate,link,travel,headline,introduce,skill,sector,img,bgimg], [String]);
             Meteor.users.update(userId, {
                 $set: {

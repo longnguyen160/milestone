@@ -15,7 +15,7 @@ export default {
         Accounts.forgotPassword(options, (err) => {
             if(err) {
                 LocalState.set('EMAIL_ERROR', 'Email is not found!');
-                LocalState.set('SUCCESS', null);        
+                LocalState.set('SUCCESS', null);
             } else {
                 LocalState.set('EMAIL_ERROR', null);
                 LocalState.set('SUCCESS', "Success");
@@ -76,19 +76,6 @@ export default {
             else
                 FlowRouter.go('/');
         });
-    },
-
-    sendCode({Meteor, LocalState, FlowRouter}, inviteCode) {
-        if (!inviteCode)
-            return LocalState.set('INVITECODE_ERROR', 'Invite code is required');
-        check(inviteCode, String);
-        LocalState.set('INVITECODE_ERROR', 'Invilad code!');
-        Meteor.call("invitation.validation", inviteCode, (error) => {
-            if (error) {
-                return LocalState.set('SAVING_ERROR', error.message);
-            }
-        });
-        FlowRouter.go('/register/freelancer/finish');
     },
 
     editCompanyProfile({Meteor, LocalState, FlowRouter}, userId, fname, lname, company, companyURL, imgURL) {
@@ -163,6 +150,9 @@ export default {
     createApplication({Meteor, LocalState, FlowRouter}, firstName, lastName, email, link, des) {
         Meteor.call('applications.create', firstName, lastName, email, link, des);
         FlowRouter.go('/');
+        Bert.alert('<b>Successful', 'success');
+
+
     },
 //Check validation code
     checkInvitationCode({Meteor, LocalState, FlowRouter}, invitationCode){
@@ -252,6 +242,7 @@ export default {
       Meteor.call('applications.delete',email);
     },
     declineApplications({LocalState},email) {
+      console.log('abc');
       Meteor.call('applications.delete',email);
     }
 };

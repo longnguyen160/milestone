@@ -3,7 +3,7 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, clearErrors}, onData) => {
   const {LocalState, Collections} = context();
-  let list = null;
+  let list = new Array();
   if(Meteor.subscribe("application.list").ready()){
     list = Collections.Applications.find().fetch();
   }
