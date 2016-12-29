@@ -4,7 +4,6 @@ import emails from './emails';
 import home from './home';
 import applications from './applications';
 
-
 export default function() {
   users();
   emails();

@@ -1,17 +1,20 @@
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 import {Applications} from '/lib/collections';
-export  default function() {
-//create application in database
-  Meteor.methods({'applications.create'(firstName, lastName, email, link, introduction){
 
-//add applications to db
+export  default function() {
+
+//create application in database
+  Meteor.methods({
+    'applications.create'(firstName, lastName, email, link, introduction){
+
     check(firstName,String);
     check(lastName,String);
     check(link,String);
     check(email,String);
     check(introduction, String);
 
+//Insert to applications db
     Applications.insert({
       firstName:firstName,
       lastName:lastName,
@@ -22,7 +25,9 @@ export  default function() {
     })
   }});
 
-  Meteor.methods({'applications.delete'(email){
+//Delete applications by email
+  Meteor.methods({
+    'applications.delete'(email){
     check(email,String);
     Applications.remove({email:email});
   }})
