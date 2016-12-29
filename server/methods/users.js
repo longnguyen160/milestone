@@ -76,9 +76,11 @@ export default function () {
     });
     //Create user freelancer
     Meteor.methods({
-        'users.createUserFreelancer' (firstName, lastName, email, password, invitationCode) {
+        'users.createUserFreelancer' (firstName, lastName, email, password, invitationCode,option) {
 
             check([firstName, lastName, email, password, invitationCode], [String]);
+            check(option, Match.Any);
+
             let username = firstName + lastName;
             username.replace(/\s/g,'');
             username = username.toLowerCase();
@@ -106,6 +108,10 @@ export default function () {
               InvitationCode.update({code: invitationCode}, {$set: {usage: code[0].usage - 1}});
 
             } else {
+              Meteor.users.update({username:username},{$set: {
+                ExperienceInPosition: {link: option.link},
+                details: {introduce: option.introduce}
+              }});
                 Meteor.call('sendEmail',
                 email,'admin@zigvy.com',
                 'Welcome to Friendzone!', 'Welcome to Friendzone, '+firstName + ' ' + lastName + '</br>' +

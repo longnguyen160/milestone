@@ -236,9 +236,9 @@ export default {
       }
     })
   },
-    acceptApplications({LocalState},firstName,lastName,email) {
+    acceptApplications({LocalState},firstName,lastName,email,link,introduce) {
       const password = Random.id(10);
-      Meteor.call('users.createUserFreelancer', firstName, lastName, email, password,'');
+      Meteor.call('users.createUserFreelancer', firstName, lastName, email, password,'',{link: link, introduce:introduce});
       Meteor.call('applications.delete',email);
     },
     declineApplications({LocalState},email) {
