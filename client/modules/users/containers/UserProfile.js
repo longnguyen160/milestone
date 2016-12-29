@@ -1,33 +1,34 @@
-import MainLayout from '../components/MainLayout.jsx';
+import UserProfile from '../components/UserProfile.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, clearErrors}, onData) => {
-    const {Meteor} = context();
-    const {content} = context();
-    const {foot} = context();
 
-    let role = null;
     let u = null;
-    //console.log(Meteor.userId());
-    if(Meteor.subscribe('user.single', Meteor.userId()).ready()){
-        u = Meteor.user().roles;
-    } else {
-        console.log("Something went wrong!");
-    }
-    if(u != null)
-        role = u != "admin";
-    onData(null, {role, foot});
+    let availability = {};
+    let name = null;
 
+    if(Meteor.subscribe('user.single', Meteor.userId()).ready()){
+        u = Meteor.user();
+        console.log(u);
+        availability = u.availability;
+        name = u.firstName + " " + u.lastName;
+    } else {
+        console.log("Something went wrong UserProfile!");
+    }
+    
+    console.log(availability);
+
+    onData(null, {availability, name});
     return clearErrors;
 };
 
 export const depsMapper = (context, actions) => ({
+    clearErrors: actions.users.clearErrors,
     
-    clearErrors: actions.home.clearRole,
     context: () => context
 });
 
 export default composeAll(
     composeWithTracker(composer),
     useDeps(depsMapper)
-)(MainLayout);
+)(UserProfile);
