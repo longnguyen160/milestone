@@ -1,24 +1,29 @@
 import UserProfile from '../components/UserProfile.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
-export const composer = ({context, clearErrors}, onData) => {
+export const composer = ({context, username, clearErrors}, onData) => {
 
     let u = null;
     let availability = {};
     let name = null;
+    let status = null;
+    let date = null;
+    
 
-    if(Meteor.subscribe('user.single', Meteor.userId()).ready()){
-        u = Meteor.user();
-        console.log(u);
-        availability = u.availability;
-        name = u.firstName + " " + u.lastName;
+    if(Meteor.subscribe('username.find', username).ready()){
+        u = Meteor.users.find({username:username}).fetch()[0];
     } else {
         console.log("Something went wrong UserProfile!");
     }
-    
-    console.log(availability);
-
-    onData(null, {availability, name});
+    if(u === null || u === undefined) {
+        onData(null, {});
+    } else {
+        availability = (u !== null || u !== undefined) && u.roles === 'freelancer';
+        name = u.firstName + " " + u.lastName;
+        status = u.availability.status;
+        date = u.availability.date;
+        onData(null, {availability, name, status, date, username});
+    }
     return clearErrors;
 };
 

@@ -195,11 +195,11 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 		}
 	});
 
-	FlowRouter.route('/profile', {
+	FlowRouter.route('/profile/:username', {
 		name: 'profile',
-		action() {
+		action({username}) {
 			mount(MainLayoutCtx, {
-				content: () => (<Profile />),
+				content: () => (<Profile username={username}/>),
 				isNotShowFooter: true,
 				changeBackground: true
 			});
