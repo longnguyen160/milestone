@@ -9,7 +9,7 @@ export default function () {
         try {
             check(userId, String)
         } catch(err) {
-            console.log('user.single - users.js publications');
+            console.log('Error in user.single - users.js publications');
             return;
         }
         return Meteor.users.find(userId);

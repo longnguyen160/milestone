@@ -9,8 +9,10 @@ export const composer = ({context, clearErrors}, onData) => {
 
     let role = null;
     let u = null;
+
     let img = null;
     let bgURL = null;
+
     if(Meteor.subscribe('user.single', Meteor.userId()).ready()){
         u = Meteor.user().roles;
         const userId = Meteor.userId();
