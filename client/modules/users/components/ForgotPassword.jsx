@@ -11,8 +11,8 @@ class ForgotPassword extends React.Component {
                 <div id="Card">
                 <form className="centerlize">
                 {error ?
-                    <div className="alert alert-danger alert-dismissable nomargin">
-                        <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <div className="alert alert-danger nomargin">
+                        
                         <strong>{error}</strong>
                     </div>
                 : null}
