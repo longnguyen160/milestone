@@ -5,13 +5,13 @@ class UserProfile extends React.Component {
     
     render() {
         const {availability} = this.props;
-        const {name, status, date, username} = this.props;
+        const {name, status, date, username, imgURL} = this.props;
 
         return (        
             <div id="uprofile_container">
                 <div id="uprofile">
                     <div id="avatar_user" className="flex_center">
-                        <img className="img-responsive img-circle" src="https://s-media-cache-ak0.pinimg.com/236x/10/42/64/10426467e108bfc23e7e56bd65e6bb82.jpg" alt=""/>
+                        <img className="img-responsive img-circle" src={imgURL} alt=""/>
                     </div>
                     {
                     availability 

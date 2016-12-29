@@ -26,9 +26,13 @@ class Layout extends React.Component {
             <div id="mainlayout" className={
                      (changeBackground !== undefined && changeBackground !== null) ?
                          (changeBackground === true ?
-                             'background_free_profile'
+                             ''
                              : 'background_com_profile')
-                : ""}>
+                : ""} style={(changeBackground !== undefined && changeBackground !== null) ?
+                (changeBackground === true ?
+                    {backgroundImage: 'url(' + bgURL + ')'}
+                    : null)
+                : null}>
                 <div id="maincontent">
                     {content()}
                 </div>
