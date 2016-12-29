@@ -39,7 +39,7 @@ export default function() {
           let errorString = '';
           if (!code[0]) {
             errorString = 'The invitation code is not exist';
-          } else if (code.usage === 0) {
+          } else if (code[0].usage === 0) {
             errorString = 'The invitaiton code is expired';
           }
           if (errorString.length !== 0) {

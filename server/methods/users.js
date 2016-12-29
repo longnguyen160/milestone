@@ -29,12 +29,19 @@ export default function () {
         }
         //Add user freelancer
         else {
-            user.username = option.username,
+            user.username = option.username;
             user.firstName = option.firstName;
             user.lastName = option.lastName;
             user.roles = option.roles;
             user.invitationCode = option.invitationCode;
-            user.status = 'not available';
+            user.availability = {};
+            user.availability.status = 'not available';
+            user.availability.date = '';
+
+            // {
+            //   status: 'not available',
+            //   date: ''
+            // }
         }
         return user
     });
@@ -73,26 +80,28 @@ export default function () {
     //Create user freelancer
     Meteor.methods({
         'users.createUserFreelancer' (firstName, lastName, email, password, invitationCode) {
-
+          console.log('abc');
             check([firstName, lastName, email, password, invitationCode], [String]);
-            let userName = firstName + lastName;
+            let username = firstName + lastName;
             let i = 1;
-            while (Accounts.findUserByEmail(email)) {
-              username = username + i;
-              i++;
+            while (Accounts.findUserByUsername(username)) {
+                username = username + i;
+                i++;
             }
-            console.log(username);
+
             //Call create user method
             Accounts.createUser({
+                username:username,
                 email: email,
                 password: password,
                 firstName: firstName,
                 lastName: lastName,
                 roles: 'freelancer',
-                invitationCode: invitationCode
+                invitationCode: invitationCode,
             });
-            // if admin accept apply without invitationCode
+            console.log('hello');
             if (invitationCode.length !== 0) {
+              console.log(invitationCode);
               let code = InvitationCode.find({code: invitationCode}).fetch();
               InvitationCode.update({code: invitationCode}, {$set: {usage: code[0].usage - 1}});
 
@@ -104,6 +113,7 @@ export default function () {
                 'Your password: '+password+'</br>');
 
             }
+            console.log("ABASDFASDFADSF");
             Meteor.call('sendVerifyEmail',email);
         }
     });
