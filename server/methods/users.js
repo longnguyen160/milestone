@@ -80,8 +80,8 @@ export default function () {
           console.log('abc');
             check([firstName, lastName, email, password, invitationCode], [String]);
             let username = firstName + lastName;
-            username = username.toLowerCase();
             username.replace(/\s/g,'');
+            username = username.toLowerCase();
             let i = 1;
             while (Accounts.findUserByUsername(username)) {
                 username = username + i;

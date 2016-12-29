@@ -55,8 +55,8 @@ class CompanyRegister extends React.Component {
                         {!error[4] ? null : error[4] != true ? <p className="error-msg">{error[4]}</p> : null}
                   </div>
                   <div className="checkbox">
-                    {error[5] === true ? <label><input disabled={error[7]} checked onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/">terms of service</a></label>
-                  : <label><input onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/">terms of service</a></label>}
+                    {error[5] === true ? <label><input disabled={error[7]} checked onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/tos">terms of service</a></label>
+                  : <label><input onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/tos">terms of service</a></label>}
 
                 </div>
                   <div className="text-center">
