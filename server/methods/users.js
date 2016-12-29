@@ -57,7 +57,8 @@ export default function () {
 
             check([firstName, lastName, company, email, password], [String]);
             let username = firstName + lastName;
-            username.toLowerCase() = username.replace(/\s/g,'');
+            username = username.replace(/\s/g,'');
+            username = username.toLowerCase();
             let i = 1;
 
             while (Accounts.findUserByUsername(username)) {
@@ -83,8 +84,9 @@ export default function () {
         'users.createUserFreelancer' (firstName, lastName, email, password, invitationCode) {
           console.log('abc');
             check([firstName, lastName, email, password, invitationCode], [String]);
-            let username.toLowerCase() = firstName + lastName;
+            let username = firstName + lastName;
             username.replace(/\s/g,'');
+            username = username.toLowerCase();
             let i = 1;
             while (Accounts.findUserByUsername(username)) {
                 username = username + i;

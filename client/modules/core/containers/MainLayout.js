@@ -8,7 +8,7 @@ export const composer = ({context, clearErrors}, onData) => {
 
     let role = null;
     let u = null;
-    console.log(Meteor.userId());
+    //console.log(Meteor.userId());
     if(Meteor.subscribe('user.single', Meteor.userId()).ready()){
         u = Meteor.user().roles;
     } else {

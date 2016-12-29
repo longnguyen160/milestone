@@ -52,3 +52,9 @@
 #avatar_user {
   margin-top: 1em;
 }
+
+@media screen and (max-width: 800px) {
+  #uprofile_container {
+    width: 45%; 
+  }
+}

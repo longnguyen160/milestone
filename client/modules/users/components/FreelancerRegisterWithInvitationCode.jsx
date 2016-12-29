@@ -71,8 +71,8 @@ class FreelancerRegisterWithInvitationCode extends React.Component {
                   </div>
                   <div className="checkbox">
                     {error[4] === true
-                      ? <label><input ref="checkbox" disabled={error[6]} checked onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/">terms of service</a></label>
-                      : <label><input ref="checkbox" disabled={error[6]} onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/">terms of service</a></label>}
+                      ? <label><input ref="checkbox" disabled={error[6]} checked onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/tos">terms of service</a></label>
+                      : <label><input ref="checkbox" disabled={error[6]} onChange={this.checkCheckedBox.bind(this)} ref="checkbox" type="checkbox" /> I agree to the <a href="/tos">terms of service</a></label>}
                   </div>
                   <div className="text-center">
                     { error[6] ?  <div className="input-group">

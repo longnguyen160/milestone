@@ -7,6 +7,7 @@ export default function () {
         try {
             check(userId, String)
         } catch(err) {
+            console.log('user.single - users.js publications');
             return;
         }
         return Meteor.users.find(userId);
@@ -19,6 +20,18 @@ export default function () {
 
     Meteor.publish("img.single", function() {
         return Image.find();
+    });
+
+    Meteor.publish("username.find", function(username) {
+        try {
+            check(username, String)
+        } catch(err) {
+            console.log('username.find - users.js publications');
+            return;
+        }
+        console.log(Meteor.users.find({username}).fetch());
+        return Meteor.users.find({username});
+
     });
 
 }
