@@ -15,7 +15,6 @@ class FreelancerProfile extends React.Component {
                     <div className="row well">
                         <div className="card card-block text-xs-center">
                             <h4 className="card-title">Are you available?</h4>
-                            <br/>
                             <Switch/>
                             <br/>
                             <a href="#">Seen</a>
@@ -35,7 +34,6 @@ class FreelancerProfile extends React.Component {
                     <br/>
                     <div className="row well">
                         <h4>Background image</h4>
-                        <img src={this.state.bgthumnail} alt="avatar"/>
                         <form>
                             <div className="form-group">
                                 <input type="file" id="exampleInputFile"/>
