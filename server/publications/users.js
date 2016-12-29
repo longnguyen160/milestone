@@ -3,7 +3,9 @@ import {check} from 'meteor/check';
 import {Image} from '/lib/collections';
 
 export default function () {
-    Meteor.publish("user.single", function(userId) {
+
+    Meteor.publish(
+      "user.single", function(userId) {
         try {
             check(userId, String)
         } catch(err) {
@@ -14,15 +16,18 @@ export default function () {
 
     });
 
-    Meteor.publish("users.single", function() {
+    Meteor.publish(
+      "users.single", function() {
         return Meteor.users.find();
     });
 
-    Meteor.publish("img.single", function() {
+    Meteor.publish(
+      "img.single", function() {
         return Image.find();
     });
 
-    Meteor.publish("username.find", function(username) {
+    Meteor.publish(
+      "username.find", function(username) {
         try {
             check(username, String)
         } catch(err) {

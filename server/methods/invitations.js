@@ -4,12 +4,12 @@ import {check} from 'meteor/check';
 import {Random} from 'meteor/random'
 
 export default function() {
-    Meteor.methods({'invitation.generate'(count, usage) {
-            check(usage, Match.Any);
-            check(count,Match.Any);
-            count = parseInt(count);
-            usage = parseInt(usage);
+    Meteor.methods({
+      'invitation.generate'(count, usage) {
+
+            check([usage,count], [Match.Any]);
             const date = new Date();
+
             for (let i = 0; i < count; i++) {
               const code = Random.id(5).toUpperCase();
               const dup = InvitationCode.find({code:code}).fetch();
@@ -32,10 +32,13 @@ export default function() {
             }
             return date.valueOf();
         }
-    });
-    Meteor.methods({'invitation.checkInvitationCode'(invitationCode){
+    },
+    {
+      'invitation.checkInvitationCode'(invitationCode){
+
           check(invitationCode,String);
           const code = InvitationCode.find({code:invitationCode}).fetch();
+
           let errorString = '';
           if (!code[0]) {
             errorString = 'The invitation code is not exist';
@@ -45,5 +48,7 @@ export default function() {
           if (errorString.length !== 0) {
             throw new  Meteor.Error('InvitationError', errorString);
           }
-    }});
+
+    }}
+  );
 }

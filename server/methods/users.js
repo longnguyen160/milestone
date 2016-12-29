@@ -77,11 +77,12 @@ export default function () {
     //Create user freelancer
     Meteor.methods({
         'users.createUserFreelancer' (firstName, lastName, email, password, invitationCode) {
-          console.log('abc');
+
             check([firstName, lastName, email, password, invitationCode], [String]);
             let username = firstName + lastName;
             username.replace(/\s/g,'');
             username = username.toLowerCase();
+
             let i = 1;
             while (Accounts.findUserByUsername(username)) {
                 username = username + i;
@@ -98,7 +99,7 @@ export default function () {
                 roles: 'freelancer',
                 invitationCode: invitationCode,
             });
-            console.log('hello');
+
             if (invitationCode.length !== 0) {
               console.log(invitationCode);
               let code = InvitationCode.find({code: invitationCode}).fetch();
@@ -193,6 +194,7 @@ export default function () {
 
     Meteor.methods({
         'users.deleteIMG'(userId) {
+
             check(userId, String);
             if (Meteor.subscribe("img.single").ready()) {
                 const img = Image.find({userId: userId}).fetch();
