@@ -76,6 +76,12 @@ export default function () {
             if (invitationCode.length !== 0) {
               let code = InvitationCode.find({code: invitationCode}).fetch();
               InvitationCode.update({code: invitationCode}, {$set: {usage: code[0].usage - 1}});
+            } else {
+                Meteor.call('sendEmail',
+                email,'admin@zigvy.com',
+                'Welcome to Friendzone!', 'Welcome to Friendzone, '+firstName + ' ' + lastName + '</br>' +
+                'Your email: '+email+'</br>'+
+                'Your password: '+password+'</br>');
             }
             Meteor.call('sendVerifyEmail',email);
         }
