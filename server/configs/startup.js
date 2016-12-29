@@ -26,17 +26,26 @@ Meteor.startup(function() {
         SyncedCron.config({
         logger: MyLogger
     });
-
+    
     SyncedCron.add({
         name: 'Test Send Mail Scheduler',
         schedule: function(parser) {
             // parser is a later.parse object
             return parser.text('at 7:00am on the last day of the week');
+            //return parser.text('every 15 secs');
         },
         job: function() {
-            console.log("Hi there! I'm a scheduler!");
-            Meteor.call('sendEmail','a@a.com','b@b.com','Test Subject','Test text');
-            
+            console.log("Fetching users from database!");
+            let users = Accounts.users.find().fetch();
+            console.log("Sending Email");
+            for(let i = 0; i < users.length; i++) {
+                if(users[i].roles === 'freelancer')
+                    Meteor.call('sendEmail',
+                    users[i].emails[0].address,'admin@zigvy.com',
+                    'Confirm Application',
+                    'Nhin cai qq gi`');
+            }
+            console.log("Sending Email Completed")
         }
     });
     SyncedCron.start();

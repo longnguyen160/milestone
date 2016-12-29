@@ -10,8 +10,8 @@ class Login extends React.Component {
                     <h1>Welcome to SI</h1>
                     <div id="Card">
                         <form className="centerlize">
-                            { error ? <div className="alert alert-danger alert-dismissable nomargin">
-                                    <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            { error ? <div className="alert alert-danger  nomargin">
+                                    
                                     <strong>{error}!</strong>
                                 </div> : null
                             }
