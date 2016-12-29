@@ -18,6 +18,7 @@ class Update extends React.Component {
   }
 
   render() {
+    const {status} = this.props;
     return (
       <div id="mainLogin" className="text-center">
         <div id="container">
@@ -41,37 +42,46 @@ class Update extends React.Component {
                 <div className="text-center">
                     <button type="submit" className="btn btn-info"><b>Continue to your profile</b></button>
                 </div>*/}
-                <DatePicker inline
-                    selected={this.state.startDate}
-                    onChange={this.handleChange.bind(this)}
-                    className=""
-                />
-                <div className="input-group">
-                    <span className="input-group-addon greenpls"><i
-                        className="glyphicon glyphicon-ok colorpls"></i></span>
-                    <input id="greenpls" type="text" className="form-control colorpls" name="success"
-                           value="You are now listed as available" readOnly/>
+                {status === 'yes' 
+                ?
+                    <div className="input-group">
+                        <span className="input-group-addon greenpls"><i
+                            className="glyphicon glyphicon-ok colorpls"></i></span>
+                        <input id="greenpls" type="text" className="form-control colorpls" name="success"
+                            value="You are now listed as available" readOnly/>
 
-                </div>
-                <div className="input-group">
-                    <span className="input-group-addon redpls"><i
-                        className="glyphicon glyphicon-remove colorpls"></i></span>
-                    <input id="redpls" type="text" className="form-control colorpls" name="warning"
-                           value="You are now listed as not available" readOnly/>
+                    </div>
+                :
+                    status === 'no' 
+                        ?
+                            <div className="input-group">
+                                <span className="input-group-addon redpls"><i
+                                    className="glyphicon glyphicon-remove colorpls"></i></span>
+                                <input id="redpls" type="text" className="form-control colorpls" name="warning"
+                                    value="You are now listed as not available" readOnly/>        
+                            </div>
+                        :
+                        <span>
+                            <DatePicker inline
+                                selected={this.state.startDate}
+                                onChange={this.handleChange.bind(this)}
+                                className=""
+                            />
+                            <div className="input-group">
+                                <span className="input-group-addon orangepls"><i
+                                    className="glyphicon glyphicon-calendar colorpls"></i></span>
+                                <input id="orangepls" type="text" className="form-control colorpls" name="warning"
+                                    value={!this.state.error 
+                                                ? 'You will be available from '+ moment(this.state.startDate).format("MM.DD.YYYY")
+                                                : this.state.error}  readOnly/>
 
-                </div>
-                <div className="input-group">
-                    <span className="input-group-addon orangepls"><i
-                        className="glyphicon glyphicon-calendar colorpls"></i></span>
-                    <input id="orangepls" type="text" className="form-control colorpls" name="warning"
-                           value={!this.state.error 
-                                    ? 'You will be available from '+ moment(this.state.startDate).format("MM.DD.YYYY")
-                                    : this.state.error}  readOnly/>
-
-                </div>
+                            </div>
+                        </span>
+                }
                 <div className="text-center">
                     <button type="submit" className="btn btn-info"><b>Continue to your profile</b></button>
                 </div>
+                
             </div>
         </div>
     </div>

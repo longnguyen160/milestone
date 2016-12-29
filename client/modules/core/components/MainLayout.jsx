@@ -42,7 +42,7 @@ class Layout  extends React.Component {
     };
 
     reupdate(e) {
-        console.log("HI: " + this.props.role);
+        
         this.role = this.props.role;
     };
 

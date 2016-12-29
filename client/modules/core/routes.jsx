@@ -18,7 +18,7 @@ import FreelancerRegisterWithInvitationCode from '../users/containers/Freelancer
 
 import TOS from '../users/components/TOS.jsx';
 import Confirm from '../users/containers/Confirm.js';
-import Update from '../users/components/Update.jsx';
+import Update from '../users/containers/Update.js';
 
 import Selfcare from '../users/components/Selfcare.jsx';
 import AdminInvite from '../users/containers/AdminInvite.js';
@@ -82,7 +82,6 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 		name: 'account.signup',
 		action() {
 			if (Meteor.userId()) {
-				console.log(Meteor.userId());
 				return FlowRouter.go('/');
 			}
 			mount(MainLayoutCtx, {
@@ -198,11 +197,21 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/profile/:username', {
 		name: 'profile',
 		action({username}) {
+			if (!Meteor.userId()) {
+				return FlowRouter.go('/');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<Profile username={username}/>),
 				isNotShowFooter: true,
 				changeBackground: true
 			});
+		}
+	});
+
+	FlowRouter.route('/profile', {
+		name: 'profile_null',
+		action() {
+			return FlowRouter.go('/');
 		}
 	});
 
