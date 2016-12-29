@@ -16,7 +16,9 @@ export const composer = ({context, clearErrors}, onData) => {
         const userId = Meteor.userId();
         if (Meteor.subscribe('img.single').ready()) {
             img = Image.find({userId: userId}).fetch();
-            bgURL = img[0].bgimgURL;
+            if (img[0] !== undefined)
+                bgURL = img[0].bgimgURL;
+            else bgURL = '';
         }
 
     } else {
