@@ -8,12 +8,12 @@ function verifyEmail(email) {
     let user = Accounts.findUserByEmail(email);
     Accounts.sendVerificationEmail(user._id, email);
 
-};
+}
 
 function checkArgument(argument, patten) {
 
     return patten.test(argument);
-};
+}
 
 export default function () {
 
@@ -48,6 +48,46 @@ export default function () {
         }
     });
     Meteor.methods({
+        'users.editFreelancerProfile'(userId,
+                                      status,
+                                      info,
+                                      ExperienceInPosition,
+                                      details,
+                                      image) {
+            check(userId, String);
+            check(status, Boolean);
+            check(info, Object);
+            check(ExperienceInPosition, Object);
+            check(details, Object);
+            check(image, Object);
+            Meteor.users.update(userId, {
+                $set: {
+                    firstName: info.fname,
+                    lastName: info.lname,
+                    position: info.position,
+                    location: info.location,
+                    travel: info.travel,
+                    'availability.status': status,
+                    ExperienceInPosition: ExperienceInPosition,
+                    details: details
+                }
+            });
+            if (Meteor.subscribe("img.single").ready()) {
+                const img = Image.find({userId: userId}).fetch();
+                if (img[0] !== undefined)
+                    Image.update(img[0]._id, {$set: {imgURL: image.img, bgimgURL: image.bgimg}});
+                else {
+                    const addimg = {userId, image};
+                    Image.insert(addimg);
+                }
+            }
+        },
+
+        'users.updateIntroduce' (userId, introduce) {
+            check([userId, introduce], [String]);
+            Meteor.users.update(userId, {$set: {'details.introduce': introduce}});
+        },
+
         'users.createUserCompany' (firstName, lastName, company, email, password) {
 
             check([firstName, lastName, company, email, password], [String]);
@@ -70,10 +110,8 @@ export default function () {
                 company: company,
                 roles: 'company'
             });
-
             Meteor.call('sendVerifyEmail',email);
-        }
-    });
+        },
     //Create user freelancer
     Meteor.methods({
         'users.createUserFreelancer' (firstName, lastName, email, password, invitationCode,option) {
@@ -120,10 +158,8 @@ export default function () {
 
             }
             Meteor.call('sendVerifyEmail',email);
-        }
-    });
-    //Check validation
-    Meteor.methods({
+        },
+
         'users.checkValidation' (text, type) {
             check(text, String);
             check(type, String);
@@ -150,16 +186,12 @@ export default function () {
             if (errorString.length !== 0) {
                 throw new Meteor.Error('Error', errorString);
             }
-        }
-    });
+        },
 
-    Meteor.methods({
         'users.sendPassword'(email) {
             check(email, String);
-        }
-    });
+        },
 
-    Meteor.methods({
         'users.editCompanyProfile'(userId, fname, lname, company, companyURL, imgURL) {
             check(userId, String);
             check(fname, String);
@@ -184,10 +216,8 @@ export default function () {
                     Image.insert(image);
                 }
             }
-        }
-    });
+        },
 
-    Meteor.methods({
         'users.edit'(userId, email, password) {
             check(userId, String);
             check(email, String);
@@ -195,22 +225,18 @@ export default function () {
             Meteor.users.update(userId, {
                 $set: {email: email, password: password}
             });
-        }
-    });
+        },
 
-    Meteor.methods({
         'users.deleteIMG'(userId) {
 
             check(userId, String);
             if (Meteor.subscribe("img.single").ready()) {
                 const img = Image.find({userId: userId}).fetch();
                 if (img[0] !== undefined)
-                    Image.update(img[0]._id, {$set: {imgURL: ''}});
+                    Image.update(img[0]._id, {$set: {imgURL: '', bgimgURL: ''}});
             }
-        }
-    });
+        },
 
-    Meteor.methods({
         'users.editFreelancerProfile'(userId,fname,lname,position,location,experience,rate,link,travel,headline,introduce,skill,sector,img,bgimg) {
 
             check([userId,fname,lname,position,location,experience,rate,link,travel,headline,introduce,skill,sector,img,bgimg], [String]);
@@ -225,4 +251,5 @@ export default function () {
             });
         }
     });
+
 }

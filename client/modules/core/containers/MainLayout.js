@@ -1,5 +1,6 @@
 import MainLayout from '../components/MainLayout.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
+import {Image} from '/lib/collections';
 
 export const composer = ({context, clearErrors}, onData) => {
     const {Meteor} = context();
@@ -8,15 +9,24 @@ export const composer = ({context, clearErrors}, onData) => {
 
     let role = null;
     let u = null;
-    //console.log(Meteor.userId());
+    let img = null;
+    let bgURL = null;
     if(Meteor.subscribe('user.single', Meteor.userId()).ready()){
         u = Meteor.user().roles;
+        const userId = Meteor.userId();
+        if (Meteor.subscribe('img.single').ready()) {
+            img = Image.find({userId: userId}).fetch();
+            bgURL = img[0].bgimgURL;
+        }
+
     } else {
         console.log("Something went wrong!");
     }
     if(u != null)
         role = u != "admin";
-    onData(null, {role, foot});
+    if (img)
+        onData(null, {role, foot, bgURL});
+    else onData(null, {role, foot});
 
     return clearErrors;
 };
