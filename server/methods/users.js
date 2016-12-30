@@ -97,7 +97,8 @@ export default function () {
             let i = 1;
 
             while (Accounts.findUserByUsername(username)) {
-                username = username + i;
+              username = username.replace(/\d+/g,'');
+              username = username + i;
                 i++;
             }
 
@@ -125,6 +126,7 @@ export default function () {
 
             let i = 1;
             while (Accounts.findUserByUsername(username)) {
+                username = username.replace(/\d+/g,'');
                 username = username + i;
                 i++;
             }
@@ -141,7 +143,10 @@ export default function () {
             });
 
             if (invitationCode.length !== 0) {
+<<<<<<< HEAD
               
+=======
+>>>>>>> upstream/master
               let code = InvitationCode.find({code: invitationCode}).fetch();
               InvitationCode.update({code: invitationCode}, {$set: {usage: code[0].usage - 1}});
 
@@ -247,13 +252,15 @@ export default function () {
             });
         },
 
-        'users.deleteIMG'(userId) {
-
+        'users.deleteIMG'(userId, i) {
             check(userId, String);
             if (Meteor.subscribe("img.single").ready()) {
                 const img = Image.find({userId: userId}).fetch();
-                if (img[0] !== undefined)
-                    Image.update(img[0]._id, {$set: {imgURL: '', bgimgURL: ''}});
+                if (img[0] !== undefined) {
+                    if (i == 1)
+                        Image.update(img[0]._id, {$set: {imgURL: ''}});
+                    else Image.update(img[0]._id, {$set: {bgimgURL: ''}});
+                }
             }
         }
     });

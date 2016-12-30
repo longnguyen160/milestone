@@ -1,5 +1,6 @@
 import UserProfile from '../components/UserProfile.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
+import {Image} from '/lib/collections';
 
 export const composer = ({context, username, clearErrors}, onData) => {
 
@@ -8,22 +9,30 @@ export const composer = ({context, username, clearErrors}, onData) => {
     let name = null;
     let status = null;
     let date = null;
+    let img = null;
+    let imgURL = null;
     
     console.log("Username: " + username);
     if(Meteor.subscribe('username.find', username).ready()){
         u = Meteor.users.find({username:username}).fetch()[0];
-        if(u === null || u === undefined) {
-            onData(null, {});
-        } else {
-            availability = (u !== null || u !== undefined) && u.roles === 'freelancer';
-            name = u.firstName + " " + u.lastName;
-            status = u.availability.status;
-            date = u.availability.date;
-            onData(null, {availability, name, status, date, username});
+        const userId = Meteor.userId();
+        if (Meteor.subscribe('img.single').ready()) {
+            img = Image.find({userId: userId}).fetch();
+            if (img[0] !== undefined)
+                imgURL = img[0].imgURL;
+            else imgURL = '';
         }
     } else {
         console.log("Something went wrong UserProfile!");
-        onData(null, {});
+    }
+    if(u === null || u === undefined) {
+        onData(null, {imgURL});
+    } else {
+        availability = (u !== null || u !== undefined) && u.roles === 'freelancer';
+        name = u.firstName + " " + u.lastName;
+        status = u.availability.status;
+        date = u.availability.date;
+        onData(null, {availability, name, status, date, username, imgURL});
     }
     
     return clearErrors;

@@ -173,7 +173,9 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
         name: 'profile.update',
         action() {
             mount(MainLayoutCtx, {
-                content: () => (<ProfileEdit />)
+                content: () => (<ProfileEdit />),
+                isNotShowFooter: true,
+                changeBackground: true
             });
         }
     });

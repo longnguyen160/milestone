@@ -25,7 +25,7 @@ class FreelancerProfile extends React.Component {
                         <br/>
                         <div className="row well">
                             <h4>Profile image</h4>
-                            <img className="small-image" src={(this.state.thumnail == "" && img) ? img[0].imgURL : this.state.thumnail} alt="avatar"/>
+                            <img className="small-image" src={(this.state.thumnail == "" && img) ? img[0].imgURL : this.state.thumnail} alt="avatar" ref="img"/>
                             <form>
                                 <div className="form-group">
                                     <input type="file" id="exampleInputFile" onChange={this.onChangeFile}/>
@@ -81,7 +81,7 @@ class FreelancerProfile extends React.Component {
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" ref="travel" onChange={this.mark.bind(this)}
-                                                   checked={user ? (user.travel ? 'checked' : '') : null}/> Travel is possible
+                                                   checked={user ? (((this.state.travel == null && user.travel) || this.state.travel == true) ? 'checked' : '') : null}/> Travel is possible
                                         </label>
                                     </div>
                                 </form>
@@ -131,7 +131,7 @@ class FreelancerProfile extends React.Component {
                                               placeholder={user ? "" : "Introduce yourself in 300 characters"}
                                               ref="introduce" value={(this.state.value4 == '' && user) ? user.details.introduce : this.state.value4}
                                               onChange={this.onChangeText.bind(this)} maxLength="300"></textarea>
-                                    <p>{(this.state.count == 300 && user) ? this.state.count - user.details.introduce.length : this.state.count} characters left</p>
+                                    <p>{(this.state.count == 300 && (user && this.refs.introduce.value !== '')) ? this.state.count - user.details.introduce.length : this.state.count} characters left</p>
                                 </div>
                                 <div className="form-group">
                                     <select className="form-control" ref="skill">
@@ -168,6 +168,7 @@ class FreelancerProfile extends React.Component {
             value2: '',
             value3: '',
             value4: '',
+            travel: null,
             count: 300
         };
         this.onChangeFile = this.onChangeFile.bind(this);
@@ -175,7 +176,8 @@ class FreelancerProfile extends React.Component {
     }
 
     mark(e) {
-
+        const travel = this.refs.travel.checked;
+        this.setState({travel: travel});
     }
 
     delete(e) {
@@ -183,7 +185,7 @@ class FreelancerProfile extends React.Component {
         const {deleteIMG} = this.props;
         const userId = this.props.user._id;
         if (this.props.img[0].imgURL !== '')
-            deleteIMG(userId);
+            deleteIMG(userId, 1);
         this.setState({thumnail: ''})
     }
 
@@ -192,7 +194,7 @@ class FreelancerProfile extends React.Component {
         const {deleteIMG} = this.props;
         const userId = this.props.user._id;
         if (this.props.img[0].bgimgURL !== '')
-            deleteIMG(userId);
+            deleteIMG(userId, 2);
         this.setState({bgthumnail: ''})
     }
 
@@ -220,9 +222,6 @@ class FreelancerProfile extends React.Component {
         if (this.state.value4 == '' && introduce !== '')
             this.setState({value4: introduce});
         else this.setState({value4: event.target.value});
-        //const userId = this.props.user._id;
-        //const {updateIntroduce} = this.props;
-        //updateIntroduce(userId, introduce);
     }
 
     handleChange(e) {
@@ -258,11 +257,13 @@ class FreelancerProfile extends React.Component {
         const userId = this.props.user._id;
         const {editFreelancerProfile} = this.props;
         const {fname, lname, position, location, experience, rate, link, travel, headline, introduce, skill, sector} = this.refs;
-        let img = null;
+        let img = null, bgimg = null;
         if (this.state.thumnail == '')
             img = this.props.img[0].imgURL;
         else img = this.state.thumnail;
-        const bgimg = this.state.bgthumnail;
+        if (this.state.bgthumnail == '')
+            bgimg = this.props.img[0].bgimgURL;
+        else bgimg = this.state.bgthumnail;
         const status = this.refs.status.state.on;
         const info = {fname: fname.value, lname: lname.value, position: position.value, location: location.value, travel: travel.checked};
         const ExperienceInPosition = {experience: experience.value, rate: rate.value, link: link.value};

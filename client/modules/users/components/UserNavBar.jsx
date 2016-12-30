@@ -17,7 +17,7 @@ const UserNavBar = ({context} = () => null) => (
             </div>
             <div className="collapse navbar-collapse" id="collapse-me">
                 <ul className="nav navbar-nav">
-                    <li><a href="#">My Profile</a></li>
+                    <li><a href="/profile/">My Profile</a></li>
                     <li><a href="#">Invite</a></li>
                 </ul>
                 <ul className="nav navbar-nav navbar-right">

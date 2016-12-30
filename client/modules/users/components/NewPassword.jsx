@@ -13,7 +13,6 @@ class NewPassword extends React.Component {
 
                             <label>New Password</label>
                             { error ? <div className="alert alert-danger alert-dismissable nomargin">
-                                    <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
                                     <strong>{error}!</strong>
                                 </div> : null
                             }
