@@ -8,6 +8,7 @@ class CompanyRegister extends React.Component {
     const {error} = this.props;
     return (
       <div id="mainLogin" className="text-center">
+      <title>Company Registration</title>
       <div id="container">
           <h1>Sample text</h1>
           <div id="information" className="go-left">

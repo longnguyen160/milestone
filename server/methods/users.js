@@ -227,8 +227,27 @@ export default function () {
             });
         },
 
-        'users.deleteIMG'(userId, i) {
+        'users.updateApplyToken'(userId, expired, status, date) {
+            try {
+                check(userId, String);
+                check(expired, Boolean);
+                check(status, String);
+                check(date, String);
+            } catch(err) {
+                console.log('userId is logged out!');
+            }
+            Meteor.users.update(userId, {
+                $set: {
+                    'applytoken.expired': expired, 
+                    'applytoken.status': status,
+                    'availability.date': date,
+                    'availability.status': status === 'yes' ? 'available' :
+                    status === 'no' ? 'not available' : 'soon'               
+                }
+            });
+        },
 
+        'users.deleteIMG'(userId, i) {
             check(userId, String);
             if (Meteor.subscribe("img.single").ready()) {
                 const img = Image.find({userId: userId}).fetch();

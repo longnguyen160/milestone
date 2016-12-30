@@ -4,6 +4,7 @@ require("./css/signup.css");
 
 const Selfcare = ({context} = () => null) => (
     <div id="mainLogin" className="text-center">
+    <title>Selfcare</title>
     <div id="container">
         <div className="Card">
             <form className="centerlize">

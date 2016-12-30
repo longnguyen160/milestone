@@ -34,7 +34,7 @@ export default function () {
             console.log('username.find - users.js publications');
             return;
         }
-        console.log(Meteor.users.find({username}).fetch());
+        
         return Meteor.users.find({username});
 
     });

@@ -9,6 +9,7 @@ class UserProfile extends React.Component {
 
         return (        
             <div id="uprofile_container">
+            <title>Profile</title>
                 <div id="uprofile">
                     <div id="avatar_user" className="flex_center">
                         <img className="img-responsive img-circle" src={imgURL} alt=""/>
