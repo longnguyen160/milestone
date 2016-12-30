@@ -1,12 +1,17 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {render}  from 'react-dom';
 import Switch from 'react-toggle-switch';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 // require("./css/toggle.css");
 require("./css/style.css");
 import "/node_modules/react-toggle-switch/dist/css/switch.min.css"
 
 class FreelancerProfile extends React.Component {
+
     render() {
         const {user, img, error} = this.props;
         return (
@@ -21,6 +26,10 @@ class FreelancerProfile extends React.Component {
                                     {user ? (user.availability.status ? <Switch ref="status" on/> : <Switch ref="status" off/>) : <Switch ref="status" off/>}
                                     <br/>
                                     <a id="soon" href="#">Soon</a>
+                                    <DatePicker
+                                        selected={this.state.startDate}
+                                        onChange={this.handleChange.bind(this)}
+                                    />
                                 </span>
                             </div>
                         </div>
@@ -171,11 +180,16 @@ class FreelancerProfile extends React.Component {
             value3: '',
             value4: '',
             travel: null,
-            count: 300
+            count: 300  
         };
         this.onChangeFile = this.onChangeFile.bind(this);
         this.onChangeFileBG = this.onChangeFileBG.bind(this);
+        this.state = {
+            startDate: moment()
+        };
     }
+
+    
 
     mark(e) {
         const travel = this.refs.travel.checked;
@@ -272,6 +286,11 @@ class FreelancerProfile extends React.Component {
         const details = {headline: headline.value, introduce: introduce.value, skill: skill.value, sector: sector.value};
         const image = {img, bgimg};
         editFreelancerProfile(userId, status, info, ExperienceInPosition, details, image);
+    }
+    handleChange(date) {
+        this.setState({
+            startDate: date
+        });
     }
 }
 export default FreelancerProfile;
