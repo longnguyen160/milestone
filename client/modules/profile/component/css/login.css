@@ -17,6 +17,13 @@
     background: #F4F7F9;
 }
 
+#toogle-me {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .Card {
     padding: 1em;
     display: flex;
