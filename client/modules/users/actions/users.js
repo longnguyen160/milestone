@@ -3,7 +3,9 @@ import {Random} from 'meteor/random';
 export default {
 
     sendPassword({Meteor, LocalState, FlowRouter}, email) {
-
+      if (Meteor.user()) {
+        return FlowRouter.go('/');
+      }
         if (!email) {
             LocalState.set('SUCCESS', null);
             return LocalState.set('EMAIL_ERROR', 'Email is required!');
@@ -37,6 +39,9 @@ export default {
 
 
     resetPassword({Meteor, LocalState, FlowRouter}, password, repassword, token) {
+      if (Meteor.user()) {
+        return FlowRouter.go('/');
+      }
         if(!password || !repassword) {
             LocalState.set('SUCCESS', null);
             return LocalState.set('PASSWORD_ERROR','Please fill in all the required fields!');
@@ -58,7 +63,9 @@ export default {
 
     //Login fuction with email  and password
     login({Meteor, LocalState, FlowRouter}, email, password) {
-
+        if (Meteor.user()) {
+          return FlowRouter.go('/');
+        }
         if (!email) {
 
             return LocalState.set('LOGIN_USER_ERROR', 'Email is required');
@@ -79,6 +86,9 @@ export default {
     },
 
     editCompanyProfile({Meteor, LocalState, FlowRouter}, userId, fname, lname, company, companyURL, imgURL) {
+      if (!Meteor.user()) {
+        return FlowRouter.go('/');
+      }
         Meteor.call('users.editCompanyProfile', userId, fname, lname, company, companyURL, imgURL, (err) => {
             if (err)
                 return LocalState.set("SAVING_ERROR");
@@ -87,6 +97,10 @@ export default {
     },
 
     editFreelancerProfile({Meteor, LocalState, FlowRouter}, userId, status, info, ExperienceInPosition, details, image) {
+      if (!Meteor.user()) {
+        Bert.alert("<b>You don't have permission to view this page!</b>", 'danger');
+        return FlowRouter.go('/');
+      }
         Meteor.call('users.editFreelancerProfile', userId, status, info, ExperienceInPosition, details, image, (err) => {
             if (err)
                 return LocalState.set("SAVING_ERROR");
@@ -94,15 +108,35 @@ export default {
         FlowRouter.go("/profile/edit");
     },
 
+    updateApplyToken({Meteor, LocalState, FlowRouter}, userId, expired, status, date) {
+        Meteor.call('users.updateApplyToken', userId, expired, status, date, (err) => {
+           if (err)
+               return LocalState.set("UPDATE_ERROR");
+        });
+    },
+
     updateIntroduce({Meteor, LocalState, FlowRouter}, userId, introduce) {
+      if (!Meteor.user()) {
+        Bert.alert("<b>You don't have permission to view this page!</b>", 'danger');
+        return FlowRouter.go('/');
+      }
         Meteor.call('users.updateIntroduce', userId, introduce, (err) => {
            if (err)
                return LocalState.set("UPDATE_ERROR");
         });
     },
 
+<<<<<<< HEAD
     edit({Meteor, LocalState, FlowRouter}, userId, attribute, type) {
         Meteor.call('users.edit', userId, attribute, type, (err) => {
+=======
+    edit({Meteor, LocalState, FlowRouter}, userId, email, password) {
+      if (!Meteor.user()) {
+        Bert.alert("<b>You don't have permission to view this page!</b>", 'danger');
+        return FlowRouter.go('/');
+      }
+        Meteor.call('user.edit', userId, email, password, (err) => {
+>>>>>>> origin/master
             if (err)
                 return LocalState.set("SAVING_ERROR");
         });
@@ -127,6 +161,10 @@ export default {
     },
 
     deleteIMG({Meteor, LocalState, FlowRouter}, userId, i) {
+      if (!Meteor.user()) {
+        Bert.alert("<b>You don't have permission to view this page!</b>", 'danger');
+        return FlowRouter.go('/');
+      }
         Meteor.call('users.deleteIMG', userId, i, (err) => {
             if (err)
                 return LocalState.set("DELETE_ERROR");
@@ -169,11 +207,12 @@ export default {
               }
           });
         }
-
         LocalState.set(users_err[type][0], true);
-
     },
     createApplication({Meteor, LocalState, FlowRouter}, firstName, lastName, email, link, des) {
+      if (Meteor.user()) {
+        return FlowRouter.go('/');
+      }
         Meteor.call('applications.create', firstName, lastName, email, link, des);
         FlowRouter.go('/');
         Bert.alert('<b>Successful', 'success');
@@ -182,7 +221,6 @@ export default {
     },
 //Check validation code
     checkInvitationCode({Meteor, LocalState, FlowRouter}, invitationCode){
-
         if (!invitationCode) {
             return LocalState.set('INVITATIONCODE_ERROR', "Invitation code is required.");
         } else {
@@ -201,8 +239,10 @@ export default {
 
 //Create user company
     createUserCompany({Meteor,LocalState, FlowRouter}, firstName, lastName, company, email, password) {
-
-        Meteor.call('users.createUserCompany', firstName, lastName, company, email, password);
+      if (Meteor.user()) {
+        return FlowRouter.go('/');
+      }
+        Meteor.call('users.createUserCompany', {firstName, lastName, company, email, password});
         LocalState.set('SIGNUP_CONFIRM',true);
         Bert.alert('<b>You company account has been created! Please check your email to verify your account!', 'success');
         Meteor.setTimeout(function() {FlowRouter.go("/");}, 2500);
@@ -210,20 +250,25 @@ export default {
 
 //Create user freelancer
     createUserFreelancer({Meteor, LocalState, FlowRouter}, firstName, lastName, email, password,invitationCode) {
-
+      if (Meteor.user()) {
+        return FlowRouter.go('/');
+      }
         const invitaionCode = LocalState.get('INVITATIONCODE');
         LocalState.set('SIGNUP_CONFIRM',true);
         Meteor.call('invitation.checkInvitationCode',invitationCode,function(error) {
           if (error) {
             Bert.alert('<b>Your invitation code is not available!', 'danger');
+            LocalState.set('INVITATIONCODE',null);
             FlowRouter.go('/register/freelancer');
-
           }
-        })
-        Meteor.call('users.createUserFreelancer', firstName, lastName, email, password, invitaionCode);
-        LocalState.set('INVITATIONCODE',null);
-        Bert.alert('<b>You freelancer account has been created! Please check your email to verify your account!', 'success');
-        Meteor.setTimeout(function() {FlowRouter.go("/");}, 2500);
+          else {
+            Meteor.call('users.createUserFreelancer', {firstName, lastName, email, password, invitationCode});
+            LocalState.set('INVITATIONCODE',null);
+            Bert.alert('<b>You freelancer account has been created! Please check your email to verify your account!', 'success');
+            Meteor.setTimeout(function() {FlowRouter.go("/");}, 2500);
+          }
+        });
+
     },//end of create user freelancer
 
 //Clear errors
@@ -246,6 +291,10 @@ export default {
 
 //Generate code methods
   generateCode({LocalState}, count, usage) {
+    if (!Meteor.user() || Meteor.user().roles !== 'admin') {
+      Bert.alert("<b>You don't have permission to view this page!</b>", 'danger');
+      return FlowRouter.go('/');
+    }
     const patt = /^\d$/;
     if (!count || !patt.test(count) || count < 0) {
       count = 1;
@@ -263,12 +312,19 @@ export default {
     })
   },
     acceptApplications({LocalState},firstName,lastName,email,link,introduce) {
+      if (!Meteor.user() || Meteor.user().roles !== 'admin') {
+        Bert.alert("<b>You don't have permission to view this page!</b>", 'danger');
+        return FlowRouter.go('/');
+      }
       const password = Random.id(10);
-      Meteor.call('users.createUserFreelancer', firstName, lastName, email, password,'',{link: link, introduce:introduce});
+      Meteor.call('users.createUserFreelancer', {firstName, lastName, email, password,link,introduce, invitationCode:''});
       Meteor.call('applications.delete',email);
     },
     declineApplications({LocalState},email) {
-      console.log('abc');
+      if (!Meteor.user() || Meteor.user().roles !== 'admin') {
+        Bert.alert("<b>You don't have permission to view this page!</b>", 'danger');
+        return FlowRouter.go('/');
+      }
       Meteor.call('applications.delete',email);
     }
 };

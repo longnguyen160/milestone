@@ -31,14 +31,11 @@ export default function() {
               }
             }
             return date.valueOf();
-        }
-    },
-    {
+      },
       'invitation.checkInvitationCode'(invitationCode){
 
           check(invitationCode,String);
           const code = InvitationCode.find({code:invitationCode}).fetch();
-
           let errorString = '';
           if (!code[0]) {
             errorString = 'The invitation code is not exist';
@@ -49,6 +46,6 @@ export default function() {
             throw new  Meteor.Error('InvitationError', errorString);
           }
 
-    }}
-  );
+      }
+    });
 }

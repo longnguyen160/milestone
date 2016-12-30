@@ -88,43 +88,44 @@ export default function () {
             Meteor.users.update(userId, {$set: {'details.introduce': introduce}});
         },
 
-        'users.createUserCompany' (firstName, lastName, company, email, password) {
+        'users.createUserCompany' (option) {
 
-            check([firstName, lastName, company, email, password], [String]);
-            let username = firstName + lastName;
+            check(option, Object);
+            let username = option.firstName + option.lastName;
             username = username.replace(/\s/g,'');
             username = username.toLowerCase();
             let i = 1;
 
             while (Accounts.findUserByUsername(username)) {
-                username = username + i;
+              username = username.replace(/\d+/g,'');
+              username = username + i;
                 i++;
             }
 
             Accounts.createUser({
                 username:username,
-                email: email,
-                password: password,
-                firstName: firstName,
-                lastName: lastName,
-                company: company,
+                email: option.email,
+                password: option.password,
+                firstName: option.firstName,
+                lastName: option.lastName,
+                company: option.company,
                 roles: 'company'
             });
-            Meteor.call('sendVerifyEmail',email);
+            Meteor.call('sendVerifyEmail',option.email);
         },
     //Create user freelancer
 
-        'users.createUserFreelancer' (firstName, lastName, email, password, invitationCode,option) {
+        'users.createUserFreelancer' (option) {
 
-            check([firstName, lastName, email, password, invitationCode], [String]);
-            check(option, Match.Any);
+            check(option, Object);
 
-            let username = firstName + lastName;
-            username.replace(/\s/g,'');
+            let username = option.firstName + option.lastName;
+            username = username.replace(/\s/g,'');
             username = username.toLowerCase();
 
             let i = 1;
             while (Accounts.findUserByUsername(username)) {
+                username = username.replace(/\d+/g,'');
                 username = username + i;
                 i++;
             }
@@ -132,18 +133,17 @@ export default function () {
             //Call create user method
             Accounts.createUser({
                 username:username,
-                email: email,
-                password: password,
-                firstName: firstName,
-                lastName: lastName,
+                email: option.email,
+                password: option.password,
+                firstName: option.firstName,
+                lastName: option.lastName,
                 roles: 'freelancer',
-                invitationCode: invitationCode,
+                invitationCode: option.invitationCode,
             });
 
-            if (invitationCode.length !== 0) {
-              console.log(invitationCode);
-              let code = InvitationCode.find({code: invitationCode}).fetch();
-              InvitationCode.update({code: invitationCode}, {$set: {usage: code[0].usage - 1}});
+            if (option.invitationCode.length !== 0) {
+              let code = InvitationCode.find({code: option.invitationCode}).fetch();
+              InvitationCode.update({code: option.invitationCode}, {$set: {usage: code[0].usage - 1}});
 
             } else {
               Meteor.users.update({username:username},{$set: {
@@ -151,13 +151,13 @@ export default function () {
                 details: {introduce: option.introduce}
               }});
                 Meteor.call('sendEmail',
-                email,'admin@zigvy.com',
-                'Welcome to Friendzone!', 'Welcome to Friendzone, '+firstName + ' ' + lastName + '</br>' +
-                'Your email: '+email+'</br>'+
-                'Your password: '+password+'</br>');
+                option.email,'admin@zigvy.com',
+                'Welcome to Friendzone!', 'Welcome to Friendzone, ' + option.firstName + ' ' + option.lastName + '</br>' +
+                'Your email: '+ option.email +'</br>'+
+                'Your password: '+ option.password +'</br>');
 
             }
-            Meteor.call('sendVerifyEmail',email);
+            Meteor.call('sendVerifyEmail',option.email);
         },
 
         'users.checkAvailable' (user, password) {
@@ -236,8 +236,27 @@ export default function () {
             else Accounts.setPassword(userId, attribute);
         },
 
-        'users.deleteIMG'(userId, i) {
+        'users.updateApplyToken'(userId, expired, status, date) {
+            try {
+                check(userId, String);
+                check(expired, Boolean);
+                check(status, String);
+                check(date, String);
+            } catch(err) {
+                console.log('userId is logged out!');
+            }
+            Meteor.users.update(userId, {
+                $set: {
+                    'applytoken.expired': expired, 
+                    'applytoken.status': status,
+                    'availability.date': date,
+                    'availability.status': status === 'yes' ? 'available' :
+                    status === 'no' ? 'not available' : 'soon'               
+                }
+            });
+        },
 
+        'users.deleteIMG'(userId, i) {
             check(userId, String);
             if (Meteor.subscribe("img.single").ready()) {
                 const img = Image.find({userId: userId}).fetch();

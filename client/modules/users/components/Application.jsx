@@ -6,6 +6,7 @@ class Application extends React.Component {
       const {apply} = this.props;
       return (
           <div className="panel panel-default">
+          <title>Admin Panel - Application</title>
               <div className="panel-heading">
                   <div className="panel-title">
                       <div className="container-fluid">

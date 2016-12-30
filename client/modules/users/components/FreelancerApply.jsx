@@ -8,6 +8,7 @@ class FreelancerApply extends React.Component {
     const {error} = this.props;
     return (
       <div id="mainLogin" className="text-center">
+      <title>Freelancer Registration</title>
           <div id="container">
               <h1>No invite code?</h1>
 

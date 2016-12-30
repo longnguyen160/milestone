@@ -6,6 +6,7 @@ class NewPassword extends React.Component {
         const {error} = this.props;
         return (
             <div id="mainLogin" className="text-center">
+            <title>Password Recovery</title>
                 <div className="container">
                     <h1>Recovery New Password</h1>
                     <div id="Card">
@@ -13,7 +14,6 @@ class NewPassword extends React.Component {
 
                             <label>New Password</label>
                             { error ? <div className="alert alert-danger alert-dismissable nomargin">
-                                    <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
                                     <strong>{error}!</strong>
                                 </div> : null
                             }

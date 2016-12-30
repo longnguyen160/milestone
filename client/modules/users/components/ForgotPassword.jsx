@@ -6,21 +6,21 @@ class ForgotPassword extends React.Component {
     const {error, success, role, emails} = this.props;
     return (
         <div id="mainLogin" className="text-center" onLoad={this.reupdate.bind(this)}>
+        <title>Forgot Password</title>
             <div id="container">
                 <h1>Password Recover</h1>
                 <div id="Card">
                 <form className="centerlize">
                 {error ?
                     <div className="alert alert-danger nomargin">
-                        
                         <strong>{error}</strong>
                     </div>
                 : null}
                     <div className="input-group">
                         <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
-                        {emails ? 
+                        {emails ?
                         <input id="email" type="text" className="form-control" name="email" placeholder="Email" ref="email"
-                        value={emails} disabled/> 
+                        value={emails} disabled/>
                         : <input id="email" type="text" className="form-control" name="email" placeholder="Email" ref="email"
                         />
                         }
@@ -28,8 +28,8 @@ class ForgotPassword extends React.Component {
                     {success  ?
                     <div className="input-group">
                         <span className="input-group-addon greenpls"><i className="glyphicon glyphicon-ok colorpls"></i></span>
-                        <input id="greenpls" type="text" className="form-control colorpls" name="success" value='Reset password link has been sent' disabled/> 
-                    </div>    
+                        <input id="greenpls" type="text" className="form-control colorpls" name="success" value='Reset password link has been sent' disabled/>
+                    </div>
                     :
                     <div className="text-center">
                         <button type="button" className={success ? "btn btn-success btn-md": "btn btn-info btn-md"}

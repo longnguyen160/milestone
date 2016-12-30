@@ -8,6 +8,7 @@ class FreelancerRegisterWithInvitationCode extends React.Component {
 
     return (
       <div id="mainLogin" className="text-center">
+      <title>Freelancer Registration</title>
           <h1>Joining SI</h1>
           <div id="Card">
               <div id="container">

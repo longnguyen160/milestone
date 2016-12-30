@@ -8,14 +8,16 @@ export const composer = ({context, token, clearErrors}, onData) => {
     let u = null;
     let status = null;
     let error = null;
+    let username = null;
 
     if(Meteor.subscribe('user.single', Meteor.userId()).ready()){
         u = Meteor.user();
+        username = u.username;
         if(u !== null && u !== undefined) {
-            if(u.applytoken.expired) {
-                Bert.alert('<b>Your link has been expired!<br />We will send you another ones at Saturday!<b/>', 'danger');
-                FlowRouter.go("/");
-            } else {
+            
+            {
+                console.log("HEHEHEHE");
+                
                 if(token === u.applytoken.yes) {
                     status = 'yes';
                 } else if(token === u.applytoken.no) {
@@ -26,19 +28,24 @@ export const composer = ({context, token, clearErrors}, onData) => {
                     Bert.alert("<b>This link is not for you!<br />Try to login correct account!<b/>", 'danger');
                     FlowRouter.go("/");
                 }
+                if(status !== null) {
+                    console.log("Here: " + status);
+                    Meteor.call('users.updateApplyToken',Meteor.userId(), true, status);
+                }
                 //Meteor.users.update({_id: Meteor.userId()}, {$set: {'applytoken.expired': true}});
             }
         } else {
            console.log("Something wrong in Update.js"); 
         }
     } 
-    onData(null, {status});
+    
+    onData(null, {status, username});
     return clearErrors;
 };
 
 export const depsMapper = (context, actions) => ({
     clearErrors: actions.users.clearErrors,
-    
+    updateToken: actions.users.updateApplyToken,
     context: () => context
 });
 

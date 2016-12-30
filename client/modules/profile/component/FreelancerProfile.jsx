@@ -14,12 +14,14 @@ class FreelancerProfile extends React.Component {
                 <div className="row">
                     <div className="col-md-3">
                         <div className="row well">
-                            <div className="card card-block text-xs-center">
-                                <h4 className="card-title">Are you available?</h4>
+                            <div className="Card card-block text-xs-center" style={{width: '100%'}}>
+                                <h4 className="card-title text-center">Are you available?</h4>
                                 <br/>
-                                {user ? (user.availability.status ? <Switch ref="status" on/> : <Switch ref="status" off/>) : <Switch ref="status" off/>}
-                                <br/>
-                                <a href="#">Soon</a>
+                                <span id="toogle-me">
+                                    {user ? (user.availability.status ? <Switch ref="status" on/> : <Switch ref="status" off/>) : <Switch ref="status" off/>}
+                                    <br/>
+                                    <a id="soon" href="#">Soon</a>
+                                </span>
                             </div>
                         </div>
                         <br/>
@@ -78,7 +80,7 @@ class FreelancerProfile extends React.Component {
                                         </select>
                                     </div>
 
-                                    <div class="checkbox">
+                                    <div className="checkbox">
                                         <label>
                                             <input type="checkbox" ref="travel" onChange={this.mark.bind(this)}
                                                    checked={user ? (((this.state.travel == null && user.travel) || this.state.travel == true) ? 'checked' : '') : null}/> Travel is possible
@@ -259,7 +261,7 @@ class FreelancerProfile extends React.Component {
         const {fname, lname, position, location, experience, rate, link, travel, headline, introduce, skill, sector} = this.refs;
         let img = null, bgimg = null;
         if (this.state.thumnail == '')
-            img = this.props.img[0].imgURL;
+            img = this.props.img[0].imgURL;//
         else img = this.state.thumnail;
         if (this.state.bgthumnail == '')
             bgimg = this.props.img[0].bgimgURL;
