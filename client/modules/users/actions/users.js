@@ -171,7 +171,6 @@ export default {
     },
 //Check validation code
     checkInvitationCode({Meteor, LocalState, FlowRouter}, invitationCode){
-      console.log('hello');
         if (!invitationCode) {
             return LocalState.set('INVITATIONCODE_ERROR', "Invitation code is required.");
         } else {
@@ -191,7 +190,7 @@ export default {
 //Create user company
     createUserCompany({Meteor,LocalState, FlowRouter}, firstName, lastName, company, email, password) {
 
-        Meteor.call('users.createUserCompany', firstName, lastName, company, email, password);
+        Meteor.call('users.createUserCompany', {firstName, lastName, company, email, password});
         LocalState.set('SIGNUP_CONFIRM',true);
         Bert.alert('<b>You company account has been created! Please check your email to verify your account!', 'success');
         Meteor.setTimeout(function() {FlowRouter.go("/");}, 2500);
@@ -209,7 +208,7 @@ export default {
             FlowRouter.go('/register/freelancer');
           }
           else {
-            Meteor.call('users.createUserFreelancer', firstName, lastName, email, password, invitaionCode);
+            Meteor.call('users.createUserFreelancer', {firstName, lastName, email, password, invitationCode});
             LocalState.set('INVITATIONCODE',null);
             Bert.alert('<b>You freelancer account has been created! Please check your email to verify your account!', 'success');
             Meteor.setTimeout(function() {FlowRouter.go("/");}, 2500);
@@ -256,11 +255,10 @@ export default {
   },
     acceptApplications({LocalState},firstName,lastName,email,link,introduce) {
       const password = Random.id(10);
-      Meteor.call('users.createUserFreelancer', firstName, lastName, email, password,'',{link: link, introduce:introduce});
+      Meteor.call('users.createUserFreelancer', {firstName, lastName, email, password,link,introduce, invitationCode:''});
       Meteor.call('applications.delete',email);
     },
     declineApplications({LocalState},email) {
-      console.log('abc');
       Meteor.call('applications.delete',email);
     }
 };
