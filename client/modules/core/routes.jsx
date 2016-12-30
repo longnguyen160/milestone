@@ -17,6 +17,7 @@ import InvittationCode from '../users/containers/InvitationCode.js';
 import FreelancerRegisterWithInvitationCode from '../users/containers/FreelancerRegisterWithInvitationCode.js';
 
 import TOS from '../users/components/TOS.jsx';
+import NotFound from '../users/components/NotFound.jsx';
 import Confirm from '../users/containers/Confirm.js';
 import Update from '../users/containers/Update.js';
 
@@ -255,5 +256,20 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 			FlowRouter.go("/new-password/"+params.token);
 		}
 	});
+	FlowRouter.route('/404', {
+		name: 'page.notfound',
+		action() {
+			mount(MainLayoutCtx, {
+				content: () => (<NotFound />),
+			});
+		}
+	});
+
+	FlowRouter.notFound = {
+		name: 'notfound',
+		action: function() {
+			FlowRouter.go("page.notfound");
+		}
+	};
 
 }
