@@ -15,7 +15,7 @@ class FreelancerProfile extends React.Component {
                     <div className="col-md-3">
                         <div className="row well">
                             <div className="card card-block text-xs-center">
-                                <h4 className="card-title">Are you available?</h4>
+                                <h4 className="card-title text-center">Are you available?</h4>
                                 <br/>
                                 {user ? (user.availability.status ? <Switch ref="status" on/> : <Switch ref="status" off/>) : <Switch ref="status" off/>}
                                 <br/>
