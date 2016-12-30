@@ -141,7 +141,7 @@ export default function () {
             });
 
             if (invitationCode.length !== 0) {
-              console.log(invitationCode);
+              
               let code = InvitationCode.find({code: invitationCode}).fetch();
               InvitationCode.update({code: invitationCode}, {$set: {usage: code[0].usage - 1}});
 
@@ -224,6 +224,26 @@ export default function () {
             check(password, String);
             Meteor.users.update(userId, {
                 $set: {email: email, password: password}
+            });
+        },
+
+        'users.updateApplyToken'(userId, expired, status, date) {
+            try {
+                check(userId, String);
+                check(expired, Boolean);
+                check(status, String);
+                check(date, String);
+            } catch(err) {
+                console.log('userId is logged out!');
+            }
+            Meteor.users.update(userId, {
+                $set: {
+                    'applytoken.expired': expired, 
+                    'applytoken.status': status,
+                    'availability.date': date,
+                    'availability.status': status === 'yes' ? 'available' :
+                    status === 'no' ? 'not available' : 'soon'               
+                }
             });
         },
 

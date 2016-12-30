@@ -94,6 +94,13 @@ export default {
         FlowRouter.go("/profile/edit");
     },
 
+    updateApplyToken({Meteor, LocalState, FlowRouter}, userId, expired, status, date) {
+        Meteor.call('users.updateApplyToken', userId, expired, status, date, (err) => {
+           if (err)
+               return LocalState.set("UPDATE_ERROR");
+        });
+    },
+
     updateIntroduce({Meteor, LocalState, FlowRouter}, userId, introduce) {
         Meteor.call('users.updateIntroduce', userId, introduce, (err) => {
            if (err)
