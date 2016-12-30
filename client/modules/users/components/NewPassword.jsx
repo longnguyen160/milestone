@@ -6,6 +6,7 @@ class NewPassword extends React.Component {
         const {error} = this.props;
         return (
             <div id="mainLogin" className="text-center">
+            <title>Password Recovery</title>
                 <div className="container">
                     <h1>Recovery New Password</h1>
                     <div id="Card">

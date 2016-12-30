@@ -6,6 +6,7 @@ class ForgotPassword extends React.Component {
     const {error, success, role, emails} = this.props;
     return (
         <div id="mainLogin" className="text-center" onLoad={this.reupdate.bind(this)}>
+        <title>Forgot Password</title>
             <div id="container">
                 <h1>Password Recover</h1>
                 <div id="Card">

@@ -5,6 +5,7 @@ require("./css/confirm.css");
 
 const SignUp = ({context} = () => null) => (
     <div id="mainLogin" className="text-center">
+    <title>Registration</title>
         <h1>Sample text</h1>
         <div id="containers">
         <div id="information" className="go-left">

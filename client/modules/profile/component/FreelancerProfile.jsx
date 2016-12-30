@@ -78,7 +78,7 @@ class FreelancerProfile extends React.Component {
                                         </select>
                                     </div>
 
-                                    <div class="checkbox">
+                                    <div className="checkbox">
                                         <label>
                                             <input type="checkbox" ref="travel" onChange={this.mark.bind(this)}
                                                    checked={user ? (((this.state.travel == null && user.travel) || this.state.travel == true) ? 'checked' : '') : null}/> Travel is possible
@@ -259,7 +259,7 @@ class FreelancerProfile extends React.Component {
         const {fname, lname, position, location, experience, rate, link, travel, headline, introduce, skill, sector} = this.refs;
         let img = null, bgimg = null;
         if (this.state.thumnail == '')
-            img = this.props.img[0].imgURL;
+            img = this.props.img[0].imgURL;//
         else img = this.state.thumnail;
         if (this.state.bgthumnail == '')
             bgimg = this.props.img[0].bgimgURL;

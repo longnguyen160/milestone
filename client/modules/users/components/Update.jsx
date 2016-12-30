@@ -22,6 +22,7 @@ class Update extends React.Component {
     const {username} = this.props;
     return (
       <div id="mainLogin" className="text-center">
+      <title>Update Status</title>
         <div id="container">
             <div id="confirm">
                 <h1 id="morespace">{status === 'soon' ? 'Select a date you want to available' : 'Your status has been updated'}</h1> 

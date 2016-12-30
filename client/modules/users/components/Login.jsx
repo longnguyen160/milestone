@@ -6,6 +6,7 @@ class Login extends React.Component {
         const {error} = this.props;
         return (
             <div id="mainLogin" className="text-center">
+            <title>Login</title>
                 <div className="container">
                     <h1>Welcome to SI</h1>
                     <div id="Card">
