@@ -51,7 +51,7 @@ export default {
             return LocalState.set('PASSWORD_ERROR','Password did not match!');
         }
         Accounts.resetPassword(token, password, (error) => {
-            Bert.defaults.hideDelay = 5555;
+            //Bert.defaults.hideDelay = 5555;
             if ( error ) {
                 Bert.alert('<b>'+(error.reason === 'Token expired' ? "Your link has expired" : error.reason)+'</b>', 'danger');
             } else {
