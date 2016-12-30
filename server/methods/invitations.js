@@ -36,8 +36,6 @@ export default function() {
 
           check(invitationCode,String);
           const code = InvitationCode.find({code:invitationCode}).fetch();
-          console.log(invitationCode);
-          console.log(code);
           let errorString = '';
           if (!code[0]) {
             errorString = 'The invitation code is not exist';
