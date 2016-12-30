@@ -92,7 +92,7 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	});
 //Register freelancer with invitation code
 	FlowRouter.route('/register/freelancer', {
-        name: 'account.join',
+    name: 'account.join',
 		action() {
 			if (Meteor.userId()) {
 				return FlowRouter.go('/');
@@ -173,6 +173,9 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
     FlowRouter.route('/profile/edit', {
         name: 'profile.update',
         action() {
+					if (!Meteor.user()) {
+						return FlowRouter.go('/account/login');
+					}
             mount(MainLayoutCtx, {
                 content: () => (<ProfileEdit />),
                 isNotShowFooter: true,
@@ -184,6 +187,9 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/account/selfcare', {
 		name: 'account.selfcare',
 		action() {
+			if (!Meteor.user()) {
+				return FlowRouter.go('/account/login');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<Selfcare />)
 			});
