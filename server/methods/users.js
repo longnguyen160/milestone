@@ -97,7 +97,8 @@ export default function () {
             let i = 1;
 
             while (Accounts.findUserByUsername(username)) {
-                username = username + i;
+              username = username.replace(/\d+/g,'');
+              username = username + i;
                 i++;
             }
 
@@ -125,6 +126,7 @@ export default function () {
 
             let i = 1;
             while (Accounts.findUserByUsername(username)) {
+                username = username.replace(/\d+/g,'');
                 username = username + i;
                 i++;
             }
@@ -141,7 +143,6 @@ export default function () {
             });
 
             if (invitationCode.length !== 0) {
-              console.log('hello : ' + invitationCode);
               let code = InvitationCode.find({code: invitationCode}).fetch();
               InvitationCode.update({code: invitationCode}, {$set: {usage: code[0].usage - 1}});
 
