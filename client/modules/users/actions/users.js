@@ -126,15 +126,38 @@ export default {
         });
     },
 
+<<<<<<< HEAD
+    edit({Meteor, LocalState, FlowRouter}, userId, attribute, type) {
+        Meteor.call('users.edit', userId, attribute, type, (err) => {
+=======
     edit({Meteor, LocalState, FlowRouter}, userId, email, password) {
       if (!Meteor.user()) {
         Bert.alert("<b>You don't have permission to view this page!</b>", 'danger');
         return FlowRouter.go('/');
       }
         Meteor.call('user.edit', userId, email, password, (err) => {
+>>>>>>> origin/master
             if (err)
                 return LocalState.set("SAVING_ERROR");
         });
+        if (type == 'email')
+            return LocalState.set("CHANGE_EMAIL_SUCCESSFULLY", true);
+        else return LocalState.set("CHANGE_PASS_SUCCESSFULLY", true);
+    },
+
+    checkCoincidence({Meteor, LocalState, FlowRouter}, newPass, currentPass) {
+        if (currentPass == newPass || newPass.length == 0)
+            return LocalState.set("CHANGE_PASSWORD", "New password must not be the same as current password.");
+        return LocalState.set("CHANGE_PASSWORD", true);
+    },
+
+    checkAvailable({Meteor, LocalState, FlowRouter}, user, password) {
+        Meteor.call('users.checkAvailable', user, password, (err, result) => {
+            if (result)
+                return LocalState.set("CHECK_PASSWORD", true);
+            else return LocalState.set("CHECK_PASSWORD", "Password is not correct!");
+        })
+
     },
 
     deleteIMG({Meteor, LocalState, FlowRouter}, userId, i) {

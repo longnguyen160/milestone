@@ -8,8 +8,9 @@ class CompanyProfile extends React.Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-md-3 well">
-                        <h4>Company Logo</h4>
+                    <div className="col-md-3">
+                    <div className="well">
+                        <h4><dt>Company Logo</dt></h4>
                         <img src={(this.state.thumnail == "" && img) ? img[0].imgURL : this.state.thumnail} alt="avatar" className="small-image"/>
                         <form>
                             <div className="form-group">
@@ -18,8 +19,12 @@ class CompanyProfile extends React.Component {
                         </form>
                         <button type="button" className="btn btn-danger" onClick={this.delete.bind(this)}>Delete company logo</button>
                     </div>
-                    <div className="col-md-8 col-md-offset-1 well">
-                        <form>
+                    </div>
+                    
+                    <div className="col-md-9">
+                    <div className="well">
+                        <form className="center-block">
+                            <h4 className="text-left"><dt>Your basic information</dt></h4>
                             <div className="form-group">
                                 <input type="text" className="form-control" placeholder={user ? "" : "First name"}
                                        value={(this.state.value == '' && user) ? user.firstName : this.state.value}
@@ -45,6 +50,7 @@ class CompanyProfile extends React.Component {
                                 </button>
                             </div>
                         </form>
+                    </div>
                     </div>
                 </div>
             </div>

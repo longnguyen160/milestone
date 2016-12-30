@@ -21,7 +21,7 @@ import NotFound from '../users/components/NotFound.jsx';
 import Confirm from '../users/containers/Confirm.js';
 import Update from '../users/containers/Update.js';
 
-import Selfcare from '../users/components/Selfcare.jsx';
+import Selfcare from '../users/containers/Selfcare';
 import AdminInvite from '../users/containers/AdminInvite.js';
 
 import ProfileEdit from '../users/containers/ProfileEdit.js';
@@ -92,7 +92,7 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	});
 //Register freelancer with invitation code
 	FlowRouter.route('/register/freelancer', {
-        name: 'account.join',
+    name: 'account.join',
 		action() {
 			if (Meteor.userId()) {
 				return FlowRouter.go('/');
@@ -173,6 +173,9 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
     FlowRouter.route('/profile/edit', {
         name: 'profile.update',
         action() {
+					if (!Meteor.user()) {
+						return FlowRouter.go('/account/login');
+					}
             mount(MainLayoutCtx, {
                 content: () => (<ProfileEdit />),
                 isNotShowFooter: true,
@@ -181,11 +184,16 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
         }
     });
 
-	FlowRouter.route('/account/selfcare', {
+	FlowRouter.route('/profile/selfcare', {
 		name: 'account.selfcare',
 		action() {
+			if (!Meteor.user()) {
+				return FlowRouter.go('/account/login');
+			}
 			mount(MainLayoutCtx, {
-				content: () => (<Selfcare />)
+				content: () => (<Selfcare />),
+                isNotShowFooter: true,
+                changeBackground: true
 			});
 		}
 	});

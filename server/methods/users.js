@@ -160,6 +160,13 @@ export default function () {
             Meteor.call('sendVerifyEmail',option.email);
         },
 
+        'users.checkAvailable' (user, password) {
+            check(user, Object);
+            check(password, String);
+            var result = Accounts._checkPassword(user, password);
+            return result.error == null;
+        },
+
         'users.checkValidation' (text, type) {
             check(text, String);
             check(type, String);
@@ -218,13 +225,15 @@ export default function () {
             }
         },
 
-        'users.edit'(userId, email, password) {
+        'users.edit'(userId, attribute, type) {
             check(userId, String);
-            check(email, String);
-            check(password, String);
-            Meteor.users.update(userId, {
-                $set: {email: email, password: password}
-            });
+            check(attribute, String);
+            check(type, String);
+            if (type == 'email')
+                Meteor.users.update(userId, {
+                    $set: {'emails.0.address': attribute}
+                })
+            else Accounts.setPassword(userId, attribute);
         },
 
         'users.updateApplyToken'(userId, expired, status, date) {
