@@ -20,7 +20,7 @@ import TOS from '../users/components/TOS.jsx';
 import Confirm from '../users/containers/Confirm.js';
 import Update from '../users/containers/Update.js';
 
-import Selfcare from '../users/components/Selfcare.jsx';
+import Selfcare from '../users/containers/Selfcare';
 import AdminInvite from '../users/containers/AdminInvite.js';
 
 import ProfileEdit from '../users/containers/ProfileEdit.js';
@@ -180,11 +180,13 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
         }
     });
 
-	FlowRouter.route('/account/selfcare', {
+	FlowRouter.route('/profile/selfcare', {
 		name: 'account.selfcare',
 		action() {
 			mount(MainLayoutCtx, {
-				content: () => (<Selfcare />)
+				content: () => (<Selfcare />),
+                isNotShowFooter: true,
+                changeBackground: true
 			});
 		}
 	});
