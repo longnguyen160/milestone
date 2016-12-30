@@ -143,10 +143,6 @@ export default function () {
             });
 
             if (invitationCode.length !== 0) {
-<<<<<<< HEAD
-              
-=======
->>>>>>> upstream/master
               let code = InvitationCode.find({code: invitationCode}).fetch();
               InvitationCode.update({code: invitationCode}, {$set: {usage: code[0].usage - 1}});
 
