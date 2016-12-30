@@ -126,17 +126,14 @@ export default {
         });
     },
 
-<<<<<<< HEAD
+
     edit({Meteor, LocalState, FlowRouter}, userId, attribute, type) {
+        if (!Meteor.user()) {
+            Bert.alert("<b>You don't have permission to view this page!</b>", 'danger');
+            return FlowRouter.go('/');
+        }
+        
         Meteor.call('users.edit', userId, attribute, type, (err) => {
-=======
-    edit({Meteor, LocalState, FlowRouter}, userId, email, password) {
-      if (!Meteor.user()) {
-        Bert.alert("<b>You don't have permission to view this page!</b>", 'danger');
-        return FlowRouter.go('/');
-      }
-        Meteor.call('user.edit', userId, email, password, (err) => {
->>>>>>> origin/master
             if (err)
                 return LocalState.set("SAVING_ERROR");
         });
