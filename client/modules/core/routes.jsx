@@ -18,7 +18,7 @@ import FreelancerRegisterWithInvitationCode from '../users/containers/Freelancer
 
 import TOS from '../users/components/TOS.jsx';
 import Confirm from '../users/containers/Confirm.js';
-import Update from '../users/components/Update.jsx';
+import Update from '../users/containers/Update.js';
 
 import Selfcare from '../users/components/Selfcare.jsx';
 import AdminInvite from '../users/containers/AdminInvite.js';
@@ -82,7 +82,6 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 		name: 'account.signup',
 		action() {
 			if (Meteor.userId()) {
-				console.log(Meteor.userId());
 				return FlowRouter.go('/');
 			}
 			mount(MainLayoutCtx, {
@@ -144,11 +143,15 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 		}
 	});
 
-	FlowRouter.route('/profile/update', {
+	FlowRouter.route('/profile/update/:token', {
 		name: 'profile.update',
-		action() {
+		action({token}) {
+			if (!Meteor.userId()) {
+				Bert.alert("<b>You don't have permission to view this page<b/>", 'danger');
+				return FlowRouter.go('/');
+			}
 			mount(MainLayoutCtx, {
-				content: () => (<Update />)
+				content: () => (<Update token={token}/>)
 			});
 		}
 	});
@@ -156,7 +159,8 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/admin/apply', {
 		name: 'admin.apply',
 		action() {
-			if (!Meteor.user() || !Meteor.user().roles === 'admin') {
+			if (!Meteor.user() || Meteor.user().roles !== 'admin') {
+				Bert.alert("<b>You don't have permission to view this page!</b>", 'danger');
 				return FlowRouter.go('/');
 			}
 			mount(MainLayoutCtx, {
@@ -169,7 +173,9 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
         name: 'profile.update',
         action() {
             mount(MainLayoutCtx, {
-                content: () => (<ProfileEdit />)
+                content: () => (<ProfileEdit />),
+                isNotShowFooter: true,
+                changeBackground: true
             });
         }
     });
@@ -186,7 +192,8 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/admin/invites', {
 		name: 'admin.invites',
 		action() {
-			if (!Meteor.user() || !Meteor.user().roles === 'admin') {
+			if (!Meteor.user() || Meteor.user().roles !== 'admin') {
+				Bert.alert("<b>You don't have permission to view this page!</b>", 'danger');
 				return FlowRouter.go('/');
 			}
 			mount(MainLayoutCtx, {
@@ -198,6 +205,10 @@ export default function (injectDeps, {FlowRouter,LocalState}) {
 	FlowRouter.route('/profile/:username', {
 		name: 'profile',
 		action({username}) {
+			if (!Meteor.userId()) {
+				Bert.alert("<b>You don't have permission to view this page<b/>", 'danger');
+				return FlowRouter.go('/');
+			}
 			mount(MainLayoutCtx, {
 				content: () => (<Profile username={username}/>),
 				isNotShowFooter: true,

@@ -18,7 +18,7 @@ class Layout extends React.Component {
         let {role} = this.props;
         const {bgURL} = this.props;
         return (
-        <div id="root" onLoad={this.reupdate.bind(this)}>
+        <div id="root">
             <div id="nav">
                 {role === null ? <NavBar /> : role === true ? <UserNavBar /> : <AdminNavBar /> }
             </div>
@@ -26,9 +26,13 @@ class Layout extends React.Component {
             <div id="mainlayout" className={
                      (changeBackground !== undefined && changeBackground !== null) ?
                          (changeBackground === true ?
-                             'background_free_profile'
+                             ''
                              : 'background_com_profile')
-                : ""}>
+                : ""} style={(changeBackground !== undefined && changeBackground !== null) ?
+                (changeBackground === true ?
+                    {backgroundImage: 'url(' + bgURL + ')'}
+                    : null)
+                : null}>
                 <div id="maincontent">
                     {content()}
                 </div>
@@ -45,7 +49,8 @@ class Layout extends React.Component {
     };
 
     reupdate(e) {
-        this.role = this.props;
+        
+        this.role = this.props.role;
     };
 
 };

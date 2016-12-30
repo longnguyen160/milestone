@@ -21,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FreelancerProfile.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FreelancerProfile.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/modules/profile/component/FreelancerProfile.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-638">
-              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+            <state relative-caret-position="4362">
+              <caret line="266" column="49" lean-forward="true" selection-start-line="266" selection-start-column="49" selection-end-line="266" selection-end-column="49" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -33,14 +33,46 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="CompanyRegister.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/modules/users/components/CompanyRegister.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="742">
+              <caret line="117" column="45" lean-forward="true" selection-start-line="117" selection-start-column="45" selection-end-line="117" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="MainLayout.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/modules/core/components/MainLayout.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="30" column="19" lean-forward="false" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+            <state relative-caret-position="306">
+              <caret line="32" column="58" lean-forward="false" selection-start-line="32" selection-start-column="58" selection-end-line="32" selection-end-column="58" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserProfile.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/modules/users/containers/UserProfile.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#56#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserNavBar.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/modules/users/components/UserNavBar.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="42" lean-forward="false" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -60,11 +92,10 @@
       <file leaf-file-name="routes.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/modules/core/routes.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+            <state relative-caret-position="595">
+              <caret line="177" column="38" lean-forward="false" selection-start-line="177" selection-start-column="38" selection-end-line="177" selection-end-column="38" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
-                <element signature="e#599#710#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,20 +104,25 @@
       <file leaf-file-name="MainLayout.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/modules/core/containers/MainLayout.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="221">
+              <caret line="16" column="32" lean-forward="false" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
               <folding>
                 <element signature="e#0#54#0" expanded="true" />
+                <marker date="1483030362612" expanded="true" signature="225:1004" ph="{...}" />
+                <marker date="1483030362612" expanded="true" signature="470:778" ph="{...}" />
+                <marker date="1483030362612" expanded="true" signature="597:771" ph="{...}" />
+                <marker date="1483030362612" expanded="true" signature="784:837" ph="{...}" />
+                <marker date="1483030362612" expanded="true" signature="1056:1128" ph="{&quot;clearErrors&quot;: actions.home.clearRole...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProfileEdit.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/modules/profile/component/ProfileEdit.jsx">
+      <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/methods/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+            <state relative-caret-position="314">
+              <caret line="187" column="13" lean-forward="true" selection-start-line="187" selection-start-column="13" selection-end-line="187" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -95,32 +131,8 @@
       <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/modules/users/actions/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2533">
-              <caret line="88" column="49" lean-forward="false" selection-start-line="88" selection-start-column="49" selection-end-line="88" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CompanyProfile.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/modules/profile/component/CompanyProfile.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2040">
-              <caret line="120" column="36" lean-forward="false" selection-start-line="120" selection-start-column="36" selection-end-line="120" selection-end-column="36" />
-              <folding>
-                <marker date="1483005865143" expanded="true" signature="3834:4044" ph="{...}" />
-                <marker date="1483005865143" expanded="true" signature="4067:4285" ph="{...}" />
-                <marker date="1483005865143" expanded="true" signature="4308:4535" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="users.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/server/methods/users.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="246" column="0" lean-forward="true" selection-start-line="246" selection-start-column="0" selection-end-line="246" selection-end-column="0" />
+            <state relative-caret-position="17">
+              <caret line="139" column="0" lean-forward="true" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -157,17 +169,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/client/modules/users/containers/Selfcare.js" />
-        <option value="$PROJECT_DIR$/server/methods/index.js" />
-        <option value="$PROJECT_DIR$/server/publications/invitations.js" />
-        <option value="$PROJECT_DIR$/server/methods/invitations.js" />
-        <option value="$PROJECT_DIR$/client/modules/users/components/Login.jsx" />
-        <option value="$PROJECT_DIR$/client/modules/users/containers/Login.js" />
-        <option value="localhost:3000/app/app.js?hash=13cf76bde195f0366fb32f52ff2484eff2e404ee" />
-        <option value="localhost:3000/packages/modules.js?hash=ec21d8c1d1226137140f0c22076f79843c9d1540" />
-        <option value="localhost:3000/packages/ddp-client.js?hash=bc32a166cd269e06a394f9418e0024d805bab379" />
-        <option value="localhost:3000/packages/accounts-base.js?hash=dfba72beacc01e72b0f8fb3d7770c95ac774f2b8" />
-        <option value="localhost:3000/packages/service-configuration.js?hash=42ac9ae8eb44f3e73762f9cb0003410397021984" />
         <option value="chrome-extension://ngpampappnmepgilojfohadhhmbhlaek/content.js" />
         <option value="localhost:3000/packages/meteor.js?hash=e3f53db3be730057fed1a5f709ecd5fc7cae1229" />
         <option value="localhost:3000/app/app.js?hash=86f516a6951cf80d541bc02af71cd0fc5841169c" />
@@ -201,13 +202,24 @@
         <option value="$PROJECT_DIR$/client/modules/profile/component/ProfileEdit.jsx" />
         <option value="localhost:3000/app/app.js?hash=94d877c55652d29ed10249de627d9afd4fe1e333" />
         <option value="$PROJECT_DIR$/client/modules/profile/component/CompanyProfile.jsx" />
-        <option value="$PROJECT_DIR$/client/modules/users/actions/users.js" />
         <option value="$PROJECT_DIR$/client/modules/users/containers/FreelancerProfile.js" />
-        <option value="$PROJECT_DIR$/client/modules/core/routes.jsx" />
-        <option value="$PROJECT_DIR$/client/modules/core/components/MainLayout.jsx" />
+        <option value="$PROJECT_DIR$/node_modules/react-toggle-switch/dist/css/switch.min.css" />
         <option value="$PROJECT_DIR$/client/modules/core/containers/MainLayout.js" />
-        <option value="$PROJECT_DIR$/client/modules/profile/component/FreelancerProfile.jsx" />
+        <option value="localhost:3000/app/app.js?hash=9f8298aa5fc78f12c5150e28a69e4d364799e3cb" />
+        <option value="$PROJECT_DIR$/client/modules/core/routes.jsx" />
+        <option value="$PROJECT_DIR$/client/modules/users/components/UserProfile.jsx" />
+        <option value="$PROJECT_DIR$/client/modules/users/components/UserNavBar.jsx" />
+        <option value="$PROJECT_DIR$/client/modules/users/containers/UserProfile.js" />
+        <option value="localhost:3000/app/app.js?hash=3465de9ceda27b83953c81570501a09b88421f92" />
+        <option value="localhost:3000/app/app.js?hash=52925ea4373cceb66c6c5b58e70e3f8c0ee8816d" />
+        <option value="localhost:3000/app/app.js?hash=a0c6f6134090c395345f27f9b2dd701de666dacc" />
+        <option value="$PROJECT_DIR$/client/modules/users/actions/users.js" />
         <option value="$PROJECT_DIR$/server/methods/users.js" />
+        <option value="localhost:3000/app/app.js?hash=35393a69bb2695a7707486958347867fe05ca24a" />
+        <option value="localhost:3000/app/app.js?hash=ba221e1db1c8ccf5298172fddb15caecd4963746" />
+        <option value="localhost:3000/app/app.js?hash=fbccd447e247563841c74851203b0ab499aa3854" />
+        <option value="$PROJECT_DIR$/client/modules/core/components/MainLayout.jsx" />
+        <option value="$PROJECT_DIR$/client/modules/profile/component/FreelancerProfile.jsx" />
       </list>
     </option>
   </component>
@@ -623,8 +635,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -839,12 +851,13 @@
       <workItem from="1482893401539" duration="14291000" />
       <workItem from="1482911572740" duration="3992000" />
       <workItem from="1482916895883" duration="22406000" />
-      <workItem from="1482977103307" duration="29077000" />
+      <workItem from="1482977103307" duration="33812000" />
+      <workItem from="1483030292064" duration="4635000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138711000" />
+    <option name="totallyTimeSpent" value="148081000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -880,14 +893,14 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/.meteor/local/build/programs/server/app/app.js</url>
-          <line>675</line>
+          <line>785</line>
           <option name="timeStamp" value="57" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="95" />
+      <option name="time" value="96" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="meteor-app-runner">
@@ -896,79 +909,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/modules/users/containers/FreelancerApply.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-111">
-          <caret line="7" column="49" lean-forward="true" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="http://localhost:3000/app/app.js?hash=a5046f4cedfb1e17a73182a5250b0727a62350e2">
-      <provider selected="true" editor-type-id="httpFileEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/modules/users/containers/ProfileEdit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="50" lean-forward="false" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="http://localhost:3000/app/app.js?hash=b16a3b1f442c8e6017c9cef46d967ddc85f1acae">
-      <provider selected="true" editor-type-id="httpFileEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="http://localhost:3000/app/app.js?hash=60dfa5101d4eb8166c9237ac9fdcb5fd0575a24b">
-      <provider selected="true" editor-type-id="httpFileEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="http://localhost:3000/app/app.js?hash=c7d4c92342c9bc15daf0aa179c41800785f9a58d">
-      <provider selected="true" editor-type-id="httpFileEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/img/upload/Arale-chan1.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="http://localhost:3000/app/app.js?hash=5884d31cbe2804d099af492823d87a41708d4343">
-      <provider selected="true" editor-type-id="httpFileEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/startup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="17" lean-forward="true" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="http://localhost:3000/app/app.js?hash=b3cefbe30c37c91868b3652b68e78a0fd520f31b">
-      <provider selected="true" editor-type-id="httpFileEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="http://localhost:3000/app/app.js?hash=5c5d49f71c7805d15e9704e442640469c50cfd39">
-      <provider selected="true" editor-type-id="httpFileEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="http://localhost:3000/app/app.js?hash=df43862fa66629955344bc13a8253b69a376d833">
-      <provider selected="true" editor-type-id="httpFileEditor">
-        <state />
-      </provider>
-    </entry>
     <entry file="http://localhost:3000/app/app.js?hash=3f9c430f925d4968b6792348def5ced8c78d4c65">
       <provider selected="true" editor-type-id="httpFileEditor">
         <state />
@@ -1048,9 +988,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="52" lean-forward="true" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1170,6 +1107,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/modules/profile/component/ProfileEdit.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="http://localhost:3000/app/app.js?hash=9f8298aa5fc78f12c5150e28a69e4d364799e3cb">
+      <provider selected="true" editor-type-id="httpFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-toggle-switch/dist/css/switch.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/modules/users/components/UserProfile.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/modules/users/components/UserNavBar.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="42" lean-forward="false" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/modules/core/routes.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="177" column="38" lean-forward="false" selection-start-line="177" selection-start-column="38" selection-end-line="177" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/modules/core/containers/MainLayout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="16" column="32" lean-forward="false" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+            <marker date="1483030362612" expanded="true" signature="225:1004" ph="{...}" />
+            <marker date="1483030362612" expanded="true" signature="470:778" ph="{...}" />
+            <marker date="1483030362612" expanded="true" signature="597:771" ph="{...}" />
+            <marker date="1483030362612" expanded="true" signature="784:837" ph="{...}" />
+            <marker date="1483030362612" expanded="true" signature="1056:1128" ph="{&quot;clearErrors&quot;: actions.home.clearRole...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/modules/users/containers/FreelancerProfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1180,68 +1178,95 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/modules/core/routes.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#599#710#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/modules/core/components/MainLayout.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="30" column="19" lean-forward="false" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/modules/profile/component/ProfileEdit.jsx">
+    <entry file="file://$PROJECT_DIR$/client/modules/users/components/NavBar.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/modules/core/containers/MainLayout.js">
+    <entry file="file://$PROJECT_DIR$/client/modules/users/containers/UserProfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="136">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
-            <element signature="e#0#54#0" expanded="true" />
+            <element signature="e#0#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/modules/profile/component/FreelancerProfile.jsx">
+    <entry file="http://localhost:3000/app/app.js?hash=3465de9ceda27b83953c81570501a09b88421f92">
+      <provider selected="true" editor-type-id="httpFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="http://localhost:3000/app/app.js?hash=a0c6f6134090c395345f27f9b2dd701de666dacc">
+      <provider selected="true" editor-type-id="httpFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="http://localhost:3000/app/app.js?hash=52925ea4373cceb66c6c5b58e70e3f8c0ee8816d">
+      <provider selected="true" editor-type-id="httpFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="http://localhost:3000/app/app.js?hash=35393a69bb2695a7707486958347867fe05ca24a">
+      <provider selected="true" editor-type-id="httpFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="http://localhost:3000/app/app.js?hash=ba221e1db1c8ccf5298172fddb15caecd4963746">
+      <provider selected="true" editor-type-id="httpFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="http://localhost:3000/app/app.js?hash=fbccd447e247563841c74851203b0ab499aa3854">
+      <provider selected="true" editor-type-id="httpFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/modules/core/components/MainLayout.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-638">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+        <state relative-caret-position="306">
+          <caret line="32" column="58" lean-forward="false" selection-start-line="32" selection-start-column="58" selection-end-line="32" selection-end-column="58" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/modules/users/components/CompanyRegister.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="742">
+          <caret line="117" column="45" lean-forward="true" selection-start-line="117" selection-start-column="45" selection-end-line="117" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/modules/users/actions/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2533">
-          <caret line="88" column="49" lean-forward="false" selection-start-line="88" selection-start-column="49" selection-end-line="88" selection-end-column="49" />
+        <state relative-caret-position="17">
+          <caret line="139" column="0" lean-forward="true" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/methods/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="246" column="0" lean-forward="true" selection-start-line="246" selection-start-column="0" selection-end-line="246" selection-end-column="0" />
+        <state relative-caret-position="314">
+          <caret line="187" column="13" lean-forward="true" selection-start-line="187" selection-start-column="13" selection-end-line="187" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/modules/profile/component/FreelancerProfile.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4362">
+          <caret line="266" column="49" lean-forward="true" selection-start-line="266" selection-start-column="49" selection-end-line="266" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -227,28 +227,17 @@ export default function () {
             });
         },
 
-        'users.deleteIMG'(userId) {
+        'users.deleteIMG'(userId, i) {
 
             check(userId, String);
             if (Meteor.subscribe("img.single").ready()) {
                 const img = Image.find({userId: userId}).fetch();
-                if (img[0] !== undefined)
-                    Image.update(img[0]._id, {$set: {imgURL: '', bgimgURL: ''}});
-            }
-        },
-
-        'users.editFreelancerProfile'(userId,fname,lname,position,location,experience,rate,link,travel,headline,introduce,skill,sector,img,bgimg) {
-
-            check([userId,fname,lname,position,location,experience,rate,link,travel,headline,introduce,skill,sector,img,bgimg], [String]);
-            Meteor.users.update(userId, {
-                $set: {
-                    firstName: fname,
-                    lastName: lname,
-                    company: compnany,
-                    ExperienceInPosition: {experience: experience, rate: rate, link: link},
-                    details: {headline: headline, introduce: introduce, skill: skill, sector: sector}
+                if (img[0] !== undefined) {
+                    if (i == 1)
+                        Image.update(img[0]._id, {$set: {imgURL: ''}});
+                    else Image.update(img[0]._id, {$set: {bgimgURL: ''}});
                 }
-            });
+            }
         }
     });
 
