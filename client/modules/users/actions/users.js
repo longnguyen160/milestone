@@ -164,7 +164,7 @@ export default {
     },
 //Check validation code
     checkInvitationCode({Meteor, LocalState, FlowRouter}, invitationCode){
-
+      console.log('hello');
         if (!invitationCode) {
             return LocalState.set('INVITATIONCODE_ERROR', "Invitation code is required.");
         } else {
@@ -198,14 +198,17 @@ export default {
         Meteor.call('invitation.checkInvitationCode',invitationCode,function(error) {
           if (error) {
             Bert.alert('<b>Your invitation code is not available!', 'danger');
+            LocalState.set('INVITATIONCODE',null);
             FlowRouter.go('/register/freelancer');
-
           }
-        })
-        Meteor.call('users.createUserFreelancer', firstName, lastName, email, password, invitaionCode);
-        LocalState.set('INVITATIONCODE',null);
-        Bert.alert('<b>You freelancer account has been created! Please check your email to verify your account!', 'success');
-        Meteor.setTimeout(function() {FlowRouter.go("/");}, 2500);
+          else {
+            Meteor.call('users.createUserFreelancer', firstName, lastName, email, password, invitaionCode);
+            LocalState.set('INVITATIONCODE',null);
+            Bert.alert('<b>You freelancer account has been created! Please check your email to verify your account!', 'success');
+            Meteor.setTimeout(function() {FlowRouter.go("/");}, 2500);
+          }
+        });
+
     },//end of create user freelancer
 
 //Clear errors
